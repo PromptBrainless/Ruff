@@ -23,6 +23,8 @@ output-metadata.json
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
+/.source-export/
+__pycache__/
 
 # Keystore files
 *.jks
