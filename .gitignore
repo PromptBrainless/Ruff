@@ -24,6 +24,8 @@ misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
 /.source-export/
+/ref/*
+!/ref/INDEX.md
 __pycache__/
 
 # Keystore files

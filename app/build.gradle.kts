@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -28,6 +29,14 @@ android {
     buildFeatures {
         compose = true
     }
+
+    lint {
+        abortOnError = true
+    }
+}
+
+ktlint {
+    version.set("1.5.0")
 }
 
 dependencies {
