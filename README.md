@@ -36,3 +36,20 @@ Mit JDK 17 und Android SDK API 35:
 
 ArtCraft dient als Referenz für visuelles Arbeiten. Die App verwendet Ruff-eigene
 Exportdaten und Assets und übernimmt keinen fremden ArtCraft-Quellcode.
+
+## Repo-Struktur
+
+| Pfad | Inhalt |
+| --- | --- |
+| `app/` | Android-App (Kotlin, Jetpack Compose) |
+| `app/src/main/assets/` | `creatures.json`, `rules.json` (vom Importskript erzeugt) |
+| `tools/` | Notion-Import (`import_export.py`) und Test |
+| `.github/agents/` | Weltbau-Agent für Codespaces |
+| `.github/workflows/` | CI: Import-Test und Debug-APK |
+| `abacktools-ExportBlock-*.zip` | Notion-Export (Quelle, nicht entpacken) |
+| `ref-*.zip` | Referenzmaterial, nicht Teil des App-Builds |
+
+## Kontinuierliche Integration
+
+`.github/workflows/android.yml` testet das Importskript und baut bei jedem Push
+und Pull Request eine Debug-APK, die als Artefakt heruntergeladen werden kann.
