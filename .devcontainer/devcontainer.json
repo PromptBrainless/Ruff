@@ -1,0 +1,28 @@
+{
+  "name": "Ruff Android and Python",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "jdkDistro": "ms"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": false
+    }
+  },
+  "containerEnv": {
+    "ANDROID_HOME": "/usr/local/lib/android",
+    "ANDROID_SDK_ROOT": "/usr/local/lib/android"
+  },
+  "postCreateCommand": "python -m pip install -r requirements-dev.txt && pre-commit install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "fwcd.kotlin",
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
+}

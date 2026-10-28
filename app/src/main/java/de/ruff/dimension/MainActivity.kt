@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -43,8 +43,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -61,14 +61,15 @@ private val Flame = Color(0xFFE0662A)
 private val Parchment = Color(0xFFE4E6E3)
 private val Storm = Color(0xFF9AA3AC)
 
-private val RuffColors = darkColorScheme(
-    primary = Ember,
-    secondary = Flame,
-    background = Soot,
-    surface = Iron,
-    onBackground = Parchment,
-    onSurface = Parchment,
-)
+private val RuffColors =
+    darkColorScheme(
+        primary = Ember,
+        secondary = Flame,
+        background = Soot,
+        surface = Iron,
+        onBackground = Parchment,
+        onSurface = Parchment,
+    )
 
 private data class Creature(
     val name: String = "",
@@ -91,7 +92,9 @@ private data class RuleBlock(
     val text: String = "",
 )
 
-private enum class LibraryTab(val label: String) {
+private enum class LibraryTab(
+    val label: String,
+) {
     CREATURES("Wesen"),
     RULES("Regeln"),
 }
@@ -102,12 +105,14 @@ class MainActivity : ComponentActivity() {
         val gson = Gson()
         val creaturesType = object : TypeToken<List<Creature>>() {}.type
         val rulesType = object : TypeToken<List<RulePage>>() {}.type
-        val creatures = assets.open("creatures.json").bufferedReader().use {
-            gson.fromJson<List<Creature>>(it, creaturesType)
-        }
-        val rules = assets.open("rules.json").bufferedReader().use {
-            gson.fromJson<List<RulePage>>(it, rulesType)
-        }
+        val creatures =
+            assets.open("creatures.json").bufferedReader().use {
+                gson.fromJson<List<Creature>>(it, creaturesType)
+            }
+        val rules =
+            assets.open("rules.json").bufferedReader().use {
+                gson.fromJson<List<RulePage>>(it, rulesType)
+            }
 
         window.statusBarColor = android.graphics.Color.rgb(22, 23, 26)
         window.navigationBarColor = android.graphics.Color.rgb(22, 23, 26)
@@ -120,7 +125,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun RuffApp(creatures: List<Creature>, rules: List<RulePage>) {
+private fun RuffApp(
+    creatures: List<Creature>,
+    rules: List<RulePage>,
+) {
     var tab by remember { mutableStateOf(LibraryTab.CREATURES) }
     var query by remember { mutableStateOf("") }
     var powerFilter by remember { mutableStateOf<Int?>(null) }
@@ -141,43 +149,51 @@ private fun RuffApp(creatures: List<Creature>, rules: List<RulePage>) {
         containerColor = Soot,
     ) { padding ->
         when {
-            selectedCreature != null -> CreatureDetails(
-                creature = selectedCreature!!,
-                modifier = Modifier.padding(padding),
-            )
-            selectedRule != null -> RuleDetails(
-                rule = selectedRule!!,
-                modifier = Modifier.padding(padding),
-            )
-            else -> Library(
-                creatures = creatures,
-                rules = rules,
-                tab = tab,
-                query = query,
-                powerFilter = powerFilter,
-                onTabChange = {
-                    tab = it
-                    powerFilter = null
-                },
-                onQueryChange = { query = it },
-                onPowerFilterChange = { powerFilter = it },
-                onCreatureClick = { selectedCreature = it },
-                onRuleClick = { selectedRule = it },
-                modifier = Modifier.padding(padding),
-            )
+            selectedCreature != null ->
+                CreatureDetails(
+                    creature = selectedCreature!!,
+                    modifier = Modifier.padding(padding),
+                )
+            selectedRule != null ->
+                RuleDetails(
+                    rule = selectedRule!!,
+                    modifier = Modifier.padding(padding),
+                )
+            else ->
+                Library(
+                    creatures = creatures,
+                    rules = rules,
+                    tab = tab,
+                    query = query,
+                    powerFilter = powerFilter,
+                    onTabChange = {
+                        tab = it
+                        powerFilter = null
+                    },
+                    onQueryChange = { query = it },
+                    onPowerFilterChange = { powerFilter = it },
+                    onCreatureClick = { selectedCreature = it },
+                    onRuleClick = { selectedRule = it },
+                    modifier = Modifier.padding(padding),
+                )
         }
     }
 }
 
 @Composable
-private fun Header(title: String, showBack: Boolean, onBack: () -> Unit) {
+private fun Header(
+    title: String,
+    showBack: Boolean,
+    onBack: () -> Unit,
+) {
     Surface(color = Soot, tonalElevation = 2.dp) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .statusBarsPadding()
-                .height(68.dp)
-                .padding(horizontal = 18.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .statusBarsPadding()
+                    .height(68.dp)
+                    .padding(horizontal = 18.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (showBack) {
@@ -229,28 +245,33 @@ private fun Library(
     modifier: Modifier = Modifier,
 ) {
     val normalizedQuery = query.trim().lowercase()
-    val filteredCreatures = remember(creatures, normalizedQuery, powerFilter) {
-        creatures.filter { creature ->
-            (powerFilter == null || creature.powerLevel == powerFilter) &&
-                (normalizedQuery.isEmpty() ||
-                    creature.name.lowercase().contains(normalizedQuery) ||
-                    creature.archetype.lowercase().contains(normalizedQuery) ||
-                    creature.fields.values.any { it.lowercase().contains(normalizedQuery) })
+    val filteredCreatures =
+        remember(creatures, normalizedQuery, powerFilter) {
+            creatures.filter { creature ->
+                (powerFilter == null || creature.powerLevel == powerFilter) &&
+                    (
+                        normalizedQuery.isEmpty() ||
+                            creature.name.lowercase().contains(normalizedQuery) ||
+                            creature.archetype.lowercase().contains(normalizedQuery) ||
+                            creature.fields.values.any { it.lowercase().contains(normalizedQuery) }
+                    )
+            }
         }
-    }
-    val filteredRules = remember(rules, normalizedQuery) {
-        rules.filter { rule ->
-            normalizedQuery.isEmpty() ||
-                rule.title.lowercase().contains(normalizedQuery) ||
-                rule.blocks.any { it.text.lowercase().contains(normalizedQuery) }
+    val filteredRules =
+        remember(rules, normalizedQuery) {
+            rules.filter { rule ->
+                normalizedQuery.isEmpty() ||
+                    rule.title.lowercase().contains(normalizedQuery) ||
+                    rule.blocks.any { it.text.lowercase().contains(normalizedQuery) }
+            }
         }
-    }
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = 18.dp),
+        modifier =
+            modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 18.dp),
     ) {
         Spacer(Modifier.height(18.dp))
         SectionBanner()
@@ -315,10 +336,11 @@ private fun Library(
 @Composable
 private fun SectionBanner() {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(112.dp)
-            .clip(RoundedCornerShape(14.dp)),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .height(112.dp)
+                .clip(RoundedCornerShape(14.dp)),
     ) {
         Image(
             painter = painterResource(R.drawable.ruff_article_background),
@@ -327,10 +349,11 @@ private fun SectionBanner() {
             modifier = Modifier.matchParentSize(),
         )
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Soot.copy(alpha = 0.3f))
-                .padding(18.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .background(Soot.copy(alpha = 0.3f))
+                    .padding(18.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
@@ -361,10 +384,11 @@ private fun PowerLevelMenu(
     onSelected: (Int?) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
-    val levels = creatures
-        .filter { it.powerLevel > 0 }
-        .distinctBy { it.powerLevel }
-        .sortedBy { it.powerLevel }
+    val levels =
+        creatures
+            .filter { it.powerLevel > 0 }
+            .distinctBy { it.powerLevel }
+            .sortedBy { it.powerLevel }
 
     Box {
         Button(
@@ -395,18 +419,23 @@ private fun PowerLevelMenu(
 }
 
 @Composable
-private fun CreatureCard(creature: Creature, onClick: () -> Unit) {
+private fun CreatureCard(
+    creature: Creature,
+    onClick: () -> Unit,
+) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 5.dp)
-            .clickable(onClick = onClick),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 5.dp)
+                .clickable(onClick = onClick),
         colors = CardDefaults.cardColors(containerColor = Iron),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
@@ -442,13 +471,21 @@ private fun CreatureCard(creature: Creature, onClick: () -> Unit) {
 }
 
 @Composable
-private fun RuleCard(rule: RulePage, onClick: () -> Unit) {
-    val summary = rule.blocks.firstOrNull { it.type == "p" || it.type == "li" }?.text.orEmpty()
+private fun RuleCard(
+    rule: RulePage,
+    onClick: () -> Unit,
+) {
+    val summary =
+        rule.blocks
+            .firstOrNull { it.type == "p" || it.type == "li" }
+            ?.text
+            .orEmpty()
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 5.dp)
-            .clickable(onClick = onClick),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 5.dp)
+                .clickable(onClick = onClick),
         colors = CardDefaults.cardColors(containerColor = Iron),
     ) {
         Column(Modifier.padding(16.dp)) {
@@ -466,12 +503,16 @@ private fun RuleCard(rule: RulePage, onClick: () -> Unit) {
 }
 
 @Composable
-private fun CreatureDetails(creature: Creature, modifier: Modifier = Modifier) {
+private fun CreatureDetails(
+    creature: Creature,
+    modifier: Modifier = Modifier,
+) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(18.dp),
+        modifier =
+            modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(18.dp),
     ) {
         Card(colors = CardDefaults.cardColors(containerColor = Iron)) {
             Column(Modifier.padding(18.dp)) {
@@ -495,12 +536,16 @@ private fun CreatureDetails(creature: Creature, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun RuleDetails(rule: RulePage, modifier: Modifier = Modifier) {
+private fun RuleDetails(
+    rule: RulePage,
+    modifier: Modifier = Modifier,
+) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(18.dp),
+        modifier =
+            modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(18.dp),
     ) {
         Text(rule.source, color = Storm, style = MaterialTheme.typography.labelSmall)
         Spacer(Modifier.height(12.dp))
@@ -511,24 +556,27 @@ private fun RuleDetails(rule: RulePage, modifier: Modifier = Modifier) {
                         block.text,
                         color = Flame,
                         fontWeight = FontWeight.Bold,
-                        style = if (block.type == "h2") {
-                            MaterialTheme.typography.titleMedium
-                        } else {
-                            MaterialTheme.typography.titleSmall
-                        },
+                        style =
+                            if (block.type == "h2") {
+                                MaterialTheme.typography.titleMedium
+                            } else {
+                                MaterialTheme.typography.titleSmall
+                            },
                         modifier = Modifier.padding(top = 16.dp, bottom = 6.dp),
                     )
                 }
-                "li", "row" -> Text(
-                    "•  ${block.text}",
-                    color = Parchment,
-                    modifier = Modifier.padding(vertical = 4.dp),
-                )
-                else -> Text(
-                    block.text,
-                    color = Parchment.copy(alpha = 0.9f),
-                    modifier = Modifier.padding(vertical = 6.dp),
-                )
+                "li", "row" ->
+                    Text(
+                        "•  ${block.text}",
+                        color = Parchment,
+                        modifier = Modifier.padding(vertical = 4.dp),
+                    )
+                else ->
+                    Text(
+                        block.text,
+                        color = Parchment.copy(alpha = 0.9f),
+                        modifier = Modifier.padding(vertical = 6.dp),
+                    )
             }
         }
         Spacer(Modifier.height(24.dp))
@@ -536,11 +584,15 @@ private fun RuleDetails(rule: RulePage, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun DetailField(label: String, value: String) {
+private fun DetailField(
+    label: String,
+    value: String,
+) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 5.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 5.dp),
         colors = CardDefaults.cardColors(containerColor = Iron),
     ) {
         Column(Modifier.padding(14.dp)) {
@@ -554,9 +606,10 @@ private fun DetailField(label: String, value: String) {
 @Composable
 private fun EmptyState(message: String) {
     Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp),
         color = Iron,
         shape = RoundedCornerShape(12.dp),
     ) {

@@ -13,7 +13,9 @@ class ImportExportTests(unittest.TestCase):
             page.write_text(
                 """
                 <h1>Wesen &amp; Held</h1>
-                <table><tr><th>Machtstufe</th><td>IV – Monströs (Vorschlag)</td></tr></table>
+                <table>
+                  <tr><th>Machtstufe</th><td>IV – Monströs (Vorschlag)</td></tr>
+                </table>
                 <h2>Ursprung</h2><p>Eine alte <strong>Sage</strong>.</p>
                 """,
                 encoding="utf-8",
@@ -53,6 +55,47 @@ class ImportExportTests(unittest.TestCase):
         self.assertEqual(creature["powerLevel"], 4)
         self.assertEqual(creature["archetype"], "Trickster")
         self.assertEqual(creature["description"], "Spinnen-Trickster.")
+        self.assertEqual(creature["status"], "Vorschlag")
+
+    def test_bot_proposal_marker_cannot_be_confirmed(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            page = root / "Wesen.html"
+            page.write_text(
+                """
+                <h1>Wesen</h1>
+                <table>
+                  <tr><th>Status</th><td>Bestätigt</td></tr>
+                  <tr><th>Machtstufe</th><td>III – Übermenschlich
+                  (Vorschlag Bot)</td></tr>
+                  <tr><th>Ursprung</th><td>Eine Beschreibung.</td></tr>
+                </table>
+                """,
+                encoding="utf-8",
+            )
+
+            creature = parse_creature(page, root)
+
+        self.assertEqual(creature["status"], "Vorschlag")
+
+    def test_explicit_confirmed_status_without_bot_marker_is_confirmed(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            page = root / "Wesen.html"
+            page.write_text(
+                """
+                <h1>Wesen</h1>
+                <table>
+                  <tr><th>Status</th><td>Bestätigt</td></tr>
+                  <tr><th>Ursprung</th><td>Eine Beschreibung.</td></tr>
+                </table>
+                """,
+                encoding="utf-8",
+            )
+
+            creature = parse_creature(page, root)
+        self.assertEqual(creature["status"], "bestätigt")
+        self.assertEqual(creature["status"], "bestätigt")
 
 
 if __name__ == "__main__":
