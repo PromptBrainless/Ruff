@@ -129,6 +129,16 @@ def parse_creature(path, root):
     stage = record["fields"].get("Machtstufe", "")
     match = re.match(r"\s*([IVX]+)\s*[–-]\s*(.+?)(?:\s*\(|$)", stage)
     stage_roman = match.group(1) if match else ""
+    source_status = record["fields"].get("Status", "").strip().casefold()
+    has_bot_proposal_marker = any(
+        "vorschlag bot" in value.casefold()
+        for value in (record["title"], stage, *record["fields"].values())
+    )
+    status = (
+        "bestätigt"
+        if source_status == "bestätigt" and not has_bot_proposal_marker
+        else "Vorschlag"
+    )
     description = (
         record["fields"].get("Ursprung")
         or record["fields"].get("Aussehen")
@@ -137,6 +147,7 @@ def parse_creature(path, root):
     return {
         "name": record["title"],
         "source": record["source"],
+        "status": status,
         "powerLevel": STAGE_NUMBERS.get(stage_roman, 0),
         "powerLabel": stage,
         "description": description,
@@ -168,7 +179,8 @@ def main():
     rules_root = root / "Regeln"
     if not creature_root.is_dir() or not rules_root.is_dir():
         raise SystemExit(
-            "Expected an extracted Ruff export containing 'Wesen & Figuren' and 'Regeln'."
+            "Expected an extracted Ruff export containing 'Wesen & Figuren' "
+            "and 'Regeln'."
         )
 
     parsed_creatures = [

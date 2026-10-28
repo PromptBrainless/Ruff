@@ -1,0 +1,52 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=5120"]
+      - id: check-json
+      - id: check-yaml
+      - id: detect-private-key
+
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.24.0
+    hooks:
+      - id: markdownlint-cli2
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ["--baseline", ".secrets.baseline"]
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.39.0
+    hooks:
+      - id: check-metaschema
+        files: ^(bestiarium/schema|tools/ruff_3d/(manifest|config)\.schema)\.json$
+      - id: check-jsonschema
+        args: ["--schemafile=bestiarium/schema.json"]
+        files: ^bestiarium/daten/.*\.json$
+      - id: check-jsonschema
+        name: Validate 3D manifest
+        args: ["--schemafile=tools/ruff_3d/manifest.schema.json"]
+        files: ^tools/ruff_3d/manifest\.json$
+      - id: check-jsonschema
+        name: Validate 3D configuration
+        args: ["--schemafile=tools/ruff_3d/config.schema.json"]
+        files: ^tools/ruff_3d/config\.json$
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
+        args: ["--max-line-length=88"]
+
+  - repo: local
+    hooks:
+      - id: validate-ruff-canon
+        name: Validate Ruff bestiary references and values
+        entry: python tools/validate_canon.py
+        language: system
+        pass_filenames: false
+        files: ^bestiarium/daten/.*\.json$

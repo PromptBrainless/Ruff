@@ -2,6 +2,7 @@
   {
     "name": "Aesops Fuchs",
     "source": "Wesen & Figuren/Wesen-Register/Aesops Fuchs 404acc63731d81b8ac97cc8d89410864.html",
+    "status": "Vorschlag",
     "powerLevel": 2,
     "powerLabel": "II – Menschlich (Vorschlag Bot, Ø 154)",
     "description": "Häufigster Charakter der Fabeln, die dem griechischen Fabeldichter Äsop (6. Jh. v. Chr.) zugeschrieben werden. Der Fuchs steht für List und Schläue.",
@@ -30,6 +31,7 @@
   {
     "name": "Amaterasu",
     "source": "Wesen & Figuren/Wesen-Register/Amaterasu 404acc63731d81be9666dcd84f4edd71.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 769)",
     "description": "Sonnengöttin des Schintō. Sie entsteht aus dem linken Auge des Gottes Izanagi, als er sich nach der Rückkehr aus der Unterwelt reinigt.",
@@ -58,6 +60,7 @@
   {
     "name": "Anansi",
     "source": "Wesen & Figuren/Wesen-Register/Anansi 404acc63731d811f902af47cc69f55f4.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 418)",
     "description": "Spinnen-Trickster der Akan (Ashanti) in Ghana. Er kauft dem Himmelsgott Nyame alle Geschichten ab, indem er Python, Leopard, Hornissen und eine Fee fängt.",
@@ -87,6 +90,7 @@
   {
     "name": "Anubis",
     "source": "Wesen & Figuren/Wesen-Register/Anubis 404acc63731d81909611c3f67fe07faa.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 719)",
     "description": "Ägyptischer Gott der Totenriten und der Einbalsamierung. In der Frühzeit Hauptgott der Toten, später tritt Osiris an diese Stelle; seine Abstammung ist je nach Quelle verschieden (u. a. Sohn von Osiris und Nephthys).",
@@ -116,6 +120,7 @@
   {
     "name": "Apophis",
     "source": "Wesen & Figuren/Wesen-Register/Apophis 404acc63731d818e9dd2c25b28a00a9d.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 750)",
     "description": "Riesenschlange und Verkörperung des Chaos (Isfet) in der ägyptischen Religion; Gegner des Sonnengottes Ra.",
@@ -145,6 +150,7 @@
   {
     "name": "Asmodeus",
     "source": "Wesen & Figuren/Wesen-Register/Asmodeus 404acc63731d81c183beca9842ab92d4.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 600)",
     "description": "Dämon, der wohl auf den persischen Zorndämon Aēšma zurückgeht. Im Buch Tobit tötet er die sieben Ehemänner Saras jeweils in der Hochzeitsnacht.",
@@ -173,6 +179,7 @@
   {
     "name": "Audhumbla",
     "source": "Wesen & Figuren/Wesen-Register/Audhumbla 404acc63731d810ea997d322430b697d.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 570)",
     "description": "Urkuh der nordischen Mythologie. Sie entsteht wie Ymir aus dem tauenden Reif in Ginnungagap.",
@@ -201,6 +208,7 @@
   {
     "name": "Baba Jaga",
     "source": "Wesen & Figuren/Wesen-Register/Baba Jaga 404acc63731d8144b726e2a474983fad.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 506)",
     "description": "Waldhexe der slawischen, vor allem russischen Märchen. Sie lebt am Rand der Welt in einer Hütte auf Hühnerbeinen, die sich auf Zuruf dreht.",
@@ -229,6 +237,7 @@
   {
     "name": "Banshee",
     "source": "Wesen & Figuren/Wesen-Register/Banshee 404acc63731d8140b972c5a4ee7d6be1.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 402)",
     "description": "Irische Feen- oder Geisterfrau, die durch ihr Klagen den bevorstehenden Tod eines Familienmitglieds ankündigt, traditionell bei alten gälischen Familien (z. B. O’Brien).",
@@ -257,6 +266,7 @@
   {
     "name": "Basilisk",
     "source": "Wesen & Figuren/Wesen-Register/Basilisk 404acc63731d812ebed2f27cb5d67d6e.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 290)",
     "description": "Bei Plinius eine kleine, giftige Schlange aus Kyrene in Libyen mit kronenartigem Fleck. Im Mittelalter aus einem von einem Hahn gelegten und von einer Kröte ausgebrüteten Ei geschlüpft.",
@@ -285,6 +295,7 @@
   {
     "name": "Behemoth",
     "source": "Wesen & Figuren/Wesen-Register/Behemoth 404acc63731d81248435f3ea6a243c0d.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 556)",
     "description": "Gewaltiges Landtier, das Gott im Buch Hiob als Beispiel seiner Schöpfermacht vorführt; Gegenstück zum Meeresungeheuer Leviathan.",
@@ -313,6 +324,7 @@
   {
     "name": "Bileam",
     "source": "Wesen & Figuren/Wesen-Register/Bileam 404acc63731d8172a907fe588a1f01b4.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 194)",
     "description": "Nichtisraelitischer Seher, Sohn Beors, den der moabitische König Balak beauftragt, Israel zu verfluchen.",
@@ -341,6 +353,7 @@
   {
     "name": "Brigid",
     "source": "Wesen & Figuren/Wesen-Register/Brigid 404acc63731d81e0bf18c0c1f71aed89.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 638)",
     "description": "Irische Göttin, Tochter des Dagda aus den Túatha Dé Danann. Cormacs Glossar nennt drei Schwestern dieses Namens: Göttinnen der Dichtung, der Heilkunst und der Schmiedekunst.",
@@ -369,6 +382,7 @@
   {
     "name": "Bunyip",
     "source": "Wesen & Figuren/Wesen-Register/Bunyip 404acc63731d81798f50f3dffba61970.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 306)",
     "description": "Wasserwesen aus der Überlieferung der Aborigines Südostaustraliens, das in Sümpfen, Billabongs und Flüssen lebt.",
@@ -397,6 +411,7 @@
   {
     "name": "Cerberus",
     "source": "Wesen & Figuren/Wesen-Register/Cerberus 404acc63731d819e9b4bccae65f14d3c.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 451)",
     "description": "Wachhund der Unterwelt des Hades, Sohn von Typhon und Echidna.",
@@ -426,6 +441,7 @@
   {
     "name": "Chaos",
     "source": "Wesen & Figuren/Wesen-Register/Chaos 404acc63731d81db8e1cf82b326db7be.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 762)",
     "description": "In Hesiods Theogonie das Allererste, das entsteht. Aus ihm gehen Erebos (Finsternis) und Nyx (Nacht) hervor; das Wort bedeutet ursprünglich „Kluft, gähnender Raum“.",
@@ -454,6 +470,7 @@
   {
     "name": "Charon",
     "source": "Wesen & Figuren/Wesen-Register/Charon 404acc63731d813b886be13b7f5d9d96.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 588)",
     "description": "Fährmann der Unterwelt, der die Seelen der bestatteten Toten über den Fluss Acheron (später Styx) bringt.",
@@ -483,6 +500,7 @@
   {
     "name": "Chimäre",
     "source": "Wesen & Figuren/Wesen-Register/Chimäre 404acc63731d81b98a58e330e2153b90.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 326)",
     "description": "Feuerspeiendes Ungeheuer aus Lykien, Tochter von Typhon und Echidna.",
@@ -512,6 +530,7 @@
   {
     "name": "Chupacabra",
     "source": "Wesen & Figuren/Wesen-Register/Chupacabra 404acc63731d81d8ae88ec7a81a6ca78.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 185)",
     "description": "Moderne Sagengestalt, die ab 1995 auf Puerto Rico bekannt wurde, als Ziegen und anderes Vieh mit Stichwunden tot aufgefunden wurden.",
@@ -540,6 +559,7 @@
   {
     "name": "Circe",
     "source": "Wesen & Figuren/Wesen-Register/Circe 404acc63731d8142b21fce45096dc93a.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 481)",
     "description": "Zauberin und Göttin, Tochter des Sonnengottes Helios und der Okeanide Perse; Tante der Medea. Sie lebt auf der Insel Aiaia.",
@@ -568,6 +588,7 @@
   {
     "name": "Cthulhu",
     "source": "Wesen & Figuren/Wesen-Register/Cthulhu 404acc63731d81a5aa42c93efb0842ef.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 831)",
     "description": "Kosmisches Wesen aus der Erzählung „The Call of Cthulhu“ von H. P. Lovecraft (1928 in „Weird Tales“). Schläft tot und träumend in der versunkenen Stadt R’lyeh im Pazifik.",
@@ -595,6 +616,7 @@
   {
     "name": "Cú Chulainn",
     "source": "Wesen & Figuren/Wesen-Register/Cú Chulainn 404acc63731d81598839f0352f946ef1.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 462)",
     "description": "Held des Ulster-Zyklus, Sohn der Deichtine und des Gottes Lug (nach anderer Fassung des Sualtam). Seinen Namen „Hund des Culann“ erhält er, weil er als Junge den Wachhund des Schmieds Culann tötet und dessen Platz einnimmt.",
@@ -623,6 +645,7 @@
   {
     "name": "Domovoi",
     "source": "Wesen & Figuren/Wesen-Register/Domovoi 404acc63731d81b999b4fffdcc9524b6.html",
+    "status": "Vorschlag",
     "powerLevel": 2,
     "powerLabel": "II – Menschlich (Vorschlag Bot, Ø 158)",
     "description": "Hausgeist der Ostslawen, oft als Geist eines Ahnen oder Hausgründers gedeutet; wohnt hinter dem Ofen oder unter der Schwelle.",
@@ -651,6 +674,7 @@
   {
     "name": "Dracula",
     "source": "Wesen & Figuren/Wesen-Register/Dracula 404acc63731d81f29435d4b5518e8594.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 556)",
     "description": "Vampirgraf aus Bram Stokers Roman „Dracula“ (1897). Den Namen übernahm Stoker vom walachischen Fürsten Vlad III. (15. Jh.), dessen Leben er aber nur am Rande kannte.",
@@ -679,6 +703,7 @@
   {
     "name": "Draugr",
     "source": "Wesen & Figuren/Wesen-Register/Draugr 404acc63731d816184cdfa9b6e239ef9.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 396)",
     "description": "Körperlich wiederkehrender Toter der altnordischen Sagas. Bewacht seinen Grabhügel und Schatz oder sucht Hof und Familie heim.",
@@ -707,6 +732,7 @@
   {
     "name": "Dryaden",
     "source": "Wesen & Figuren/Wesen-Register/Dryaden 404acc63731d81849504d3a7d5483c04.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 219)",
     "description": "Baumnymphen der griechischen Mythologie, ursprünglich der Eichen (drys). Hamadryaden sind fest an einen Baum gebunden und sterben mit ihm.",
@@ -735,6 +761,7 @@
   {
     "name": "Dschinn",
     "source": "Wesen & Figuren/Wesen-Register/Dschinn 404acc63731d8186a576c4d20a8db502.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 494)",
     "description": "Geisterwesen des vorislamischen Arabiens und des Islam. Laut Koran aus „rauchlosem Feuer“ erschaffen; sie leben parallel zur Menschenwelt.",
@@ -763,6 +790,7 @@
   {
     "name": "Einhorn",
     "source": "Wesen & Figuren/Wesen-Register/Einhorn 404acc63731d81428418ca117e169940.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 444)",
     "description": "Ein einhörniges Tier, das Ktesias aus Indien beschrieb (vermutlich ein überzeichnetes Nashorn). Im mittelalterlichen Physiologus wird es zum Sinnbild Christi.",
@@ -791,6 +819,7 @@
   {
     "name": "Elben (Tolkien)",
     "source": "Wesen & Figuren/Wesen-Register/Elben (Tolkien) 404acc63731d81a894c7e9835614d64b.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 244)",
     "description": "Erstgeborene Kinder Ilúvatars in J. R. R. Tolkiens Legendarium, inspiriert von germanischen Alben und keltischen Feen. Erwachen am See Cuiviénen.",
@@ -819,6 +848,7 @@
   {
     "name": "Fafnir",
     "source": "Wesen & Figuren/Wesen-Register/Fafnir 404acc63731d811588d5c473d1fd6e35.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 538)",
     "description": "Sohn des Zwergenkönigs Hreidmar. Aus Gier nach dem verfluchten Gold des Andvari tötet er seinen Vater und verwandelt sich in einen Drachen, um den Hort zu hüten.",
@@ -848,6 +878,7 @@
   {
     "name": "Fenghuang",
     "source": "Wesen & Figuren/Wesen-Register/Fenghuang 404acc63731d815fac8ac1ba0a384e55.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 544)",
     "description": "Glücksverheißender Vogel Chinas; ursprünglich zwei Vögel, männlich (feng) und weiblich (huang), später zu einer weiblichen Figur verschmolzen.",
@@ -876,6 +907,7 @@
   {
     "name": "Garuda",
     "source": "Wesen & Figuren/Wesen-Register/Garuda 404acc63731d81608b0dc905533544bf.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 706)",
     "description": "Göttlicher Vogel, Sohn des Weisen Kashyapa und der Vinata. Er raubt den Göttern den Unsterblichkeitstrank (amrita), um seine Mutter aus der Knechtschaft der Schlangen zu befreien.",
@@ -904,6 +936,7 @@
   {
     "name": "Gevatter Tod",
     "source": "Wesen & Figuren/Wesen-Register/Gevatter Tod 404acc63731d8180a59cc4f38ebe024f.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 794)",
     "description": "Der personifizierte Tod im Grimm-Märchen „Der Gevatter Tod“. Ein armer Mann wählt ihn als Paten für seinen Sohn, weil der Tod alle gleich behandelt.",
@@ -933,6 +966,7 @@
   {
     "name": "Gilgamesch",
     "source": "Wesen & Figuren/Wesen-Register/Gilgamesch 404acc63731d8169b443c3ed6c99027e.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 475)",
     "description": "Legendärer König von Uruk, nach dem Epos zu zwei Dritteln Gott und einem Drittel Mensch (Sohn der Göttin Ninsun und des Lugalbanda). Möglicherweise historischer Herrscher um 2700 v. Chr. (prüfen).",
@@ -961,6 +995,7 @@
   {
     "name": "Gnom",
     "source": "Wesen & Figuren/Wesen-Register/Gnom 404acc63731d8154a185e65050da47af.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 179)",
     "description": "Von Paracelsus geprägter Name für die Elementargeister der Erde (auch Pygmäen), neben Undinen, Sylphen und Salamandern.",
@@ -989,6 +1024,7 @@
   {
     "name": "Godzilla",
     "source": "Wesen & Figuren/Wesen-Register/Godzilla 404acc63731d81fe919ec56d733c7ce2.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 562)",
     "description": "Riesenmonster (Kaijū) aus dem japanischen Film „Gojira“ (1954) von Ishirō Honda, Produktion Tōhō. Als urzeitliches Wesen durch Atomtests geweckt – Sinnbild für die Atombombe.",
@@ -1016,6 +1052,7 @@
   {
     "name": "Golem",
     "source": "Wesen & Figuren/Wesen-Register/Golem 404acc63731d8105b6adff17a6dc9926.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 242)",
     "description": "Aus Lehm geformtes, durch heilige Namen belebtes Wesen der jüdischen Mystik. Das Wort steht in Psalm 139,16 für den noch ungeformten Leib.",
@@ -1044,6 +1081,7 @@
   {
     "name": "Goliath",
     "source": "Wesen & Figuren/Wesen-Register/Goliath 404acc63731d81f1a1c8f06b0ba0c230.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 228)",
     "description": "Philistischer Riese aus der Stadt Gat, Vorkämpfer des Philisterheeres gegen Israel.",
@@ -1072,6 +1110,7 @@
   {
     "name": "Greif",
     "source": "Wesen & Figuren/Wesen-Register/Greif 404acc63731d81408e4dfdcc82ad08d5.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 320)",
     "description": "Mischwesen aus Adler und Löwe, schon in der Kunst des Alten Orients und Ägyptens (4./3. Jt. v. Chr.) dargestellt. Herodot berichtet von goldhütenden Greifen im Norden Skythiens.",
@@ -1100,6 +1139,7 @@
   {
     "name": "Grendel",
     "source": "Wesen & Figuren/Wesen-Register/Grendel 404acc63731d81bf9bd7d08303dbf707.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 375)",
     "description": "Menschenfressender Unhold im altenglischen Epos Beowulf, nach dem Text ein Nachkomme Kains, der im Moor haust.",
@@ -1129,6 +1169,7 @@
   {
     "name": "Harpyie",
     "source": "Wesen & Figuren/Wesen-Register/Harpyie 404acc63731d810ab1aee060f6d04d72.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 219)",
     "description": "Sturmgeister der griechischen Mythologie, Töchter des Thaumas und der Elektra. Ursprünglich Personifikationen der Sturmwinde, die Menschen entführen.",
@@ -1157,6 +1198,7 @@
   {
     "name": "Hel",
     "source": "Wesen & Figuren/Wesen-Register/Hel 404acc63731d810fafaad06acbeb15de.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 694)",
     "description": "Tochter Lokis und der Riesin Angrboda, Schwester von Fenrir und Jörmungandr. Odin setzt sie als Herrscherin über Niflhel/Helheim ein.",
@@ -1185,6 +1227,7 @@
   {
     "name": "Herakles",
     "source": "Wesen & Figuren/Wesen-Register/Herakles 404acc63731d816d9b0ceb985bf83457.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 494)",
     "description": "Sohn des Zeus und der sterblichen Alkmene. Hera verfolgt ihn von Geburt an; schon als Säugling erwürgt er zwei Schlangen, die sie ihm schickt.",
@@ -1213,6 +1256,7 @@
   {
     "name": "Hexe im Knusperhaus",
     "source": "Wesen & Figuren/Wesen-Register/Hexe im Knusperhaus 404acc63731d81619ab1d34e4d62835f.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 185)",
     "description": "Hexe aus dem Märchen „Hänsel und Gretel“ der Brüder Grimm. Sie lockt Kinder mit ihrem Haus aus Brot, Kuchen und Zucker in den Wald.",
@@ -1241,6 +1285,7 @@
   {
     "name": "Huldra",
     "source": "Wesen & Figuren/Wesen-Register/Huldra 404acc63731d817a8e8bfc6a5f46d456.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 244)",
     "description": "Waldfrau der skandinavischen, v. a. norwegischen Volksüberlieferung, verwandt mit dem unterirdischen Huldrevolk.",
@@ -1269,6 +1314,7 @@
   {
     "name": "Hydra",
     "source": "Wesen & Figuren/Wesen-Register/Hydra 404acc63731d81e7910ac35f5560dcb7.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 394)",
     "description": "Vielköpfige Wasserschlange aus dem Sumpf von Lerna, Tochter von Typhon und Echidna, von Hera aufgezogen, um Herakles zu schaden.",
@@ -1298,6 +1344,7 @@
   {
     "name": "Iblis",
     "source": "Wesen & Figuren/Wesen-Register/Iblis 404acc63731d81d3b055d7bc2be3df69.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 669)",
     "description": "Im Koran das Wesen, das sich weigert, sich vor Adam niederzuwerfen, weil es aus Feuer erschaffen sei und Adam nur aus Lehm. Ob er Engel oder Dschinn ist, ist unter Gelehrten umstritten (Sure 18,50 nennt ihn einen Dschinn).",
@@ -1326,6 +1373,7 @@
   {
     "name": "Jiangshi",
     "source": "Wesen & Figuren/Wesen-Register/Jiangshi 404acc63731d81ca940cc1bb924877dd.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 260)",
     "description": "Wiederbelebter Leichnam der chinesischen Volksüberlieferung. Erklärung: Die niedere Seele (po) bleibt im Körper, etwa nach unnatürlichem Tod oder falscher Bestattung.",
@@ -1354,6 +1402,7 @@
   {
     "name": "Jörmungandr",
     "source": "Wesen & Figuren/Wesen-Register/Jörmungandr 404acc63731d81c3a66de644f3cb332e.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 600)",
     "description": "Kind Lokis und der Riesin Angrboda, Geschwister von Fenrir und Hel. Odin wirft sie ins Meer, wo sie so groß wird, dass sie die Erde umschließt und sich in den Schwanz beißt.",
@@ -1383,6 +1432,7 @@
   {
     "name": "Jötnar",
     "source": "Wesen & Figuren/Wesen-Register/Jötnar 404acc63731d819ca9cffa11283c09b9.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 481)",
     "description": "Riesenvolk der nordischen Mythologie, Nachkommen des Urriesen Ymir; sie leben in Jötunheim jenseits der Menschenwelt.",
@@ -1411,6 +1461,7 @@
   {
     "name": "Kami",
     "source": "Wesen & Figuren/Wesen-Register/Kami 404acc63731d8133a339fdac7cbd0bac.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 619)",
     "description": "Göttliche Wesen oder Kräfte des Schintō. Kami können Götter wie Amaterasu, Ahnen, Naturerscheinungen (Berge, Bäume, Felsen, Flüsse) oder herausragende Menschen sein.",
@@ -1439,6 +1490,7 @@
   {
     "name": "Kentaur",
     "source": "Wesen & Figuren/Wesen-Register/Kentaur 404acc63731d810ab256fae6ed1aef22.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 262)",
     "description": "Volk von Mischwesen aus Thessalien, nach dem Mythos Nachkommen des Ixion bzw. des Kentauros und der Stuten vom Pelion.",
@@ -1467,6 +1519,7 @@
   {
     "name": "Kirin",
     "source": "Wesen & Figuren/Wesen-Register/Kirin 404acc63731d812a98d5c4d59d39753f.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 612)",
     "description": "Glücksverheißendes Fabeltier Chinas, das bei der Geburt oder Herrschaft eines Weisen erscheint – etwa vor der Geburt des Konfuzius.",
@@ -1495,6 +1548,7 @@
   {
     "name": "Kitsune",
     "source": "Wesen & Figuren/Wesen-Register/Kitsune 404acc63731d81839439fa284540ecb3.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 388)",
     "description": "Fuchsgeist der japanischen Überlieferung, mit chinesischen und koreanischen Vorbildern. Mit dem Alter gewinnt er Macht und Schwänze (bis neun).",
@@ -1524,6 +1578,7 @@
   {
     "name": "Kobold",
     "source": "Wesen & Figuren/Wesen-Register/Kobold 404acc63731d816a9ab7ca96812fcad9.html",
+    "status": "Vorschlag",
     "powerLevel": 2,
     "powerLabel": "II – Menschlich (Vorschlag Bot, Ø 100)",
     "description": "Haus- oder Berggeist des deutschen Volksglaubens. Der Name wird meist als „Hausverwalter“ (kobe + walt) gedeutet.",
@@ -1553,6 +1608,7 @@
   {
     "name": "Kraken",
     "source": "Wesen & Figuren/Wesen-Register/Kraken 404acc63731d8154a67def635db0a68d.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 498)",
     "description": "Riesiges Seeungeheuer vor Norwegen und Grönland; vermutlich durch Sichtungen von Riesenkalmaren angeregt.",
@@ -1581,6 +1637,7 @@
   {
     "name": "Lemuren",
     "source": "Wesen & Figuren/Wesen-Register/Lemuren 404acc63731d810498a8ca4bdf208493.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 240)",
     "description": "Ruhelose, schädliche Totengeister der römischen Religion, im Unterschied zu den wohlwollenden Laren und Manen.",
@@ -1609,6 +1666,7 @@
   {
     "name": "Leprechaun",
     "source": "Wesen & Figuren/Wesen-Register/Leprechaun 404acc63731d81a8a406f2ed8f7ac4cd.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 200)",
     "description": "Kleines Feenwesen Irlands. Die frühesten Belege nennen lúchorpáin als Wassergeister, die den König Fergus mac Léti ins Meer ziehen.",
@@ -1638,6 +1696,7 @@
   {
     "name": "Leviathan",
     "source": "Wesen & Figuren/Wesen-Register/Leviathan 404acc63731d8140b61de0c9e7fa8d3d.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 688)",
     "description": "Seeungeheuer der hebräischen Bibel, verwandt mit dem ugaritischen Chaosdrachen Lotan, den der Gott Baal besiegt.",
@@ -1667,6 +1726,7 @@
   {
     "name": "Lilith",
     "source": "Wesen & Figuren/Wesen-Register/Lilith 404acc63731d8176af60dd1b687740c9.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 575)",
     "description": "Nächtliche Dämonin, die auf mesopotamische Lilu/Lilitu-Dämonen zurückgeführt wird. Im mittelalterlichen Alphabet des Ben Sira die erste Frau Adams, die sich ihm nicht unterordnet und aus dem Paradies flieht.",
@@ -1695,6 +1755,7 @@
   {
     "name": "Lindwurm",
     "source": "Wesen & Figuren/Wesen-Register/Lindwurm 404acc63731d81cca051f085d9a4d749.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 360)",
     "description": "Schlangenartiger Drache der germanischen und mitteleuropäischen Überlieferung; „lind“ bedeutet vermutlich „Schlange“. Sitzt in Sümpfen, Höhlen oder Seen.",
@@ -1724,6 +1785,7 @@
   {
     "name": "Long",
     "source": "Wesen & Figuren/Wesen-Register/Long 404acc63731d815d9f32e4a31334058a.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 706)",
     "description": "Der chinesische Drache, ein glücksbringendes Wesen der Gewässer und des Regens. Drachenartige Darstellungen reichen bis in die Jungsteinzeit (Xishuipo-Grab, um 4000 v. Chr., Deutung prüfen).",
@@ -1752,6 +1814,7 @@
   {
     "name": "Lucifer",
     "source": "Wesen & Figuren/Wesen-Register/Lucifer 404acc63731d81139019f4fdf84d04c5.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 850)",
     "description": "Lateinischer Name des Morgensterns. Die Vulgata übersetzt Jesaja 14,12 („Wie bist du vom Himmel gefallen, du Morgenstern“) mit „lucifer“; Kirchenväter wie Origenes deuteten die Stelle auf den Sturz Satans.",
@@ -1780,6 +1843,7 @@
   {
     "name": "Mami Wata",
     "source": "Wesen & Figuren/Wesen-Register/Mami Wata 404acc63731d811fa578f0869aa3b9e1.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 494)",
     "description": "Wassergeist bzw. Gottheit, verehrt in West- und Zentralafrika (u. a. Togo, Benin, Ghana, Nigeria, Kongo) und in der afrikanischen Diaspora. Der Name ist Pidgin-Englisch für „Mutter Wasser“. Genaue Herkunft der Vorstellung umstritten.",
@@ -1808,6 +1872,7 @@
   {
     "name": "Mantikor",
     "source": "Wesen & Figuren/Wesen-Register/Mantikor 404acc63731d81c9be08d4ad99d38b9d.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 294)",
     "description": "Menschenfressendes Ungeheuer, das der griechische Arzt Ktesias am persischen Hof aus Indien beschreibt. Der Name geht auf persisch für „Menschenfresser“ zurück; vermutlich ein überzeichneter Tiger.",
@@ -1836,6 +1901,7 @@
   {
     "name": "Mara",
     "source": "Wesen & Figuren/Wesen-Register/Mara 404acc63731d81368197fe0a2e529a93.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 625)",
     "description": "Im Buddhismus der Versucher, der Herr der Begierde und des Todes. Er versucht, den Buddha vor dessen Erleuchtung unter dem Bodhi-Baum aufzuhalten.",
@@ -1864,6 +1930,7 @@
   {
     "name": "Maui",
     "source": "Wesen & Figuren/Wesen-Register/Maui 404acc63731d81578863f281a4f8efe1.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 538)",
     "description": "Kulturheld und Trickster ganz Polynesiens. Nach Maori-Überlieferung als Frühgeburt von seiner Mutter Taranga ins Meer geworfen und von Göttern aufgezogen.",
@@ -1893,6 +1960,7 @@
   {
     "name": "Medea",
     "source": "Wesen & Figuren/Wesen-Register/Medea 404acc63731d8185a29dcf1a603754a0.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 444)",
     "description": "Königstochter aus Kolchis, Enkelin des Helios und Nichte der Circe, Priesterin der Hekate.",
@@ -1921,6 +1989,7 @@
   {
     "name": "Melusine",
     "source": "Wesen & Figuren/Wesen-Register/Melusine 404acc63731d811e99c6d33bf8fefc34.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 331)",
     "description": "Französische Sage aus dem Poitou. Melusine ist Tochter der Fee Pressine und des Königs Elinas von Albanien (Schottland). Weil sie ihren Vater bestraft, verflucht die Mutter sie: Jeden Samstag wird ihr Unterleib zu einem Schlangen- oder Fischschwanz.",
@@ -1949,6 +2018,7 @@
   {
     "name": "Menehune",
     "source": "Wesen & Figuren/Wesen-Register/Menehune 404acc63731d811799c5cf7a36f19d0a.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 175)",
     "description": "Kleines Volk der hawaiianischen Überlieferung, besonders auf Kauaʻi, das vor den polynesischen Siedlern auf den Inseln gelebt haben soll.",
@@ -1977,6 +2047,7 @@
   {
     "name": "Merlin",
     "source": "Wesen & Figuren/Wesen-Register/Merlin 404acc63731d816bb21aea06314da42d.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 590)",
     "description": "Prophet und Zauberer der Artussage. Geoffrey von Monmouth verband den walisischen Seher Myrddin mit dem Knaben Ambrosius; Sohn einer Königstochter und eines Inkubus.",
@@ -2005,6 +2076,7 @@
   {
     "name": "Michael",
     "source": "Wesen & Figuren/Wesen-Register/Michael 404acc63731d8182b8e6f784c450347d.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 844)",
     "description": "Erzengel der jüdischen, christlichen und islamischen Tradition. Im Buch Daniel der Schutzfürst Israels.",
@@ -2034,6 +2106,7 @@
   {
     "name": "Mictlantecuhtli",
     "source": "Wesen & Figuren/Wesen-Register/Mictlantecuhtli 404acc63731d816298b1f1ab4a175be6.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 681)",
     "description": "Aztekischer Gott des Todes und Herr von Mictlan, der untersten der neun Unterwelten.",
@@ -2062,6 +2135,7 @@
   {
     "name": "Minotaurus",
     "source": "Wesen & Figuren/Wesen-Register/Minotaurus 404acc63731d812486c5e411018192ea.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 264)",
     "description": "Sohn der kretischen Königin Pasiphaë und eines Stiers, den Poseidon dem König Minos schickte. Minos sperrt ihn in das von Daidalos gebaute Labyrinth.",
@@ -2091,6 +2165,7 @@
   {
     "name": "Morgan le Fay",
     "source": "Wesen & Figuren/Wesen-Register/Morgan le Fay 404acc63731d810caaa2d32b6e5db456.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 500)",
     "description": "Zauberin der Artussage. Bei Geoffrey von Monmouth die heilkundige Herrin der Insel Avalon; später Halbschwester König Artus’.",
@@ -2119,6 +2194,7 @@
   {
     "name": "Mothman",
     "source": "Wesen & Figuren/Wesen-Register/Mothman 404acc63731d812ba6eac5a063498a5d.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 388)",
     "description": "Geflügeltes Wesen, das in Point Pleasant (West Virginia) 1966/67 mehrfach gesichtet worden sein soll; den Namen prägte die Presse in Anlehnung an „Batman“.",
@@ -2147,6 +2223,7 @@
   {
     "name": "Nachzehrer",
     "source": "Wesen & Figuren/Wesen-Register/Nachzehrer 404acc63731d81b98aa6fbc6ef57b973.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 212)",
     "description": "Wiedergänger des deutschen und kaschubischen Volksglaubens. Ein Toter, der im Grab sein Leichentuch und das eigene Fleisch kaut und dadurch Angehörige „nachholt“, die an Seuchen sterben.",
@@ -2175,6 +2252,7 @@
   {
     "name": "Naga",
     "source": "Wesen & Figuren/Wesen-Register/Naga 404acc63731d8184b15af46c2381f6fd.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 444)",
     "description": "Halbgöttliche Schlangenwesen Indiens und Südostasiens, Kinder des Weisen Kashyapa und der Kadru. Sie leben in der Unterwelt (Patala) und in Gewässern.",
@@ -2203,6 +2281,7 @@
   {
     "name": "Nephilim",
     "source": "Wesen & Figuren/Wesen-Register/Nephilim 404acc63731d8153bd57c94cd36e0d04.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 406)",
     "description": "Nach Genesis 6,1–4 lebten sie auf der Erde, als die „Söhne Gottes“ sich mit den Töchtern der Menschen verbanden. Im 1. Henoch sind sie riesige Kinder der gefallenen Wächterengel.",
@@ -2231,6 +2310,7 @@
   {
     "name": "Nixe",
     "source": "Wesen & Figuren/Wesen-Register/Nixe 404acc63731d815c9fdfdcf8ac717a57.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 228)",
     "description": "Wassergeist der germanischen bzw. deutschen Volksüberlieferung; das Wort geht auf ahd. nihhus (Wasserungeheuer) zurück. Die männliche Form heißt Nix oder Neck.",
@@ -2260,6 +2340,7 @@
   {
     "name": "Nornen",
     "source": "Wesen & Figuren/Wesen-Register/Nornen 404acc63731d81cdbb33d19f5c293867.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 756)",
     "description": "Schicksalsfrauen der nordischen Mythologie. Sie leben am Urdbrunnen unter der Weltesche Yggdrasil.",
@@ -2288,6 +2369,7 @@
   {
     "name": "Nun",
     "source": "Wesen & Figuren/Wesen-Register/Nun 404acc63731d8102951ff97657e2e454.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 700)",
     "description": "Personifikation des Urwassers der ägyptischen Religion: das grenzenlose, dunkle Gewässer vor der Schöpfung. Aus ihm erhebt sich der Urhügel, auf dem der Schöpfergott (Atum bzw. Ra) erscheint.",
@@ -2316,6 +2398,7 @@
   {
     "name": "Nymphen",
     "source": "Wesen & Figuren/Wesen-Register/Nymphen 404acc63731d81e79fc7e57026bd9cde.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 222)",
     "description": "Weibliche Naturgeister der griechischen Mythologie, oft Töchter des Zeus oder von Flussgöttern. Sie beleben Quellen, Flüsse, Meere, Berge, Wiesen und Bäume.",
@@ -2344,6 +2427,7 @@
   {
     "name": "Odin",
     "source": "Wesen & Figuren/Wesen-Register/Odin 404acc63731d81e89a52fd5f137dcddd.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 812)",
     "description": "Oberhaupt der Asen, Sohn Borrs und der Riesin Bestla. Mit seinen Brüdern tötet er Ymir und erschafft aus dessen Körper die Welt.",
@@ -2372,6 +2456,7 @@
   {
     "name": "Ogre",
     "source": "Wesen & Figuren/Wesen-Register/Ogre 404acc63731d81e69745dd3fb0e4c1d3.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 256)",
     "description": "Menschenfressender Riese der französischen Märchen. Der Name erscheint erstmals in der altfranzösischen Dichtung und wurde durch Charles Perrault bekannt.",
@@ -2401,6 +2486,7 @@
   {
     "name": "Olorun",
     "source": "Wesen & Figuren/Wesen-Register/Olorun 404acc63731d81e8800fd5e29e4b3037.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 838)",
     "description": "Höchster Gott der Yoruba-Religion (Westafrika, v. a. Nigeria und Benin). Er steht über den Orisha und gilt als Quelle allen Lebens und der Lebenskraft àṣẹ.",
@@ -2428,6 +2514,7 @@
   {
     "name": "Oni",
     "source": "Wesen & Figuren/Wesen-Register/Oni 404acc63731d81dca2a9ecad61d183c0.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 331)",
     "description": "Japanische Dämonen oder Unholde. Das Schriftzeichen bezeichnet in China einen Totengeist; in Japan verschmolzen einheimische Vorstellungen mit den buddhistischen Höllenwächtern.",
@@ -2457,6 +2544,7 @@
   {
     "name": "Orks (Tolkien)",
     "source": "Wesen & Figuren/Wesen-Register/Orks (Tolkien) 404acc63731d815db25de75289465df6.html",
+    "status": "Vorschlag",
     "powerLevel": 2,
     "powerLabel": "II – Menschlich (Vorschlag Bot, Ø 136)",
     "description": "Kriegervolk aus Tolkiens Legendarium, nach einer Version von Morgoth aus gefangenen, gequälten Elben gezüchtet (Herkunft bei Tolkien selbst nicht endgültig geklärt). Das Wort lehnte Tolkien an altengl. orc „Dämon“ an.",
@@ -2485,6 +2573,7 @@
   {
     "name": "Ouroboros",
     "source": "Wesen & Figuren/Wesen-Register/Ouroboros 404acc63731d81b78bb1f41919ddeb12.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 738)",
     "description": "Bild einer Schlange oder eines Drachen, die sich in den eigenen Schwanz beißt. Früheste Darstellung auf einem vergoldeten Schrein aus dem Grab Tutanchamuns; später in griechisch-ägyptischer Magie und Alchemie.",
@@ -2514,6 +2603,7 @@
   {
     "name": "Pangu",
     "source": "Wesen & Figuren/Wesen-Register/Pangu 404acc63731d818cbb94d9a4e8a0e0f4.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 688)",
     "description": "Chinesischer Urriese. Er wächst in einem kosmischen Ei heran, trennt nach 18.000 Jahren Yin und Yang und stemmt Himmel und Erde auseinander.",
@@ -2542,6 +2632,7 @@
   {
     "name": "Parzen",
     "source": "Wesen & Figuren/Wesen-Register/Parzen 404acc63731d814ab957dc84bd2ccfd6.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 744)",
     "description": "Römische Schicksalsgöttinnen, den griechischen Moiren gleichgesetzt. Ursprünglich wohl Geburtsgöttinnen (Parca von parere „gebären“, prüfen).",
@@ -2570,6 +2661,7 @@
   {
     "name": "Pegasus",
     "source": "Wesen & Figuren/Wesen-Register/Pegasus 404acc63731d812db050de80983257ac.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 381)",
     "description": "Geflügeltes Pferd, das aus dem Hals der Medusa entspringt, als Perseus sie enthauptet; Sohn Poseidons.",
@@ -2598,6 +2690,7 @@
   {
     "name": "Perun",
     "source": "Wesen & Figuren/Wesen-Register/Perun 404acc63731d81178235fdb39cc32266.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 744)",
     "description": "Donner- und Kriegsgott der Slawen. In der Kiewer Rus stand er an der Spitze der Götter, deren Statuen Fürst Wladimir 980 aufstellen ließ.",
@@ -2626,6 +2719,7 @@
   {
     "name": "Phönix",
     "source": "Wesen & Figuren/Wesen-Register/Phönix 404acc63731d811dbf83c6dc2209993d.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 569)",
     "description": "Heiliger Vogel, der nach Herodot alle 500 Jahre aus Arabien nach Heliopolis in Ägypten kommt. Möglicherweise vom ägyptischen Benu-Vogel beeinflusst.",
@@ -2655,6 +2749,7 @@
   {
     "name": "Poltergeist",
     "source": "Wesen & Figuren/Wesen-Register/Poltergeist 404acc63731d817fa6b8f4a442b7b13a.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 269)",
     "description": "Lärmender Spukgeist, der Gegenstände bewegt und wirft. Das deutsche Wort ist seit der Frühen Neuzeit belegt (Luther verwendet es, prüfen) und wurde ins Englische übernommen.",
@@ -2683,6 +2778,7 @@
   {
     "name": "Quetzalcoatl",
     "source": "Wesen & Figuren/Wesen-Register/Quetzalcoatl 404acc63731d81548ec4c22fa88d3af6.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 769)",
     "description": "Federschlangen-Gottheit Mesoamerikas, schon in Teotihuacán dargestellt (Tempel der Federschlange, um 200 n. Chr.). Bei den Azteken Schöpfer- und Kulturgott, Gott des Windes (Ehecatl), der Venus und des Wissens.",
@@ -2711,6 +2807,7 @@
   {
     "name": "Rakshasa",
     "source": "Wesen & Figuren/Wesen-Register/Rakshasa 404acc63731d81eea60eee98dd9c914e.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 488)",
     "description": "Dämonenvolk der indischen Überlieferung. Ihr bekanntester König ist der zehnköpfige Ravana aus Lanka im Ramayana.",
@@ -2740,6 +2837,7 @@
   {
     "name": "Rama",
     "source": "Wesen & Figuren/Wesen-Register/Rama 404acc63731d814eb53cf5d56bcfb737.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 588)",
     "description": "Prinz von Ayodhya und Held des Ramayana. Im Hinduismus der siebte Avatar (Herabkunft) des Gottes Vishnu.",
@@ -2768,6 +2866,7 @@
   {
     "name": "Reineke Fuchs",
     "source": "Wesen & Figuren/Wesen-Register/Reineke Fuchs 404acc63731d815b92f8ed3aeb659cce.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 196)",
     "description": "Listiger Fuchs der mittelalterlichen Tierepik, der den Hof des Löwenkönigs Nobel narrt. Wurzeln im lateinischen „Ysengrimus“ (1148/49) und im altfranzösischen „Roman de Renart“.",
@@ -2797,6 +2896,7 @@
   {
     "name": "Reiter der Apokalypse",
     "source": "Wesen & Figuren/Wesen-Register/Reiter der Apokalypse 404acc63731d813eb44bfa215b675ecc.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 781)",
     "description": "Vier Reiter, die erscheinen, als das Lamm die ersten vier von sieben Siegeln öffnet. Sie stehen für Unheil am Ende der Zeiten.",
@@ -2825,6 +2925,7 @@
   {
     "name": "Rok",
     "source": "Wesen & Figuren/Wesen-Register/Rok 404acc63731d812090eae1f3ee586f6f.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 420)",
     "description": "Riesenvogel der arabischen Reise- und Märchenliteratur, der im Indischen Ozean oder auf Madagaskar leben soll; möglicherweise beeinflusst durch Funde von Elefantenvögeln (prüfen).",
@@ -2853,6 +2954,7 @@
   {
     "name": "Rotkäppchens Wolf",
     "source": "Wesen & Figuren/Wesen-Register/Rotkäppchens Wolf 404acc63731d81f6a683fd9c32587b1b.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 194)",
     "description": "Wolf aus dem Märchen „Rotkäppchen“. Er lockt das Mädchen vom Weg ab, frisst die Großmutter und das Mädchen.",
@@ -2881,6 +2983,7 @@
   {
     "name": "Rumpelstilzchen",
     "source": "Wesen & Figuren/Wesen-Register/Rumpelstilzchen 404acc63731d8178ab8ad4bdcec6e8d1.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 230)",
     "description": "Männchen aus dem Märchen der Brüder Grimm (KHM 55). Hilft einer Müllerstochter, die angeblich Stroh zu Gold spinnen kann.",
@@ -2909,6 +3012,7 @@
   {
     "name": "Rusalka",
     "source": "Wesen & Figuren/Wesen-Register/Rusalka 404acc63731d81f1bc46d5be810e5036.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 201)",
     "description": "Ostslawischer Volksglaube: Rusalki gelten meist als Seelen junger Frauen, die vorzeitig gestorben sind, oft ertrunken (auch durch Selbstmord) oder unverheiratet. Der Name hängt wohl mit dem Fest Rusalii zusammen (von lat. rosalia).",
@@ -2938,6 +3042,7 @@
   {
     "name": "Salamander",
     "source": "Wesen & Figuren/Wesen-Register/Salamander 404acc63731d81b19fe4ff600a6823f8.html",
+    "status": "Vorschlag",
     "powerLevel": 2,
     "powerLabel": "II – Menschlich (Vorschlag Bot, Ø 172)",
     "description": "Feuerelementar. Schon Aristoteles und Plinius berichten, der Salamander könne im Feuer leben bzw. es löschen. Paracelsus macht ihn zum Elementargeist des Feuers neben Undine, Sylphe und Gnom.",
@@ -2966,6 +3071,7 @@
   {
     "name": "Selkie",
     "source": "Wesen & Figuren/Wesen-Register/Selkie 404acc63731d818eaf5af7440cb2adff.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 192)",
     "description": "Robbenmenschen der Orkney- und Shetlandinseln, Islands, Färöer und Irlands. Sie leben als Seehunde im Meer und können ihr Fell ablegen.",
@@ -2995,6 +3101,7 @@
   {
     "name": "Seraphim",
     "source": "Wesen & Figuren/Wesen-Register/Seraphim 404acc63731d815d98f8c4b54bda2370.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 781)",
     "description": "Himmelswesen, die der Prophet Jesaja in seiner Berufungsvision um den Thron Gottes sieht. Das Wort bezeichnet in Numeri auch feurige Schlangen.",
@@ -3023,6 +3130,7 @@
   {
     "name": "Shiva",
     "source": "Wesen & Figuren/Wesen-Register/Shiva 404acc63731d817d8bb2c4584c4679d6.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 912)",
     "description": "Einer der Hauptgötter des Hinduismus, der u. a. auf den vedischen Sturmgott Rudra zurückgeht. In der Trimurti der Zerstörer neben Brahma (Schöpfer) und Vishnu (Erhalter).",
@@ -3051,6 +3159,7 @@
   {
     "name": "Sigurd",
     "source": "Wesen & Figuren/Wesen-Register/Sigurd 404acc63731d816686e6fff384701b1f.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 381)",
     "description": "Held der Völsungen-Sage, Sohn Sigmunds. Mit dem neu geschmiedeten Schwert Gram tötet er den Drachen Fafnir.",
@@ -3079,6 +3188,7 @@
   {
     "name": "Simson",
     "source": "Wesen & Figuren/Wesen-Register/Simson 404acc63731d8197a696d91b8cb0bf49.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 359)",
     "description": "Held und Richter Israels aus dem Stamm Dan, von Geburt an Nasiräer (Gottgeweihter). Seine Kraft hängt an seinem ungeschnittenen Haar.",
@@ -3107,6 +3217,7 @@
   {
     "name": "Simurgh",
     "source": "Wesen & Figuren/Wesen-Register/Simurgh 404acc63731d8155970fea76b2ae7979.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 681)",
     "description": "Wohltätiger Riesenvogel der iranischen Überlieferung; in der Avesta als Saēna-Vogel auf dem Baum aller Samen im Weltmeer.",
@@ -3135,6 +3246,7 @@
   {
     "name": "Sirene",
     "source": "Wesen & Figuren/Wesen-Register/Sirene 404acc63731d81c7bb0ec449e6af25fc.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 372)",
     "description": "Griechische Mythologie. Als Eltern werden je nach Quelle der Flussgott Acheloos und eine Muse genannt. Sie leben auf einer Insel und locken Seeleute mit ihrem Gesang ins Verderben.",
@@ -3163,6 +3275,7 @@
   {
     "name": "Skinwalker",
     "source": "Wesen & Figuren/Wesen-Register/Skinwalker 404acc63731d8115bb20d42f4d270df7.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 369)",
     "description": "In der Navajo-Überlieferung ein Mensch, der sich durch verbotene Hexerei die Gestalt von Tieren aneignet. Hinweis: Für die Navajo ein ernstes, tabuisiertes Thema; respektvoll behandeln.",
@@ -3192,6 +3305,7 @@
   {
     "name": "Slender Man",
     "source": "Wesen & Figuren/Wesen-Register/Slender Man 404acc63731d813bb035f35be0b2445c.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 544)",
     "description": "Internet-Legende, 2009 von Eric Knudsen (Pseudonym „Victor Surge“) im Forum Something Awful für einen Fotobearbeitungswettbewerb erfunden.",
@@ -3219,6 +3333,7 @@
   {
     "name": "Sphinx",
     "source": "Wesen & Figuren/Wesen-Register/Sphinx 404acc63731d81518bd3f884582e8da8.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 544)",
     "description": "In Ägypten ein liegender Löwe mit Königskopf als Wächter- und Herrschersymbol (Große Sphinx von Gizeh, um 2500 v. Chr.). In Griechenland ein weibliches Ungeheuer, Tochter von Typhon und Echidna (bzw. Orthos).",
@@ -3248,6 +3363,7 @@
   {
     "name": "Sundiata",
     "source": "Wesen & Figuren/Wesen-Register/Sundiata 404acc63731d81349261d6f439fc3a33.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 500)",
     "description": "Historischer Gründer des Mali-Reiches (13. Jh.). Das von Griots (Barden) überlieferte Epos macht ihn zum Sohn des Königs Maghan Kon Fatta und der büffelhaften Sogolon Kédjou.",
@@ -3275,6 +3391,7 @@
   {
     "name": "Tanuki",
     "source": "Wesen & Figuren/Wesen-Register/Tanuki 404acc63731d8160a25bed73141fbe4f.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 198)",
     "description": "Gestaltwandelnder Marderhund (nicht Dachs oder Waschbär) der japanischen Folklore, der Menschen mit Verwandlungen und Streichen narrt.",
@@ -3304,6 +3421,7 @@
   {
     "name": "Tarasque",
     "source": "Wesen & Figuren/Wesen-Register/Tarasque 404acc63731d8189a3cafed2f55dee95.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 351)",
     "description": "Drachenartiges Ungeheuer aus der Gegend von Tarascon in der Provence. Nach der Legende ein Nachkomme des Leviathan und des Bonnacon (Legenda aurea).",
@@ -3333,6 +3451,7 @@
   {
     "name": "Tiamat",
     "source": "Wesen & Figuren/Wesen-Register/Tiamat 404acc63731d81388560ef8449d9dbb7.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 775)",
     "description": "Urgöttin des Salzwassers im babylonischen Schöpfungsepos Enūma eliš. Aus der Vermischung ihrer Wasser mit denen des Süßwassergottes Apsu entstehen die ersten Götter.",
@@ -3362,6 +3481,7 @@
   {
     "name": "Titanen",
     "source": "Wesen & Figuren/Wesen-Register/Titanen 404acc63731d811f9c67c9bbdc29fe29.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 700)",
     "description": "Die zwölf Kinder von Uranos (Himmel) und Gaia (Erde), die ältere Göttergeneration vor den Olympiern. Kronos entmannt seinen Vater und herrscht, bis Zeus ihn stürzt.",
@@ -3390,6 +3510,7 @@
   {
     "name": "Troll",
     "source": "Wesen & Figuren/Wesen-Register/Troll 404acc63731d81ab9e4fea36e2b5c236.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 345)",
     "description": "Übernatürliche Wesen Skandinaviens; im Altnordischen ein weiter Begriff für Unholde, Riesen und Zauberwesen. Im späteren Volksglauben Berg- und Waldbewohner.",
@@ -3419,6 +3540,7 @@
   {
     "name": "Undine",
     "source": "Wesen & Figuren/Wesen-Register/Undine 404acc63731d8105b508d8574714be36.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 212)",
     "description": "Begriff aus der Naturphilosophie des Paracelsus: Undinen sind die Elementargeister des Wassers (neben Sylphen, Gnomen/Pygmäen und Salamandern). Keine alte Volkssage, sondern eine gelehrte Schöpfung der Renaissance.",
@@ -3446,6 +3568,7 @@
   {
     "name": "Vampir",
     "source": "Wesen & Figuren/Wesen-Register/Vampir 404acc63731d8179be80ffe8426ebae3.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 344)",
     "description": "Wiedergänger aus dem Volksglauben Ost- und Südosteuropas. Ein Toter, der aus dem Grab zurückkehrt, Lebende aussaugt oder ihnen Lebenskraft raubt und so Seuchen bringt.",
@@ -3474,6 +3597,7 @@
   {
     "name": "Wendigo",
     "source": "Wesen & Figuren/Wesen-Register/Wendigo 404acc63731d812e80c6da3b6f134f2f.html",
+    "status": "Vorschlag",
     "powerLevel": 5,
     "powerLabel": "V – Legendär (Vorschlag Bot, Ø 469)",
     "description": "Menschenfressendes Winterwesen der algonkinsprachigen Völker (u. a. Cree, Ojibwe, Innu). Ein Mensch, der Menschenfleisch isst oder von Gier ergriffen wird, kann selbst zum Wendigo werden.",
@@ -3503,6 +3627,7 @@
   {
     "name": "Weretiger",
     "source": "Wesen & Figuren/Wesen-Register/Weretiger 404acc63731d81eba1b5db47e100a9ac.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 281)",
     "description": "Menschen, die sich in Tiger verwandeln, in vielen Kulturen Süd- und Südostasiens (Malaysia, Indonesien, Indien, China). Der englische Begriff ist eine Analogiebildung zu „werewolf“.",
@@ -3531,6 +3656,7 @@
   {
     "name": "Werwolf",
     "source": "Wesen & Figuren/Wesen-Register/Werwolf 404acc63731d81b0ab7acb4ba89c0ba0.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 281)",
     "description": "Mensch, der sich in einen Wolf verwandelt oder dazu verflucht ist. Schon antik belegt: König Lykaon wird von Zeus in einen Wolf verwandelt.",
@@ -3560,6 +3686,7 @@
   {
     "name": "Yama",
     "source": "Wesen & Figuren/Wesen-Register/Yama 404acc63731d8161b78dfabb1cab790e.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 794)",
     "description": "Totengott Indiens; nach dem Rigveda der erste Mensch, der starb, und damit Herr des Weges ins Totenreich.",
@@ -3588,6 +3715,7 @@
   {
     "name": "Yeti",
     "source": "Wesen & Figuren/Wesen-Register/Yeti 404acc63731d8146b57df85961f64c89.html",
+    "status": "Vorschlag",
     "powerLevel": 3,
     "powerLabel": "III – Übermenschlich (Vorschlag Bot, Ø 260)",
     "description": "Affenähnliches Wesen des Himalaya aus der Überlieferung der Sherpa und Tibeter.",
@@ -3616,6 +3744,7 @@
   {
     "name": "Ymir",
     "source": "Wesen & Figuren/Wesen-Register/Ymir 404acc63731d8103b935dffc7ffc9ede.html",
+    "status": "Vorschlag",
     "powerLevel": 6,
     "powerLabel": "VI – Göttlich (Vorschlag Bot, Ø 611)",
     "description": "Urriese der nordischen Mythologie. Er entsteht in Ginnungagap, wo Eis aus Niflheim und Funken aus Muspelheim aufeinandertreffen.",
@@ -3644,6 +3773,7 @@
   {
     "name": "Yūrei",
     "source": "Wesen & Figuren/Wesen-Register/Yūrei 404acc63731d81f9a4d5c8943b228d36.html",
+    "status": "Vorschlag",
     "powerLevel": 4,
     "powerLabel": "IV – Monströs (Vorschlag Bot, Ø 352)",
     "description": "Geister Verstorbener, die wegen eines gewaltsamen Todes, fehlender Totenriten oder starker Gefühle (Rache, Liebe, Eifersucht) nicht ins Jenseits gelangen.",
@@ -3672,6 +3802,7 @@
   {
     "name": "Zeus",
     "source": "Wesen & Figuren/Wesen-Register/Zeus 404acc63731d813c97eeee2b39a3ebc3.html",
+    "status": "Vorschlag",
     "powerLevel": 7,
     "powerLabel": "VII – Urgewalt (Vorschlag Bot, Ø 794)",
     "description": "Oberster Gott der Griechen, Sohn von Kronos und Rhea. Vor dem Vater gerettet, zwingt er Kronos, die verschluckten Geschwister auszuspeien, und besiegt mit ihnen die Titanen.",

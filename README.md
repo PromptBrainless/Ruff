@@ -4,11 +4,7 @@ Ein nativer Android-MVP für das Ruff-Regelwerk und Wesen-Register.
 
 Die App bietet:
 
-- Suche über Wesen und ihre exportierten Eigenschaften
-- Filter nach Machtstufe
-- Detailansichten mit den vollständigen Registerfeldern
-- durchsuchbare Regel-Dokumente mit lesbarer Abschnittsstruktur
-- die originale Ruff-Glyphe und Design-Assets im Eisen-/Ruß-/Höllenrot-Thema
+## Schnellstart
 
 ## Schnellstart
 
