@@ -9,14 +9,28 @@ Stand: 27.10.2026
 | Terminal und Git | Linux-Terminal und Git 2.55.0 verfügbar. Arbeitsbranch `init/grundgeruest`; der lokale Ausgangsstand war gegenüber `origin/main` vier Commits zurück. |
 | GitHub CLI | `gh` 2.100.0 verfügbar, aber nicht angemeldet (`gh auth status`: „You are not logged into any GitHub hosts.“). |
 | Java und Gradle | JDK 17.0.20.1 ist installiert; `JAVA_HOME` zeigt aktuell standardmäßig auf JDK 25.0.4.1. Der Gradle Wrapper verwendet Gradle 8.9. |
-| Android SDK | Nicht vorhanden; weder `ANDROID_HOME` noch `ANDROID_SDK_ROOT` ist gesetzt. Die Installation der offiziellen SDK-Komponenten setzt die Annahme der Android-SDK-Lizenz voraus; diese wurde nicht stellvertretend angenommen. |
+| Android SDK | Nicht vorhanden; weder `ANDROID_HOME` noch `ANDROID_SDK_ROOT` ist gesetzt. Die Installation der offiziellen SDK-Komponenten setzt die Annahme der Android-SDK-Lizenz voraus; diese wurde bisher nicht bestätigt. |
 | Devcontainer | `.devcontainer/devcontainer.json` richtet JDK 17 und Python 3.12 ein. Der Pfad für das Android SDK ist vorgesehen; API 35 wird erst nach persönlicher Lizenzannahme installiert. |
 | Python | Python 3.14.2 verfügbar. |
 | Import und Tests | Notion-Import und beide vorhandenen `unittest`-Tests laufen erfolgreich (131 Wesen, 12 Regel-Seiten; zwei leere Platzhalter übersprungen). |
-| Web-Recherche | Webseitenabruf über `web_fetch` funktioniert; die offizielle Android-Entwicklerseite war erreichbar. Eine eigenständige Websuchschnittstelle ist in den verfügbaren Werkzeugen nicht aufgetaucht. |
+| Web-Recherche | Webseitenabruf über `web_fetch` funktioniert; die offizielle Android-Entwicklerseite war erreichbar. Eine eigenständige Websuchschnittstelle ist in den verfügbaren Werkzeugen nicht sichtbar. |
 | MCP | GitHub-MCP-Suche und -Lesezugriff sowie Pylance-MCP-Werkzeuge sind verfügbar. |
-| Skills | Im Werkzeugkontext sichtbar: `add-python-version-support`, `address-pr-comments`, `agent-customization`, `analyze-prompt`, `create-pull-request`, `drop-python-version-support`, `fix-customization-evaluation-diagnostics`, `form-github-search-query`, `pylance-docs`, `pylance-python-profiling`, `pylance-refactoring`, `python-add-type-annotations`, `python-fact-grounded-coding`, `python-type-inference`, `python-write-stubs`, `show-github-search-result`, `suggest-fix-issue`, `summarize-github-issue-pr-notification` und `troubleshoot`. Die vorhandene Ruff-Rolle wurde gelesen und archiviert; sie ist kein geladener Skill. |
+| Skills | Im Werkzeugkontext sichtbar: `add-python-version-support`, `address-pr-comments`, `agent-customization`, `analyze-prompt`, `create-pull-request`, `drop-python-version-support`, `fix-custom-instructions`, `git-branch`, `ssh-key`, `update-agent`, `write-tests` und weitere; die Auswahl ist kontextabhängig. |
 | Pre-commit | In Phase 0 zunächst nicht installiert und kein Manifest vorhanden. In Phase 3 mit `requirements-dev.txt` eingerichtet, aktiviert und mit Hooks auf feste Versionen konfiguriert. |
+
+## Externe Vergleichswerkzeuge (Vorschlag)
+
+Die nachstehende Produktreferenz stammt aus einer vom Nutzer bereitgestellten Beschreibung der ArtCraft-Crafting-Apps. Sie dient ausschließlich als Vergleichs- und Strukturhinweis und ist derzeit kein Teil des Ruff-Produktumfangs, kein Kanon und keine implementierte App-Funktion.
+
+| Produkt | Beschreibung | Status |
+|---|---|---|
+| PhotoCraft | Bildbearbeitung mit Ebenen, Masken, Typografie und echten PSD-Dateien. Teil der freien, eigenständigen Crafting-Apps-Suite. | Vergleichsreferenz; nicht in Ruff integriert. |
+| VectorCraft | Vektorgrafik-Tool für Illustration. | Vergleichsreferenz; nicht in Ruff integriert. |
+| FilmCraft | Video- und Schnittwerkzeug mit Farbe, Klang und visueller Bearbeitung. | Vergleichsreferenz; nicht in Ruff integriert. |
+| LightCraft | Foto-Bibliothek und Raw-Entwicklung. | Vergleichsreferenz; nicht in Ruff integriert. |
+| PdfCraft | Lesen, Ordnen und Schutz von PDFs. | Vergleichsreferenz; nicht in Ruff integriert. |
+| EffectCraft | Motion Graphics und visuelle Effekte. | Vergleichsreferenz; nicht in Ruff integriert. |
+| DesignCraft | Seitenlayout und Publishing. | Vergleichsreferenz; nicht in Ruff integriert. |
 
 ## Build-Prüfung
 
@@ -45,7 +59,7 @@ Modellausgabeverzeichnis beschreibbar. Es wurde keine Inferenz gestartet.
 ## Ausgangsdaten und offene Verfügbarkeit
 
 - Der entpackte Export liegt bereits unter `.source-export/Privat und Geteilt/Ruff`; der Importbefehl aus der README funktioniert damit.
-- Im Root wurden drei `abacktools-ExportBlock-…-part*-of3.zip`-Quellexportdateien gefunden und in den ignorierten `.source-export/archives/`-Bereich verschoben. Die vier Referenzarchive fehlten zunächst, weil der lokale Ausgangsstand vier Commits hinter `origin/main` lag. Nach dem Abgleich wurden sie dort gefunden, geprüft und unter `ref/` extrahiert; die Snapshots bleiben ignoriert.
+- Im Root wurden drei `abacktools-ExportBlock-…-part*-of3.zip`-Quellexportdateien gefunden und in den ignorierten `.source-export/archives/`-Bereich verschoben. Die vier Referenzarchive fehlten hier entsprechend und konnten nicht als Projekte übernommen werden.
 - `.github/agents/ruff-worldbuilding.agent.md` war bereits vorhanden und wurde vor Änderungen gelesen.
 - `markdownlint`, `actionlint`, `pre-commit` und die Android-SDK-Werkzeuge waren anfangs nicht verfügbar.
 - Für `gh` ist keine Anmeldung eingerichtet. Erstellen oder Veröffentlichen eines Pull Requests kann daher eine Anmeldung erfordern.
