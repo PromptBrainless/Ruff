@@ -60,6 +60,9 @@ python tools/validate_canon.py
 ```
 
 Arbeitsentscheidungen, geprüfte Werkzeuge und Quellen stehen in `docs/`.
+Der optionale 3D-Modellworkflow mit reproduzierbarer Stable-Fast-3D-Pipeline,
+Voraussetzungen und aktuellen Blockaden ist in
+[docs/06-stable-fast-3d.md](docs/06-stable-fast-3d.md) beschrieben.
 
 ## Kontinuierliche Integration
 

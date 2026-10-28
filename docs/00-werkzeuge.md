@@ -8,7 +8,7 @@ Stand: 27.10.2026
 |---|---|
 | Terminal und Git | Linux-Terminal und Git 2.55.0 verfügbar. Arbeitsbranch `init/grundgeruest`; der lokale Ausgangsstand war gegenüber `origin/main` vier Commits zurück. |
 | GitHub CLI | `gh` 2.100.0 verfügbar, aber nicht angemeldet (`gh auth status`: „You are not logged into any GitHub hosts.“). |
-| Java und Gradle | JDK 17.0.20.1 wurde aus den System-Paketquellen installiert. Der Gradle Wrapper verwendet Gradle 8.9. |
+| Java und Gradle | JDK 17.0.20.1 ist installiert; `JAVA_HOME` zeigt aktuell standardmäßig auf JDK 25.0.4.1. Der Gradle Wrapper verwendet Gradle 8.9. |
 | Android SDK | Nicht vorhanden; weder `ANDROID_HOME` noch `ANDROID_SDK_ROOT` ist gesetzt. Die Installation der offiziellen SDK-Komponenten setzt die Annahme der Android-SDK-Lizenz voraus; diese wurde nicht stellvertretend angenommen. |
 | Devcontainer | `.devcontainer/devcontainer.json` richtet JDK 17 und Python 3.12 ein. Der Pfad für das Android SDK ist vorgesehen; API 35 wird erst nach persönlicher Lizenzannahme installiert. |
 | Python | Python 3.14.2 verfügbar. |
@@ -36,6 +36,11 @@ Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
 ```
 
 Die Android-SDK-Lizenz wurde nicht angenommen und es wurde kein SDK installiert.
+Der aktuelle 3D-Pipeline-Lauf bestätigt außerdem Python 3.14.2, Linux
+x86_64, rund 15.6 GiB RAM und rund 13.4 GiB freien Speicher. CUDA/MPS,
+PyTorch, SF3D-Code/Gewichte, Hugging-Face-Token und `gltf_validator` fehlen;
+der öffentliche GitHub-API-Endpunkt ist erreichbar und das ignorierte
+Modellausgabeverzeichnis beschreibbar. Es wurde keine Inferenz gestartet.
 
 ## Ausgangsdaten und offene Verfügbarkeit
 
