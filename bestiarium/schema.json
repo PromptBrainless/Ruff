@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ruff-Bestiariumseintrag",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "names",
+    "origin",
+    "behavior",
+    "appearance",
+    "special_features",
+    "core_values",
+    "power_level_source",
+    "status",
+    "source"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "names": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Gleichberechtigte Namen dieses Eintrags; kein Anzeigename."
+    },
+    "origin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "behavior": {
+      "type": "string",
+      "minLength": 1
+    },
+    "appearance": {
+      "type": "string",
+      "minLength": 1
+    },
+    "special_features": {
+      "type": "string",
+      "minLength": 1
+    },
+    "core_values": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 1000
+      }
+    },
+    "power_level_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "source"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "description": "Machtstufe nur als belegte Quellenangabe."
+    },
+    "status": {
+      "enum": [
+        "bestätigt",
+        "Vorschlag"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "related_entries": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    }
+  }
+}
