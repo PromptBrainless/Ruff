@@ -23,16 +23,13 @@ output-metadata.json
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
-/.source-export/
-/ref/*
-!/ref/INDEX.md
-/.artifacts/
-__pycache__/
 
 # Source exports and large binaries
+.source-export/
 *.zip
 abacktools-ExportBlock-*.zip
 ref-*.zip
+__pycache__/
 
 # Keystore files
 *.jks
@@ -43,3 +40,8 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# From main
+/ref/*
+!/ref/INDEX.md
+/.artifacts/
