@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ruff 3D pipeline configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sf3d_repository",
+    "license_reviewed",
+    "asset_hosting_authorized",
+    "sf3d_repo",
+    "python_executable",
+    "pretrained_model",
+    "manifest_path",
+    "creatures_path",
+    "export_root",
+    "output_dir",
+    "log_dir",
+    "asset_base_url",
+    "timeout_seconds",
+    "max_attempts",
+    "retry_delay_seconds",
+    "parallelism",
+    "texture_resolution",
+    "remesh_option",
+    "target_vertex_count",
+    "gltf_validator_executable",
+    "require_external_glb_validation",
+    "notion_api_version",
+    "notion_max_retries"
+  ],
+  "properties": {
+    "sf3d_repository": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "license_reviewed": {
+      "type": "boolean"
+    },
+    "asset_hosting_authorized": {
+      "type": "boolean"
+    },
+    "sf3d_repo": {
+      "type": ["string", "null"]
+    },
+    "python_executable": {
+      "type": ["string", "null"]
+    },
+    "pretrained_model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "creatures_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "export_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_dir": {
+      "type": "string",
+      "minLength": 1
+    },
+    "log_dir": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_base_url": {
+      "type": ["string", "null"]
+    },
+    "timeout_seconds": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "max_attempts": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "retry_delay_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "parallelism": {
+      "const": 1
+    },
+    "texture_resolution": {
+      "type": "integer",
+      "minimum": 64
+    },
+    "remesh_option": {
+      "enum": ["none", "triangle", "quad"]
+    },
+    "target_vertex_count": {
+      "type": "integer",
+      "minimum": -1
+    },
+    "gltf_validator_executable": {
+      "type": "string",
+      "minLength": 1
+    },
+    "require_external_glb_validation": {
+      "type": "boolean"
+    },
+    "notion_api_version": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "notion_max_retries": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10
+    }
+  }
+}

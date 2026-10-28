@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ruff 3D model generation manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "creatures"],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "creatures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/creature"
+      }
+    }
+  },
+  "$defs": {
+    "creature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "creature_id",
+        "name",
+        "source_record",
+        "reference_image",
+        "reference_image_source",
+        "status",
+        "generation_status",
+        "model_path",
+        "model_format",
+        "model_size_bytes",
+        "model_sha256",
+        "model_version",
+        "generated_at",
+        "validation_status",
+        "validation_details",
+        "notion_page_id",
+        "notion_sync_status",
+        "notion_model_url",
+        "notion_preview_url",
+        "error",
+        "attempt_count",
+        "updated_at"
+      ],
+      "properties": {
+        "creature_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_record": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference_image": {
+          "type": ["string", "null"]
+        },
+        "reference_image_source": {
+          "type": ["string", "null"]
+        },
+        "status": {
+          "enum": [
+            "queued",
+            "needs_reference_image",
+            "blocked_no_gpu",
+            "generating",
+            "generated",
+            "validating",
+            "validated",
+            "notion_synced",
+            "failed"
+          ]
+        },
+        "generation_status": {
+          "enum": [
+            "queued",
+            "needs_reference_image",
+            "blocked_no_gpu",
+            "generating",
+            "generated",
+            "failed"
+          ]
+        },
+        "model_path": {
+          "type": ["string", "null"]
+        },
+        "model_format": {
+          "enum": ["glb", null]
+        },
+        "model_size_bytes": {
+          "type": ["integer", "null"],
+          "minimum": 1
+        },
+        "model_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "model_version": {
+          "type": ["string", "null"]
+        },
+        "generated_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "validation_status": {
+          "enum": ["not_started", "validating", "validated", "failed"]
+        },
+        "validation_details": {
+          "type": ["object", "null"]
+        },
+        "notion_page_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$"
+        },
+        "notion_sync_status": {
+          "enum": [
+            "not_attempted",
+            "blocked_missing_credentials",
+            "blocked_no_asset_url",
+            "blocked_asset_hosting_unapproved",
+            "synced",
+            "failed"
+          ]
+        },
+        "notion_model_url": {
+          "type": ["string", "null"],
+          "format": "uri"
+        },
+        "notion_preview_url": {
+          "type": ["string", "null"],
+          "format": "uri"
+        },
+        "error": {
+          "type": ["string", "null"]
+        },
+        "attempt_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
