@@ -26,7 +26,6 @@ render.experimental.xml
 /.source-export/
 /ref/*
 !/ref/INDEX.md
-/.artifacts/
 __pycache__/
 
 # Keystore files

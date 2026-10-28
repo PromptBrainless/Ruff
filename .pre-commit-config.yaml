@@ -23,18 +23,10 @@ repos:
     rev: 0.39.0
     hooks:
       - id: check-metaschema
-        files: ^(bestiarium/schema|tools/ruff_3d/(manifest|config)\.schema)\.json$
+        files: ^bestiarium/schema\.json$
       - id: check-jsonschema
         args: ["--schemafile=bestiarium/schema.json"]
         files: ^bestiarium/daten/.*\.json$
-      - id: check-jsonschema
-        name: Validate 3D manifest
-        args: ["--schemafile=tools/ruff_3d/manifest.schema.json"]
-        files: ^tools/ruff_3d/manifest\.json$
-      - id: check-jsonschema
-        name: Validate 3D configuration
-        args: ["--schemafile=tools/ruff_3d/config.schema.json"]
-        files: ^tools/ruff_3d/config\.json$
 
   - repo: https://github.com/PyCQA/flake8
     rev: 7.3.0

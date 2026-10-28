@@ -18,16 +18,6 @@ Stand: 27.10.2026
   erfunden.
 - Die Referenzarchive aus `origin/main` werden lokal unter `ref/` ausgewertet;
   Referenzinhalte bleiben ignoriert und werden nicht in Ruff-Inhalte kopiert.
-- Das 3D-Manifest verwendet ausschließlich exportierte Notion-Seiten-IDs als
-  stabile Wesen-IDs. Bildzuordnungen erfolgen nur über eigene Seite oder
-  eindeutigen exakten Dateinamen; mehrdeutige und fehlende Bilder bleiben
-  unzugeordnet.
-- Stable Fast 3D bleibt bis zur Lizenzprüfung gesperrt. Eine vorhandene
-  Bilddatei oder GLB allein belegt weder Kanonfreigabe noch erfolgreiche
-  Generierung.
-- Die Notion-Integration aktualisiert bestehende Seiten nur nach
-  ausdrücklicher Asset-Hosting-Freigabe, nachweisbarer HTTPS-Erreichbarkeit
-  und erfolgreicher lokaler GLB-Validierung.
 
 ## Offen
 
@@ -37,7 +27,3 @@ Stand: 27.10.2026
   installiertes API 35 ist der Android-Build nicht ausführbar.
 - Der lokale GitHub-CLI-Zugang ist nicht angemeldet. PR-Veröffentlichung bleibt
   bis zur Authentifizierung offen.
-- Für 3D-Inferenz fehlen im geprüften Codespace CUDA-/MPS-GPU,
-  SF3D-Installation und Modellgewichte, Hugging-Face- und Notion-Zugangsdaten,
-  ein Khronos-Validator sowie ein autorisierter Asset-Host. Es ist kein
-  separater GPU-Worker verfügbar.
