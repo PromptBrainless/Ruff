@@ -32,6 +32,7 @@ Auftraggeber vorgegebene Regeln sind Projektquellen, keine externen Vorlagen.
 | [BubuAnabelas/awesome-markdown](https://github.com/BubuAnabelas/awesome-markdown) | Markdown-Werkzeugrecherche. | CC0 1.0 laut Snapshot-`LICENSE.md`; keine Inhalte übernommen. |
 | [brunopulis/awesome-a11y](https://github.com/brunopulis/awesome-a11y) | Recherche zu Barrierefreiheit. | CC0 1.0 laut Snapshot-`license`; keine Inhalte übernommen. |
 | [storytold/vectorcraft](https://github.com/storytold/vectorcraft) | Niedrig priorisierter Vergleich für plattformübergreifende Produkt-/Asset-Organisation. | MIT oder Apache-2.0 laut Projekt-README und `LICENSE-MIT`/`LICENSE-APACHE`; einzelne Assets und Abhängigkeiten können eigene Lizenzen haben. Keine Assets oder Implementierung übernommen. |
+| [Wikimedia Commons](https://commons.wikimedia.org/) (Referenzbilder Bestiarium v2) | Nur als Referenz für Steckbriefe und Bildgenerierung, Liste in [bestiarium-v2-referenzbilder.md](bestiarium-v2-referenzbilder.md); keine Bilder im Repository. | Lizenzen je Bild laut Manifest (überwiegend gemeinfrei, sonst CC BY/CC BY-SA/CC0/FAL); nicht einzeln neu geprüft. |
 
 Die vier bereitgestellten Referenzarchive liegen lokal unter `ref/` und sind
 ignoriert. Die Lizenzangaben oben beziehen sich auf enthaltene Lizenzdateien im

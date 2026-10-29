@@ -1,5 +1,6 @@
 package de.ruff.dimension
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,7 +15,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.matchParentSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -45,6 +45,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -78,6 +79,9 @@ private data class Creature(
     val description: String = "",
     val archetype: String = "",
     val fields: Map<String, String> = emptyMap(),
+    val portrait: String = "",
+    val icon: String = "",
+    val cover: String = "",
 )
 
 private data class RulePage(
@@ -514,6 +518,7 @@ private fun CreatureDetails(
                 .verticalScroll(rememberScrollState())
                 .padding(18.dp),
     ) {
+        CreatureImage(creature)
         Card(colors = CardDefaults.cardColors(containerColor = Iron)) {
             Column(Modifier.padding(18.dp)) {
                 Text(creature.powerLabel.ifBlank { "Machtstufe nicht angegeben" }, color = Flame)
@@ -533,6 +538,32 @@ private fun CreatureDetails(
         }
         Spacer(Modifier.height(24.dp))
     }
+}
+
+@SuppressLint("DiscouragedApi")
+@Composable
+private fun CreatureImage(creature: Creature) {
+    val context = LocalContext.current
+    val resourceName = creature.cover.ifBlank { creature.portrait }
+    val imageId =
+        remember(resourceName) {
+            if (resourceName.isBlank()) {
+                0
+            } else {
+                context.resources.getIdentifier(resourceName, "drawable", context.packageName)
+            }
+        }
+    Image(
+        painter = painterResource(if (imageId != 0) imageId else R.drawable.ruff_platzhalter_kapuze),
+        contentDescription = if (imageId != 0) "Bild: ${creature.name}" else "Platzhalter: noch kein Bild",
+        contentScale = if (imageId != 0) ContentScale.Crop else ContentScale.Fit,
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .height(if (creature.cover.isNotBlank()) 200.dp else 260.dp)
+                .clip(RoundedCornerShape(14.dp)),
+    )
+    Spacer(Modifier.height(14.dp))
 }
 
 @Composable
