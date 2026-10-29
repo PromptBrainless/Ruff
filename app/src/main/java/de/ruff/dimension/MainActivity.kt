@@ -442,11 +442,23 @@ private fun CreatureCard(
                     .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = painterResource(R.drawable.ruff_glyph),
-                contentDescription = null,
-                modifier = Modifier.size(32.dp),
-            )
+            val iconId = drawableId(creature.icon)
+            if (iconId != 0) {
+                Image(
+                    painter = painterResource(iconId),
+                    contentDescription = null,
+                    modifier =
+                        Modifier
+                            .size(44.dp)
+                            .clip(RoundedCornerShape(8.dp)),
+                )
+            } else {
+                Image(
+                    painter = painterResource(R.drawable.ruff_glyph),
+                    contentDescription = null,
+                    modifier = Modifier.size(32.dp),
+                )
+            }
             Spacer(Modifier.width(14.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(creature.name, fontWeight = FontWeight.SemiBold)
@@ -542,17 +554,20 @@ private fun CreatureDetails(
 
 @SuppressLint("DiscouragedApi")
 @Composable
-private fun CreatureImage(creature: Creature) {
+private fun drawableId(resourceName: String): Int {
     val context = LocalContext.current
-    val resourceName = creature.cover.ifBlank { creature.portrait }
-    val imageId =
-        remember(resourceName) {
-            if (resourceName.isBlank()) {
-                0
-            } else {
-                context.resources.getIdentifier(resourceName, "drawable", context.packageName)
-            }
+    return remember(resourceName) {
+        if (resourceName.isBlank()) {
+            0
+        } else {
+            context.resources.getIdentifier(resourceName, "drawable", context.packageName)
         }
+    }
+}
+
+@Composable
+private fun CreatureImage(creature: Creature) {
+    val imageId = drawableId(creature.cover.ifBlank { creature.portrait })
     Image(
         painter = painterResource(if (imageId != 0) imageId else R.drawable.ruff_platzhalter_kapuze),
         contentDescription = if (imageId != 0) "Bild: ${creature.name}" else "Platzhalter: noch kein Bild",
