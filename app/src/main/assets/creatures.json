@@ -2015,9 +2015,9 @@
     "spielbar": true,
     "description": "Amphibisch; Seehund-Hund-Typ mit zottigem Fell oder Langhals-Typ mit Pferde-/Emukopf, Mähne, kleinen Hauern.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_057_bunyip_portrait",
+    "icon": "ruff_icon_v2_057_bunyip",
+    "cover": "ruff_cover_v2_057_bunyip",
     "fields": {
       "ID": "V2-057",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2038,7 +2038,7 @@
       "Spielfakten": "Spielregel: Wasserstellen nachts meiden. Motivation: Wasser-Revier.",
       "Quellen": "https://en.wikipedia.org/wiki/Bunyip\nhttps://app.notion.com/404acc63731d81798f50f3dffba61970\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3",
       "Referenzbild (nicht enthalten)": "Macfarlane, J. · Public domain · https://commons.wikimedia.org/wiki/File:Bunyip_1890.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2051,9 +2051,9 @@
     "spielbar": true,
     "description": "Feuerspeiendes Mischwesen: Löwe vorne, Ziege in der Mitte, Schlange hinten (Homer).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_058_chimaere_portrait",
+    "icon": "ruff_icon_v2_058_chimaere",
+    "cover": "ruff_cover_v2_058_chimaere",
     "fields": {
       "ID": "V2-058",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2075,7 +2075,7 @@
       "Unsicherheiten": "Bleiklumpen-Motiv aus späterer Fassung",
       "Quellen": "https://app.notion.com/404acc63731d81b98a58e330e2153b90\nhttps://app.notion.com/p/407acc63731d80898e8df267b4eca6a4\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Chimera_%28mythology%29",
       "Referenzbild (nicht enthalten)": "Lampas Group · Public domain · https://commons.wikimedia.org/wiki/File:Chimera_Apulia_Louvre_K362.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2088,9 +2088,9 @@
     "spielbar": true,
     "description": "Kopfloser Reiter auf schwarzem Pferd oder Kutscher der „Totenkutsche“; trägt den eigenen Kopf.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_059_dullahan_portrait",
+    "icon": "ruff_icon_v2_059_dullahan",
+    "cover": "ruff_cover_v2_059_dullahan",
     "fields": {
       "ID": "V2-059",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2111,7 +2111,7 @@
       "Hinweis": "In irischen Primärquellen schwach belegt (laut Quelle)",
       "Quellen": "https://en.wikipedia.org/wiki/Dullahan",
       "Referenzbild (nicht enthalten)": "Daniel Maclise (25 January 1806 – 25 April 1870), original drawing\n\nWilliam Henry Brooke (1772–1860), illustrator, engraver · Public domain · https://commons.wikimedia.org/wiki/File:Croker(1834)Fairy_Legends_p0239-dullahan.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2124,9 +2124,9 @@
     "spielbar": true,
     "description": "Wilder Esel bzw. Pferd mit einem Horn von 1,5 Ellen (Ktesias); Plinius: Hirschkopf, Elefantenfüße.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_060_einhorn_portrait",
+    "icon": "ruff_icon_v2_060_einhorn",
+    "cover": "ruff_cover_v2_060_einhorn",
     "fields": {
       "ID": "V2-060",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2147,7 +2147,7 @@
       "Spielfakten": "Spielregel: Horn als Gegengift wertvoll. Motivation: Freiheit.",
       "Quellen": "https://app.notion.com/404acc63731d81428418ca117e169940\nhttps://app.notion.com/p/407acc63731d80f6a73dec81f607e9d9\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Unicorn",
       "Referenzbild (nicht enthalten)": "Conrad Gessner · Public domain · https://commons.wikimedia.org/wiki/File:Oftheunicorn.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2160,9 +2160,9 @@
     "spielbar": true,
     "description": "Wilder Mann der Steppe, behaart; wird durch Kontakt zu Menschen zivilisiert.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_061_enkidu_portrait",
+    "icon": "ruff_icon_v2_061_enkidu",
+    "cover": "ruff_cover_v2_061_enkidu",
     "fields": {
       "ID": "V2-061",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2182,7 +2182,7 @@
       "Spielfakten": "Spielregel: Verbündet sich mit Gilgamesch. Motivation: Freundschaft.",
       "Quellen": "https://en.wikipedia.org/wiki/Enkidu",
       "Referenzbild (nicht enthalten)": "Osama Shukir Muhammed Amin FRCP(Glasg) · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Enkidu,_Gilgamesh%27s_friend._From_Ur,_Iraq,_2027-1763_BCE._Iraq_Museum.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2195,9 +2195,9 @@
     "spielbar": true,
     "description": "Drache mit Fledermausflügeln und langem Hals.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_062_gargouille_portrait",
+    "icon": "ruff_icon_v2_062_gargouille",
+    "cover": "ruff_cover_v2_062_gargouille",
     "fields": {
       "ID": "V2-062",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2218,7 +2218,7 @@
       "Unsicherheiten": "Wasserspeien/Kopf-Motiv aus der Sage, nicht im Quelltext geprüft",
       "Hinweis": "Der Eintrag „Gargoyle“ (Bauelement) wird auf die Sagengestalt La Gargouille umgestellt",
       "Quellen": "https://en.wikipedia.org/wiki/Gargoyle",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2231,9 +2231,9 @@
     "spielbar": true,
     "description": "Löwenkörper mit Adlerkopf und -flügeln; Apollonius: keine echten Flügel.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_063_greif_portrait",
+    "icon": "ruff_icon_v2_063_greif",
+    "cover": "ruff_cover_v2_063_greif",
     "fields": {
       "ID": "V2-063",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2254,7 +2254,7 @@
       "Spielfakten": "Spielregel: Greife jagen Pferde. Motivation: Gold.",
       "Quellen": "https://en.wikipedia.org/wiki/Griffin\nhttps://app.notion.com/404acc63731d81408e4dfdcc82ad08d5\nhttps://app.notion.com/p/407acc63731d805899c9d72216b03954\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3",
       "Referenzbild (nicht enthalten)": "CC BY-SA 3.0 · https://commons.wikimedia.org/wiki/File:Knossos_fresco_in_throne_palace.JPG",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2267,9 +2267,9 @@
     "spielbar": true,
     "description": "Monster bzw. Riese, Nachkomme Kains.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_064_grendel_portrait",
+    "icon": "ruff_icon_v2_064_grendel",
+    "cover": "ruff_cover_v2_064_grendel",
     "fields": {
       "ID": "V2-064",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2290,7 +2290,7 @@
       "Spielfakten": "Spielregel: Lärm reizt ihn. Motivation: Rache an Feiernden.",
       "Quellen": "https://app.notion.com/404acc63731d81bf9bd7d08303dbf707\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Grendel",
       "Referenzbild (nicht enthalten)": "Joseph Ratcliffe Skelton · Public domain · https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_grendel.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2303,9 +2303,9 @@
     "spielbar": true,
     "description": "Vielköpfige Wasserschlange; ein Kopf unsterblich.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_065_hydra_portrait",
+    "icon": "ruff_icon_v2_065_hydra",
+    "cover": "ruff_cover_v2_065_hydra",
     "fields": {
       "ID": "V2-065",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2326,7 +2326,7 @@
       "Spielfakten": "Spielregel: Ohne Feuer unbesiegbar. Motivation: Revier.",
       "Quellen": "https://app.notion.com/404acc63731d81e7910ac35f5560dcb7\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Lernaean_Hydra",
       "Referenzbild (nicht enthalten)": "Wolfgang Sauber (User:Xenophon). Image renamed from Image:Herakles gegen Hydra.jpg · CC BY-SA 3.0 · https://commons.wikimedia.org/wiki/File:Lernaean_Hydra_Getty_Villa_83.AE.346.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2339,9 +2339,9 @@
     "spielbar": true,
     "description": "Mann, teils halb Ziege mit Hufen und Hörnern; trägt riesige Bastschuhe; ändert Größe je nach Umgebung.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_066_leshy_portrait",
+    "icon": "ruff_icon_v2_066_leshy",
+    "cover": "ruff_cover_v2_066_leshy",
     "fields": {
       "ID": "V2-066",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2362,7 +2362,7 @@
       "Hinweis": "Ersetzt den profillosen „Waldfürst“ als Waldherrscher",
       "Quellen": "https://en.wikipedia.org/wiki/Leshy\nhttps://de.wikipedia.org/wiki/Leschi\nhttps://ru.wikipedia.org/wiki/Леший",
       "Referenzbild (nicht enthalten)": "Н. Н. Брут, Magazine «Leshy» N. N. Brut · Public domain · https://commons.wikimedia.org/wiki/File:Leshy_(1906).jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2375,9 +2375,9 @@
     "spielbar": true,
     "description": "Riesenschlange ohne Gliedmaßen (Schweden) oder Drache mit 2–4 Beinen.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_067_lindwurm_portrait",
+    "icon": "ruff_icon_v2_067_lindwurm",
+    "cover": "ruff_cover_v2_067_lindwurm",
     "fields": {
       "ID": "V2-067",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2398,7 +2398,7 @@
       "Spielfakten": "Spielregel: Flucht schwierig wegen Rad-Form. Motivation: Nahrung.",
       "Quellen": "https://app.notion.com/404acc63731d81cca051f085d9a4d749\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Lindworm",
       "Referenzbild (nicht enthalten)": "John Bauer · Public domain · https://commons.wikimedia.org/wiki/File:John_Bauer,_1911_(cropped,_no_signature).jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2411,9 +2411,9 @@
     "spielbar": true,
     "description": "Riesig, behaart, affenartig, ein Auge, Maul im Bauch, rückwärts gerichtete Füße.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_068_mapinguari_portrait",
+    "icon": "ruff_icon_v2_068_mapinguari",
+    "cover": "ruff_cover_v2_068_mapinguari",
     "fields": {
       "ID": "V2-068",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2432,7 +2432,7 @@
       "Schwächen": "Nur nahe dem Nabel verwundbar",
       "Spielfakten": "Spielregel: Gestank warnt. Motivation: Revier.",
       "Quellen": "https://en.wikipedia.org/wiki/Mapinguari",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2445,9 +2445,9 @@
     "spielbar": true,
     "description": "Menschliche Frau, Zauberin, Enkelin des Helios.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_069_medea_portrait",
+    "icon": "ruff_icon_v2_069_medea",
+    "cover": "ruff_cover_v2_069_medea",
     "fields": {
       "ID": "V2-069",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2468,7 +2468,7 @@
       "Spielfakten": "Spielregel: Rache bei Verrat. Motivation: Zuflucht finden.",
       "Quellen": "https://app.notion.com/404acc63731d8185a29dcf1a603754a0\nhttps://en.wikipedia.org/wiki/Medea",
       "Referenzbild (nicht enthalten)": "Picture taken by Marcus Cyron · CC BY-SA 3.0 · https://commons.wikimedia.org/wiki/File:Relief_of_Medea_and_the_Peliades_Antikensammlung_Berlin.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2481,9 +2481,9 @@
     "spielbar": true,
     "description": "Frau mit lebenden Schlangen als Haar.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_070_medusa_portrait",
+    "icon": "ruff_icon_v2_070_medusa",
+    "cover": "ruff_cover_v2_070_medusa",
     "fields": {
       "ID": "V2-070",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2503,7 +2503,7 @@
       "Spielfakten": "Spielregel: Blick über Spiegel ungefährlich. Ihr Kopf wirkt auch abgetrennt. Motivation: Isolation.",
       "Quellen": "https://en.wikipedia.org/wiki/Medusa",
       "Referenzbild (nicht enthalten)": "user:shakko · CC BY-SA 3.0 · https://commons.wikimedia.org/wiki/File:Gorgona_pushkin.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2516,9 +2516,9 @@
     "spielbar": true,
     "description": "Frau, samstags von der Hüfte abwärts Schlange; kann als Drache davonfliegen (hundert Fuß langer Drache in einer Fassung).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_071_melusine_portrait",
+    "icon": "ruff_icon_v2_071_melusine",
+    "cover": "ruff_cover_v2_071_melusine",
     "fields": {
       "ID": "V2-071",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2538,7 +2538,7 @@
       "Spielfakten": "Spielregel: Klagt, wenn ein Herr ihres Hauses stirbt. Motivation: Familie.",
       "Quellen": "https://app.notion.com/404acc63731d811e99c6d33bf8fefc34\nhttps://en.wikipedia.org/wiki/Melusine",
       "Referenzbild (nicht enthalten)": "anonymous · Public domain · https://commons.wikimedia.org/wiki/File:Melusinediscovered.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2551,9 +2551,9 @@
     "spielbar": true,
     "description": "Weißes Flügelpferd.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_072_pegasus_portrait",
+    "icon": "ruff_icon_v2_072_pegasus",
+    "cover": "ruff_cover_v2_072_pegasus",
     "fields": {
       "ID": "V2-072",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2574,7 +2574,7 @@
       "Spielfakten": "Spielregel: Reittier für Würdige. Motivation: Freiheit.",
       "Quellen": "https://app.notion.com/404acc63731d812db050de80983257ac\nhttps://app.notion.com/p/407acc63731d8032a03ddd7474298b84\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Pegasus",
       "Referenzbild (nicht enthalten)": "The J. Paul Getty Museum, Villa Collection, Malibu, California\n\nDigital image courtesy of the Getty's Open Content Program. · Public domain · https://commons.wikimedia.org/wiki/File:Lakonian_Black-Figure_Kylix;_detached_fragments.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2587,9 +2587,9 @@
     "spielbar": true,
     "description": "Riesiger Raubvogel wie ein Adler.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_073_rok_portrait",
+    "icon": "ruff_icon_v2_073_rok",
+    "cover": "ruff_cover_v2_073_rok",
     "fields": {
       "ID": "V2-073",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2610,7 +2610,7 @@
       "Spielfakten": "Spielregel: Ei-Raub provoziert Angriff. Motivation: Nest.",
       "Quellen": "https://en.wikipedia.org/wiki/Roc_(mythology)\nhttps://app.notion.com/404acc63731d812090eae1f3ee586f6f\nhttps://en.wikipedia.org/wiki/Roc_%28mythology%29",
       "Referenzbild (nicht enthalten)": "Charles Maurice Detmold (1883-1908) · Public domain · https://commons.wikimedia.org/wiki/File:Edward_Julius_Detmold49.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2623,9 +2623,9 @@
     "spielbar": true,
     "description": "Junger Held mit Schwert Gram.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_074_sigurd_portrait",
+    "icon": "ruff_icon_v2_074_sigurd",
+    "cover": "ruff_cover_v2_074_sigurd",
     "fields": {
       "ID": "V2-074",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2646,7 +2646,7 @@
       "Spielfakten": "Spielregel: Lindenblatt-Stelle. Motivation: Ehre.",
       "Quellen": "https://app.notion.com/404acc63731d816686e6fff384701b1f\nhttps://en.wikipedia.org/wiki/Sigurd",
       "Referenzbild (nicht enthalten)": "Bengt A. Lundberg · CC BY 2.5 · https://commons.wikimedia.org/wiki/File:Sigurdsristningen_-_KMB_-_16000300013664_(cropped).jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2659,9 +2659,9 @@
     "spielbar": true,
     "description": "Mann mit langem Haar (Nasiräer).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_075_simson_portrait",
+    "icon": "ruff_icon_v2_075_simson",
+    "cover": "ruff_cover_v2_075_simson",
     "fields": {
       "ID": "V2-075",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2682,7 +2682,7 @@
       "Spielfakten": "Spielregel: Haar = Kraft. Motivation: Kampf gegen Unterdrücker.",
       "Quellen": "https://app.notion.com/404acc63731d8197a696d91b8cb0bf49\nhttps://en.wikipedia.org/wiki/Samson",
       "Referenzbild (nicht enthalten)": "Lucas Cranach the Elder · Public domain · https://commons.wikimedia.org/wiki/File:Lucas_Cranach_d.%C3%84._-_Simson_bezwingt_den_L%C3%B6wen.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2695,9 +2695,9 @@
     "spielbar": true,
     "description": "Löwenkopf, Schildkrötenpanzer, sechs Bärenpranken, Schlangenschwanz, Giftatem (Legenda aurea).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_076_tarasque_portrait",
+    "icon": "ruff_icon_v2_076_tarasque",
+    "cover": "ruff_cover_v2_076_tarasque",
     "fields": {
       "ID": "V2-076",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2719,7 +2719,7 @@
       "Unsicherheiten": "Größenformel aus der Legenda aurea, nicht im Quelltext geprüft",
       "Quellen": "https://app.notion.com/404acc63731d8189a3cafed2f55dee95\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Tarasque",
       "Referenzbild (nicht enthalten)": "Olivier · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Tarasque_in_Tarascon_02.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2732,9 +2732,9 @@
     "spielbar": true,
     "description": "Riesige Menschengestalt mit zwei Hörnern, Klauen, Körperbehaarung; Augen so groß wie Tonschüsseln.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_077_divs_portrait",
+    "icon": "ruff_icon_v2_077_divs",
+    "cover": "ruff_cover_v2_077_divs",
     "fields": {
       "ID": "V2-077",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2754,7 +2754,7 @@
       "Spielfakten": "Spielregel: Schwer, aber besiegbar. Motivation: Herrschaft.",
       "Hinweis": "Anführer: der Weiße Div (V). Abgrenzung: Dschinn bleibt eigenes Volk",
       "Quellen": "https://en.wikipedia.org/wiki/Daeva\nhttps://en.wikipedia.org/wiki/White_Div\nhttps://en.wikipedia.org/wiki/Div-e_Sepid",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2767,9 +2767,9 @@
     "spielbar": true,
     "description": "Untoter im Grabhügel; Glámr „schwarz wie Hel und aufgedunsen zur Größe eines Stiers“; Þórólfr „so groß wie ein Ochse“.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_078_draugr_portrait",
+    "icon": "ruff_icon_v2_078_draugr",
+    "cover": "ruff_cover_v2_078_draugr",
     "fields": {
       "ID": "V2-078",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2790,7 +2790,7 @@
       "Spielfakten": "Spielregel: Ansteckung – wer stirbt, kann aufstehen. Motivation: Grabschatz bewachen.",
       "Quellen": "https://app.notion.com/404acc63731d816184cdfa9b6e239ef9\nhttps://en.wikipedia.org/wiki/Draugr",
       "Referenzbild (nicht enthalten)": "Kim Diaz Holm · CC BY 4.0 · https://commons.wikimedia.org/wiki/File:Giant_draugr_by_Kim_Diaz_Holm_(cropped).jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2803,9 +2803,9 @@
     "spielbar": true,
     "description": "Übernatürlich schön, menschengleich (früh) bis winzig mit Flügeln (spätere Literatur).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_079_elfen_portrait",
+    "icon": "ruff_icon_v2_079_elfen",
+    "cover": "ruff_cover_v2_079_elfen",
     "fields": {
       "ID": "V2-079",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2826,7 +2826,7 @@
       "Hinweis": "Ersetzt „Elben (Tolkien)“. Der Erlkönig (dänisch ellekonge = Elfenkönig, Herder/Goethe) wird als Anführer-Rang geführt",
       "Quellen": "https://en.wikipedia.org/wiki/Elf\nhttps://en.wikipedia.org/wiki/Erlking",
       "Referenzbild (nicht enthalten)": "Nils Blommér · Public domain · https://commons.wikimedia.org/wiki/File:%C3%84ngs%C3%A4lvor_-_Nils_Blomm%C3%A9r_1850.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2839,9 +2839,9 @@
     "spielbar": true,
     "description": "Schwarz-weißer Greifvogel von Menschengröße; kann als junger Mann auftreten. Teils mit dem Hammerkopf gleichgesetzt.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_080_impundulu_portrait",
+    "icon": "ruff_icon_v2_080_impundulu",
+    "cover": "ruff_cover_v2_080_impundulu",
     "fields": {
       "ID": "V2-080",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2861,7 +2861,7 @@
       "Spielfakten": "Spielregel: Eine Schwäche (Feuer). Motivation: Herrin dienen.",
       "Quellen": "https://en.wikipedia.org/wiki/Lightning_bird",
       "Referenzbild (nicht enthalten)": "Photo by and (C)2007 Derek Ramsey (Ram-Man) · CC BY-SA 2.5 · https://commons.wikimedia.org/wiki/File:Hammerkop_Scopus_umbretta_National_Aviary_2000px.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2874,9 +2874,9 @@
     "spielbar": true,
     "description": "Fuchs, der mit Alter mehr Schwänze bekommt (bis neun); nimmt Menschengestalt an, auch Baum (riesige Zeder).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_081_kitsune_portrait",
+    "icon": "ruff_icon_v2_081_kitsune",
+    "cover": "ruff_cover_v2_081_kitsune",
     "fields": {
       "ID": "V2-081",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2898,7 +2898,7 @@
       "Unsicherheiten": "Neunschwanz- und Juwel-Kontrolle: Juwel belegt, Kontrolle-Regel ist Spielableitung",
       "Quellen": "https://app.notion.com/404acc63731d81839439fa284540ecb3\nhttps://app.notion.com/p/407acc63731d80ad8697e542c965cc1a\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Kitsune",
       "Referenzbild (nicht enthalten)": "Yoshitoshi · Public domain · https://commons.wikimedia.org/wiki/File:Yoshitoshi_-_100_Aspects_of_the_Moon_-_91.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2911,9 +2911,9 @@
     "spielbar": true,
     "description": "Einäugige Riesen; Polyphem stützt sich auf eine entastete Kiefer.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_082_kyklopen_portrait",
+    "icon": "ruff_icon_v2_082_kyklopen",
+    "cover": "ruff_cover_v2_082_kyklopen",
     "fields": {
       "ID": "V2-082",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2934,7 +2934,7 @@
       "Hinweis": "Nur die Hirten- und Baumeister-Kyklopen, nicht die hesiodischen Urwesen",
       "Quellen": "https://en.wikipedia.org/wiki/Cyclopes\nhttps://en.wikipedia.org/wiki/Polyphemus",
       "Referenzbild (nicht enthalten)": "Steven Lek · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Head_of_a_Cyclops_Colosseum.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2947,9 +2947,9 @@
     "spielbar": true,
     "description": "Halb Mensch, halb Schlange, oder Menschen mit Schlangen am Kopf, oder große Kobras.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_083_naga_portrait",
+    "icon": "ruff_icon_v2_083_naga",
+    "cover": "ruff_cover_v2_083_naga",
     "fields": {
       "ID": "V2-083",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -2970,7 +2970,7 @@
       "Spielfakten": "Spielregel: Garudas als Erzfeinde. Motivation: Gewässer.",
       "Quellen": "https://app.notion.com/404acc63731d8184b15af46c2381f6fd\nhttps://app.notion.com/p/407acc63731d8048be70c8f881c1512a\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/N%C4%81ga",
       "Referenzbild (nicht enthalten)": "Mohonu at English Wikipedia · Public domain · https://commons.wikimedia.org/wiki/File:Naga182.JPG",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -2983,9 +2983,9 @@
     "spielbar": true,
     "description": "Riesen (Septuaginta: gigantes), Kinder der Wächterengel und Menschenfrauen.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_084_nephilim_portrait",
+    "icon": "ruff_icon_v2_084_nephilim",
+    "cover": "ruff_cover_v2_084_nephilim",
     "fields": {
       "ID": "V2-084",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3005,7 +3005,7 @@
       "Schwächen": "durch die Sintflut und gegenseitigen Krieg vernichtet; ihre Geister werden zu Dämonen (1. Henoch).",
       "Spielfakten": "Größe laut Forschung umstritten (Übertreibung der Kundschafter). Motivation: Nahrung, Herrschaft.",
       "Quellen": "https://app.notion.com/404acc63731d8153bd57c94cd36e0d04\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Nephilim",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3018,9 +3018,9 @@
     "spielbar": true,
     "description": "Massige Figuren mit einem oder mehreren Hörnern, großen Zähnen, teils drittem Auge, 3–6 Finger und Zehen mit Krallen.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_085_oni_portrait",
+    "icon": "ruff_icon_v2_085_oni",
+    "cover": "ruff_cover_v2_085_oni",
     "fields": {
       "ID": "V2-085",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3041,7 +3041,7 @@
       "Spielfakten": "Spielregel: Momotarō als natürlicher Gegner. Motivation: Raub.",
       "Quellen": "https://app.notion.com/404acc63731d81dca2a9ecad61d183c0\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Oni",
       "Referenzbild (nicht enthalten)": "Katsushika Hokusai 葛飾北斎 (1760-1849) · Public domain · https://commons.wikimedia.org/wiki/File:Kobo_Daishi_Practicing_the_Tantra,_with_Demon_and_Wolf,_by_Hokusai.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3054,9 +3054,9 @@
     "spielbar": true,
     "description": "Früh: große Vögel mit Frauenköpfen; später Frau mit Vogelbeinen bzw. Meerjungfrau.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_086_sirenen_portrait",
+    "icon": "ruff_icon_v2_086_sirenen",
+    "cover": "ruff_cover_v2_086_sirenen",
     "fields": {
       "ID": "V2-086",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3078,7 +3078,7 @@
       "Hinweis": "Gedeckelt: „Wissen um alles“ gestrichen (kein Allwissen)",
       "Quellen": "https://en.wikipedia.org/wiki/Siren_(mythology)\nhttps://app.notion.com/404acc63731d81c7bb0ec449e6af25fc\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Siren_%28mythology%29",
       "Referenzbild (nicht enthalten)": "No machine-readable author provided. Marsyas assumed (based on copyright claims). · CC BY 2.5 · https://commons.wikimedia.org/wiki/File:NAMA_Sir%C3%A8ne.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3091,9 +3091,9 @@
     "spielbar": true,
     "description": "Hexer (yee naaldlooshii), die sich in Tiere verwandeln.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_087_skinwalker_portrait",
+    "icon": "ruff_icon_v2_087_skinwalker",
+    "cover": "ruff_cover_v2_087_skinwalker",
     "fields": {
       "ID": "V2-087",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3114,7 +3114,7 @@
       "Spielfakten": "Achtung kulturell sensibel: Navajo sprechen ungern darüber. Motivation: Macht.",
       "Hinweis": "Kulturell sensibel: lebender Navajo-Glaube, respektvoll behandeln",
       "Quellen": "https://en.wikipedia.org/wiki/Skin-walker\nhttps://app.notion.com/404acc63731d8115bb20d42f4d270df7\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3127,9 +3127,9 @@
     "spielbar": true,
     "description": "Im Meer wie Wal oder Hai, im Binnenland wie Gecko/Tuatara mit Rückenstacheln.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_088_taniwha_portrait",
+    "icon": "ruff_icon_v2_088_taniwha",
+    "cover": "ruff_cover_v2_088_taniwha",
     "fields": {
       "ID": "V2-088",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3148,7 +3148,7 @@
       "Schwächen": "Werden von Helden gezähmt oder getötet; Tāmures magische mere besiegt Taniwha (Kaiwhare-Sage)",
       "Spielfakten": "Spielregel: Versteinerte Reste werden Hügel. Motivation: Ort hüten.",
       "Quellen": "https://en.wikipedia.org/wiki/Taniwha",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3161,9 +3161,9 @@
     "spielbar": true,
     "description": "Früh Greifvogel- und Affenzüge, später rotes Gesicht mit langer Nase; Priesterkleidung; einzahnige Geta.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_089_tengu_portrait",
+    "icon": "ruff_icon_v2_089_tengu",
+    "cover": "ruff_cover_v2_089_tengu",
     "fields": {
       "ID": "V2-089",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3182,7 +3182,7 @@
       "Schwächen": "In Volksmärchen leicht zu überlisten; ein alter Mann luchst einem Tengu den Zaubermantel ab",
       "Spielfakten": "Spielregel: Fächer stehlen. Motivation: Stolz.",
       "Quellen": "https://en.wikipedia.org/wiki/Tengu",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3195,9 +3195,9 @@
     "spielbar": true,
     "description": "Je nach Region klein oder so groß wie Menschen; hässlich und dumm oder menschengleich.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_090_troll_portrait",
+    "icon": "ruff_icon_v2_090_troll",
+    "cover": "ruff_cover_v2_090_troll",
     "fields": {
       "ID": "V2-090",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3218,7 +3218,7 @@
       "Spielfakten": "Spielregel: Kirchenglocken. Motivation: Revier, Schatz.",
       "Quellen": "https://app.notion.com/404acc63731d81ab9e4fea36e2b5c236\nhttps://app.notion.com/p/406acc63731d8145b797e86021a1c229\nhttps://app.notion.com/p/406acc63731d81a88557c7df84011d13\nhttps://app.notion.com/p/407acc63731d80a69781e0206f574b64\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Troll",
       "Referenzbild (nicht enthalten)": "John Bauer · Public domain · https://commons.wikimedia.org/wiki/File:John_Bauer_1915.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3231,9 +3231,9 @@
     "spielbar": true,
     "description": "Untoter Mensch, oft aufgedunsen (südosteuropäischer Volksglaube).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_091_vampir_portrait",
+    "icon": "ruff_icon_v2_091_vampir",
+    "cover": "ruff_cover_v2_091_vampir",
     "fields": {
       "ID": "V2-091",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3254,7 +3254,7 @@
       "Spielfakten": "Spielregel: Opfer werden zu Vampiren. Motivation: Rückkehr zur Familie.",
       "Quellen": "https://app.notion.com/404acc63731d8179be80ffe8426ebae3\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Vampire",
       "Referenzbild (nicht enthalten)": "Philip Burne-Jones · Public domain · https://commons.wikimedia.org/wiki/File:Philip_Burne-Jones_-_The_Vampire.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3267,9 +3267,9 @@
     "spielbar": true,
     "description": "Geist ohne Beine und Füße, schwebend; Hände hängen leblos.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_092_yurei_portrait",
+    "icon": "ruff_icon_v2_092_yurei",
+    "cover": "ruff_cover_v2_092_yurei",
     "fields": {
       "ID": "V2-092",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3290,7 +3290,7 @@
       "Spielfakten": "Spielregel: Anliegen erfüllen = Erlösung. Motivation: offenes Anliegen.",
       "Quellen": "https://app.notion.com/404acc63731d81f9a4d5c8943b228d36\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Y%C5%ABrei",
       "Referenzbild (nicht enthalten)": "Brigham Young University · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:23.Yuurei.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3303,9 +3303,9 @@
     "spielbar": true,
     "description": "Hässliche, wilde alte Frau mit „knöchernem Bein“ und eisernen Zähnen; fliegt im Mörser mit Stößel; Hütte auf Hühnerbeinen.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_093_baba_jaga_portrait",
+    "icon": "ruff_icon_v2_093_baba_jaga",
+    "cover": "ruff_cover_v2_093_baba_jaga",
     "fields": {
       "ID": "V2-093",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3326,7 +3326,7 @@
       "Spielfakten": "Spielregel: Höflichkeit und bestandene Prüfungen machen sie zur Ratgeberin, Unhöflichkeit zur Gefahr. Motivation in der Verbannung (RUFF-Ableitung): eine neue Waldhütte und Prüflinge.",
       "Quellen": "https://app.notion.com/404acc63731d8144b726e2a474983fad\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Baba_Yaga",
       "Referenzbild (nicht enthalten)": "Богатов Николай Алексеевич · Public domain · https://commons.wikimedia.org/wiki/File:%D0%A1%D0%BA%D0%B0%D0%B7%D0%BA%D0%B0_%D0%91%D0%B0%D0%B1%D0%B0-%D1%8F%D0%B3%D0%B0_3.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3339,9 +3339,9 @@
     "spielbar": true,
     "description": "Gautischer Krieger.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_094_beowulf_portrait",
+    "icon": "ruff_icon_v2_094_beowulf",
+    "cover": "ruff_cover_v2_094_beowulf",
     "fields": {
       "ID": "V2-094",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3361,7 +3361,7 @@
       "Spielfakten": "Spielregel: Stärkster Ringer im Katalog unter den Menschen; sterblich und altert. Motivation (RUFF-Ableitung): Ruhm, Schutz der Seinen gegen Ungeheuer wie Grendel.",
       "Quellen": "https://en.wikipedia.org/wiki/Beowulf_(hero)\nhttps://en.wikipedia.org/wiki/Beowulf_%28hero%29",
       "Referenzbild (nicht enthalten)": "J. R. Skelton · Public domain · https://commons.wikimedia.org/wiki/File:Beowulf_and_the_dragon.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3374,9 +3374,9 @@
     "spielbar": true,
     "description": "Mehrköpfiger Hund (meist drei).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_095_cerberus_portrait",
+    "icon": "ruff_icon_v2_095_cerberus",
+    "cover": "ruff_cover_v2_095_cerberus",
     "fields": {
       "ID": "V2-095",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3398,7 +3398,7 @@
       "Hinweis": "Ohne Unterwelt: bewacht nun Orte der Erde",
       "Quellen": "https://app.notion.com/404acc63731d819e9b4bccae65f14d3c\nhttps://app.notion.com/p/407acc63731d800b9d64c891f5f4a5a6\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Cerberus",
       "Referenzbild (nicht enthalten)": "Eagle Painter · Public domain · https://commons.wikimedia.org/wiki/File:Herakles_Kerberos_Eurystheus_Louvre_E701.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3411,9 +3411,9 @@
     "spielbar": true,
     "description": "Zauberin, Tochter des Helios.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_096_circe_portrait",
+    "icon": "ruff_icon_v2_096_circe",
+    "cover": "ruff_cover_v2_096_circe",
     "fields": {
       "ID": "V2-096",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3434,7 +3434,7 @@
       "Spielfakten": "Spielregel: Wer Moly bei sich trägt, ist gegen ihre Verwandlung immun. Verwandelte können zurückverwandelt werden, wenn man sie überredet. Motivation (RUFF-Ableitung): eine eigene Insel, Gäste.",
       "Quellen": "https://app.notion.com/404acc63731d8142b21fce45096dc93a\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Circe",
       "Referenzbild (nicht enthalten)": "Sailko · CC BY 3.0 · https://commons.wikimedia.org/wiki/File:Circe_coi_maiali,_III-II_secolo_ac.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3447,9 +3447,9 @@
     "spielbar": true,
     "description": "Junger Held; Kampfrausch (ríastrad) verzerrt seinen Körper.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_097_cu_chulainn_portrait",
+    "icon": "ruff_icon_v2_097_cu_chulainn",
+    "cover": "ruff_cover_v2_097_cu_chulainn",
     "fields": {
       "ID": "V2-097",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3470,7 +3470,7 @@
       "Spielfakten": "Spielregel: Seine geasa (Verbote) sind seine Achillesferse – wer ihn zwingt, ein Verbot zu brechen (z. B. Hundefleisch zu essen), schwächt ihn. Laut Prophezeiung kurzes Leben. Motivation: Ehre, ewiger Ruhm.",
       "Quellen": "https://app.notion.com/404acc63731d81598839f0352f946ef1\nhttps://en.wikipedia.org/wiki/C%C3%BA_Chulainn",
       "Referenzbild (nicht enthalten)": "Stephen Reid · Public domain · https://commons.wikimedia.org/wiki/File:Cuslayshound.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3483,9 +3483,9 @@
     "spielbar": true,
     "description": "Halbgott, König von Uruk.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_098_gilgamesch_portrait",
+    "icon": "ruff_icon_v2_098_gilgamesch",
+    "cover": "ruff_cover_v2_098_gilgamesch",
     "fields": {
       "ID": "V2-098",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3505,7 +3505,7 @@
       "Schwächen": "Sterblichkeit; schläft bei der Prüfung ein, und eine Schlange stiehlt ihm das Kraut der Verjüngung.",
       "Spielfakten": "Spielregel: Sucht Unsterblichkeit, die die Welt nicht bietet; verbündet sich mit Enkidu. Motivation (RUFF-Ableitung): Unsterblichkeit, Ruhm.",
       "Quellen": "https://app.notion.com/404acc63731d8169b443c3ed6c99027e\nhttps://en.wikipedia.org/wiki/Gilgamesh",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3518,9 +3518,9 @@
     "spielbar": true,
     "description": "Held und Gott mit übermenschlicher Kraft.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_099_herakles_portrait",
+    "icon": "ruff_icon_v2_099_herakles",
+    "cover": "ruff_cover_v2_099_herakles",
     "fields": {
       "ID": "V2-099",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3541,7 +3541,7 @@
       "Spielfakten": "Spielregel: Nutzt auch List (Atlas, Antaios), wenn Kraft nicht reicht; Jähzorn kann ihn gegen Verbündete richten. Motivation (RUFF-Ableitung): Sühne und Bewährung.",
       "Quellen": "https://app.notion.com/404acc63731d816d9b0ceb985bf83457\nhttps://en.wikipedia.org/wiki/Heracles",
       "Referenzbild (nicht enthalten)": "Glycon of Athens (copy), Lysippos (original type) · CC BY 2.5 · https://commons.wikimedia.org/wiki/File:Herakles_Farnese_MAN_Napoli_Inv6001_n01.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3554,9 +3554,9 @@
     "spielbar": true,
     "description": "Menschengestaltiger Wächter, vergleichbar Oger oder Riese.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_100_humbaba_portrait",
+    "icon": "ruff_icon_v2_100_humbaba",
+    "cover": "ruff_cover_v2_100_humbaba",
     "fields": {
       "ID": "V2-100",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3576,7 +3576,7 @@
       "Spielfakten": "Spielregel: Seine sieben Auren lähmen Gegner – wer ihn überredet, sie abzugeben (Gilgamesch-Epos), kann ihn besiegen. Motivation (RUFF-Ableitung): einen neuen Wald hüten.",
       "Quellen": "https://en.wikipedia.org/wiki/Humbaba",
       "Referenzbild (nicht enthalten)": "Rama · CC BY-SA 3.0 fr · https://commons.wikimedia.org/wiki/File:Humbaba_deamon-AO_9034-IMG_0655-black.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3589,9 +3589,9 @@
     "spielbar": true,
     "description": "Dämonin; Burney-Relief wird als Frau mit Flügeln und Vogelfüßen gedeutet.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_101_lilith_portrait",
+    "icon": "ruff_icon_v2_101_lilith",
+    "cover": "ruff_cover_v2_101_lilith",
     "fields": {
       "ID": "V2-101",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3612,7 +3612,7 @@
       "Spielfakten": "Spielregel: Amulette/Zauberschalen mit den Namen Senoi, Sansenoi und Semangelof wehren sie ab; Gefahr für allein Schlafende und Neugeborene (nur andeuten). Motivation (RUFF-Ableitung): Rache an Adam und seinen Nachkommen.",
       "Quellen": "https://app.notion.com/404acc63731d8176af60dd1b687740c9\nhttps://en.wikipedia.org/wiki/Lilith",
       "Referenzbild (nicht enthalten)": "John Collier · Public domain · https://commons.wikimedia.org/wiki/File:Lilith_(John_Collier_painting).jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3625,9 +3625,9 @@
     "spielbar": true,
     "description": "Wassergeist, oft Meerjungfrau mit Schlange; kämmt ihr Haar mit goldenem Kamm.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_102_mami_wata_portrait",
+    "icon": "ruff_icon_v2_102_mami_wata",
+    "cover": "ruff_cover_v2_102_mami_wata",
     "fields": {
       "ID": "V2-102",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3648,7 +3648,7 @@
       "Hinweis": "Ihr Unterwasserreich ist Teil der Erde, kein anderes Reich",
       "Quellen": "https://en.wikipedia.org/wiki/Mami_Wata\nhttps://app.notion.com/404acc63731d811fa578f0869aa3b9e1",
       "Referenzbild (nicht enthalten)": "Daderot · Public domain · https://commons.wikimedia.org/wiki/File:Figure_of_Mammy_Wata_in_Boat,_Nigeria_-_Staatliches_Museum_f%C3%BCr_V%C3%B6lkerkunde_M%C3%BCnchen_-_DSC08436.JPG",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3661,9 +3661,9 @@
     "spielbar": true,
     "description": "Halbgott, Trickster.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_103_maui_portrait",
+    "icon": "ruff_icon_v2_103_maui",
+    "cover": "ruff_cover_v2_103_maui",
     "fields": {
       "ID": "V2-103",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3683,7 +3683,7 @@
       "Schwächen": "stirbt beim Versuch, durch den Leib der Totengöttin Hine-nui-te-pō Unsterblichkeit zu erlangen, als ein Vogel lacht und sie erwacht.",
       "Spielfakten": "Spielregel: Trickster mit Kulturgaben (Feuer, längere Tage, Inseln). Motivation (RUFF-Ableitung): Taten, die sein Ansehen mehren; neuer Versuch, Sterblichkeit zu überwinden.",
       "Quellen": "https://app.notion.com/404acc63731d81578863f281a4f8efe1\nhttps://en.wikipedia.org/wiki/M%C4%81ui_%28M%C4%81ori_mythology%29",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3696,9 +3696,9 @@
     "spielbar": true,
     "description": "Prophet und Magier.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_104_merlin_portrait",
+    "icon": "ruff_icon_v2_104_merlin",
+    "cover": "ruff_cover_v2_104_merlin",
     "fields": {
       "ID": "V2-104",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3719,7 +3719,7 @@
       "Spielfakten": "Spielregel: Sieht viel voraus, kann sein eigenes Schicksal aber nicht abwenden (Viviane bannt ihn mit seinem eigenen Zauber). Motivation (RUFF-Ableitung): Berater für einen neuen „König“.",
       "Quellen": "https://app.notion.com/404acc63731d816bb21aea06314da42d\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Merlin",
       "Referenzbild (nicht enthalten)": "Howard Pyle · Public domain · https://commons.wikimedia.org/wiki/File:Arthur-Pyle_The_Enchanter_Merlin.JPG",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3732,9 +3732,9 @@
     "spielbar": true,
     "description": "Fee, Heilerin.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_105_morgan_le_fay_portrait",
+    "icon": "ruff_icon_v2_105_morgan_le_fay",
+    "cover": "ruff_cover_v2_105_morgan_le_fay",
     "fields": {
       "ID": "V2-105",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3756,7 +3756,7 @@
       "Hinweis": "Avalon ist für sie verloren (Verbannung)",
       "Quellen": "https://en.wikipedia.org/wiki/Morgan_le_Fay\nhttps://app.notion.com/404acc63731d810caaa2d32b6e5db456\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3",
       "Referenzbild (nicht enthalten)": "Frederick Sandys · Public domain · https://commons.wikimedia.org/wiki/File:Frederick_Sandys_-_Morgan-le-Fay_-_1925P104_-_Birmingham_Museum_and_Art_Gallery.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3769,9 +3769,9 @@
     "spielbar": true,
     "description": "Vogel mit roten Beinen und gelben Augen (Ezechiel) oder blauen Augen und goldenen Schuppenbeinen (Laktanz).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_106_phoenix_portrait",
+    "icon": "ruff_icon_v2_106_phoenix",
+    "cover": "ruff_cover_v2_106_phoenix",
     "fields": {
       "ID": "V2-106",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3793,7 +3793,7 @@
       "Hinweis": "Wiedergeburt nur auf der Erde, kein Weg zurück",
       "Quellen": "https://app.notion.com/404acc63731d811dbf83c6dc2209993d\nhttps://app.notion.com/p/406acc63731d81d1a493cd0e5d5d2b23\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Phoenix_%28mythology%29",
       "Referenzbild (nicht enthalten)": "AnonymousUnknown author · Public domain · https://commons.wikimedia.org/wiki/File:Phoenix_(1583).svg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3806,9 +3806,9 @@
     "spielbar": true,
     "description": "Prinz von Ayodhya.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_107_rama_portrait",
+    "icon": "ruff_icon_v2_107_rama",
+    "cover": "ruff_cover_v2_107_rama",
     "fields": {
       "ID": "V2-107",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3830,7 +3830,7 @@
       "Hinweis": "Kein Avatar-Rückgriff auf göttliche Sphären (Verbannung)",
       "Quellen": "https://app.notion.com/404acc63731d814eb53cf5d56bcfb737\nhttps://en.wikipedia.org/wiki/Rama",
       "Referenzbild (nicht enthalten)": "Gita Press Gorakhpur · CC0 · https://commons.wikimedia.org/wiki/File:Rama_in_Adhyatma_Ramayana.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3843,9 +3843,9 @@
     "spielbar": true,
     "description": "Löwenkörper mit Frauenkopf und Flügeln (griechisch).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_108_sphinx_portrait",
+    "icon": "ruff_icon_v2_108_sphinx",
+    "cover": "ruff_cover_v2_108_sphinx",
     "fields": {
       "ID": "V2-108",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3866,7 +3866,7 @@
       "Spielfakten": "Spielregel: Rätsel lösen = sie stürzt sich in den Tod. Falsche Antwort = gefressen. Motivation (RUFF-Ableitung): einen neuen Torweg bewachen.",
       "Quellen": "https://app.notion.com/404acc63731d81518bd3f884582e8da8\nhttps://app.notion.com/p/407acc63731d80838f65ecf9a819a644\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Sphinx",
       "Referenzbild (nicht enthalten)": "CC BY 2.5 · https://commons.wikimedia.org/wiki/File:Sphinx_CdM_Paris_DeRidder865_n2.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3879,9 +3879,9 @@
     "spielbar": true,
     "description": "Herrscher von Mali.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_109_sundiata_portrait",
+    "icon": "ruff_icon_v2_109_sundiata",
+    "cover": "ruff_cover_v2_109_sundiata",
     "fields": {
       "ID": "V2-109",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3901,7 +3901,7 @@
       "Schwächen": "Sterblicher Mensch; in der Kindheit gelähmt, mit seiner Mutter ins Exil vertrieben",
       "Spielfakten": "Spielregel: Sammelt Verbündete und Zauberkundige; besiegt Gegner über deren geheime Schwäche (Hahnensporn-Pfeil gegen Soumaoro). Motivation (RUFF-Ableitung): Rückkehr und Reichsgründung.",
       "Quellen": "https://en.wikipedia.org/wiki/Sundiata_Keita\nhttps://app.notion.com/404acc63731d81349261d6f439fc3a33\nhttps://en.wikipedia.org/wiki/Epic_of_Sundiata",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3914,9 +3914,9 @@
     "spielbar": true,
     "description": "Gehörnte Unterwasserschlange mit kristallinen Schuppen und einem großen Kristall auf der Stirn (Muscogee); „Hörner wie ein Hirsch“.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_110_uktena_portrait",
+    "icon": "ruff_icon_v2_110_uktena",
+    "cover": "ruff_cover_v2_110_uktena",
     "fields": {
       "ID": "V2-110",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3937,7 +3937,7 @@
       "Hinweis": "Aus Mooney (Cherokee) nach der Quelle",
       "Quellen": "https://en.wikipedia.org/wiki/Horned_Serpent",
       "Referenzbild (nicht enthalten)": "Sailko · CC BY 3.0 · https://commons.wikimedia.org/wiki/File:Stati_uniti_o_messico,_casas_grandes,_giara_con_due_serpenti_piumati_e_cornuti,_uccelli_e_motivi_a_P,_new_mexico_o_chihuahua,_1280-1450_ca.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3950,9 +3950,9 @@
     "spielbar": true,
     "description": "Alter, weiser Mann.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_111_vaeinaemoeinen_portrait",
+    "icon": "ruff_icon_v2_111_vaeinaemoeinen",
+    "cover": "ruff_cover_v2_111_vaeinaemoeinen",
     "fields": {
       "ID": "V2-111",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -3973,7 +3973,7 @@
       "Hinweis": "Machtdeckel V: kosmische Schöpfungs-Strophen (Meeresgrund formen) gelten nicht",
       "Quellen": "https://en.wikipedia.org/wiki/V%C3%A4in%C3%A4m%C3%B6inen",
       "Referenzbild (nicht enthalten)": "Akseli Gallen-Kallela · Public domain · https://commons.wikimedia.org/wiki/File:Akseli_Gallen-Kallela_-_Head_of_V%C3%A4in%C3%A4m%C3%B6inen.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -3986,9 +3986,9 @@
     "spielbar": true,
     "description": "Riesiger Menschengestaltiger mit Herz aus Eis; Gestank und Kälte kündigen ihn an.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_112_wendigo_portrait",
+    "icon": "ruff_icon_v2_112_wendigo",
+    "cover": "ruff_cover_v2_112_wendigo",
     "fields": {
       "ID": "V2-112",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4008,7 +4008,7 @@
       "Schwächen": "Feuer, Schmelzen seines Eisherzens; Heiler und Rituale.",
       "Spielfakten": "Spielregel: Winterwesen – Gestank und plötzliche Kälte kündigen ihn an; nie satt; Feuer und das Schmelzen des Eisherzens besiegen ihn. Kann Menschen besetzen. Motivation (RUFF-Ableitung): Hunger.",
       "Quellen": "https://app.notion.com/404acc63731d812e80c6da3b6f134f2f\nhttps://app.notion.com/p/407acc63731d805cb880e66f233684af\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Wendigo",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4021,9 +4021,9 @@
     "spielbar": true,
     "description": "Greifvogel oder Vogel-Mensch.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_113_donnervoegel_portrait",
+    "icon": "ruff_icon_v2_113_donnervoegel",
+    "cover": "ruff_cover_v2_113_donnervoegel",
     "fields": {
       "ID": "V2-113",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4044,7 +4044,7 @@
       "Hinweis": "Machtdeckel V: nur Wetter, keine kosmische Rolle",
       "Quellen": "https://en.wikipedia.org/wiki/Thunderbird_(mythology)\nhttps://en.wikipedia.org/wiki/Thunderbird_%28mythology%29",
       "Referenzbild (nicht enthalten)": "Dr Haggis · CC BY-SA 3.0 · https://commons.wikimedia.org/wiki/File:Thunderbird_on_Totem_Pole.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4057,9 +4057,9 @@
     "spielbar": true,
     "description": "Unsichtbare Wesen aus rauchlosem Feuer; Gestaltwandler.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_114_dschinn_portrait",
+    "icon": "ruff_icon_v2_114_dschinn",
+    "cover": "ruff_cover_v2_114_dschinn",
     "fields": {
       "ID": "V2-114",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4080,7 +4080,7 @@
       "Spielfakten": "Spielregel: Eigene Gesellschaften mit freiem Willen; mischen sich selten ein. Koranverse und der Name Gottes wehren sie ab. Motivation (RUFF-Ableitung): ihre Stammesgesellschaft auf der neuen Erde neu ordnen.",
       "Hinweis": "Weltregel: Kein Wunsch hebt die Verbannung auf oder öffnet Tore",
       "Quellen": "https://app.notion.com/404acc63731d8186a576c4d20a8db502\nhttps://en.wikipedia.org/wiki/Jinn",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4093,9 +4093,9 @@
     "spielbar": true,
     "description": "Riesen, laut Forschung aber nicht notwendig groß (ähnlich wie Götter).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_115_joetnar_portrait",
+    "icon": "ruff_icon_v2_115_joetnar",
+    "cover": "ruff_cover_v2_115_joetnar",
     "fields": {
       "ID": "V2-115",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4117,7 +4117,7 @@
       "Hinweis": "Sammelt Riese, Frostriese, Bergriese, Feuerriese; Titanen gehören nicht dazu",
       "Quellen": "https://app.notion.com/404acc63731d819ca9cffa11283c09b9\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/J%C3%B6tunn",
       "Referenzbild (nicht enthalten)": "Wolfgang Sauber · CC BY-SA 3.0 · https://commons.wikimedia.org/wiki/File:Kulturen_-_Riesin_Holdrykka.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4130,9 +4130,9 @@
     "spielbar": true,
     "description": "Pferdekopf, Schlangenschwanz, fünf Klauen beim Kaiserdrachen; kann sich als Seidenraupe tarnen oder weltgroß werden.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_116_long_portrait",
+    "icon": "ruff_icon_v2_116_long",
+    "cover": "ruff_cover_v2_116_long",
     "fields": {
       "ID": "V2-116",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4154,7 +4154,7 @@
       "Hinweis": "Gedeckelt von VI auf V",
       "Quellen": "https://en.wikipedia.org/wiki/Chinese_dragon\nhttps://app.notion.com/404acc63731d815d9f32e4a31334058a\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3",
       "Referenzbild (nicht enthalten)": "沃德利成書畫院 · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Azure_Dragon.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4167,9 +4167,9 @@
     "spielbar": true,
     "description": "Gestaltwandelnde, wilde, riesige Wesen mit zwei Fangzähnen und Krallen.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_117_rakshasa_portrait",
+    "icon": "ruff_icon_v2_117_rakshasa",
+    "cover": "ruff_cover_v2_117_rakshasa",
     "fields": {
       "ID": "V2-117",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4190,7 +4190,7 @@
       "Spielfakten": "Spielregel: Nachts mächtiger; Feuer, Licht und Tagesanbruch schwächen; nicht alle sind böse (Vibhishana). Motivation (RUFF-Ableitung): Nahrung, Macht.",
       "Quellen": "https://app.notion.com/404acc63731d81eea60eee98dd9c914e\nhttps://app.notion.com/p/407acc63731d81959d52c28c6b11ffe3\nhttps://en.wikipedia.org/wiki/Rakshasa",
       "Referenzbild (nicht enthalten)": "Company School term details\n\nTrichinopoly Style · Public domain · https://commons.wikimedia.org/wiki/File:The_three-headed_rakshasa_Trishiras_sits_in_lalitasana_on_a_throne_facing_a_fire_altar_in_which_a_severed_head_is_burning.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4203,9 +4203,9 @@
     "spielbar": true,
     "description": "Schwarz, groß, zwei Flügel, vier Arme (zwei menschlich, zwei Löwenpranken mit Eisenkrallen), Haar wie Pferdeschwänze (arabische Quelle).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_118_asmodeus_portrait",
+    "icon": "ruff_icon_v2_118_asmodeus",
+    "cover": "ruff_cover_v2_118_asmodeus",
     "fields": {
       "ID": "V2-118",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4227,7 +4227,7 @@
       "Hinweis": "Einziger VI-Anführer (Dämonenkönig, Buch Tobit); „kennt Verborgenes“ nur innerhalb der Erde, kein Allwissen",
       "Quellen": "https://app.notion.com/404acc63731d81c183beca9842ab92d4\nhttps://en.wikipedia.org/wiki/Asmodeus",
       "Referenzbild (nicht enthalten)": "Louis Le Breton · Public domain · https://commons.wikimedia.org/wiki/File:Asmodeus.jpg",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4430,9 +4430,9 @@
     "spielbar": true,
     "description": "Kind von etwa 5–6 Jahren mit rotem Gesicht und Pagenkopf; Jungen in dunklem Kimono, Mädchen in roter Weste oder Kimono.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_006_zashiki_warashi_portrait",
+    "icon": "ruff_icon_v2_i_006_zashiki_warashi",
+    "cover": "ruff_cover_v2_i_006_zashiki_warashi",
     "fields": {
       "ID": "V2-I-006",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4454,7 +4454,7 @@
       "Unsicherheiten": "Ursprungsdeutung (Geister getöteter Kinder) ist eine Theorie, keine gesicherte Überlieferung.",
       "Hinweis": "Neu.",
       "Quellen": "https://en.wikipedia.org/wiki/Zashiki-warashi\nhttps://ja.wikipedia.org/wiki/%E5%BA%A7%E6%95%B7%E7%AB%A5%E5%AD%90",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4543,9 +4543,9 @@
     "spielbar": true,
     "description": "Fast nacktes Kleinkind; teils mit spitzen Zähnen, roten Augen, in Indonesien grünhäutig mit spitzen Ohren.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_009_toyol_portrait",
+    "icon": "ruff_icon_v2_i_009_toyol",
+    "cover": "ruff_cover_v2_i_009_toyol",
     "fields": {
       "ID": "V2-I-009",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4567,7 +4567,7 @@
       "Unsicherheiten": "Regionale Unterschiede im Aussehen; weitere Gegenmittel nicht belegt.",
       "Hinweis": "Neu. Verwandt mit Tiyanak (Philippinen), dort nicht separat aufgenommen.",
       "Quellen": "https://en.wikipedia.org/wiki/Toyol",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4580,9 +4580,9 @@
     "spielbar": true,
     "description": "Kluges Kantschil (Maushirsch) – klein, zierlich, ohne Geweih.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_010_sang_kancil_portrait",
+    "icon": "ruff_icon_v2_i_010_sang_kancil",
+    "cover": "ruff_cover_v2_i_010_sang_kancil",
     "fields": {
       "ID": "V2-I-010",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4604,7 +4604,7 @@
       "Unsicherheiten": "Fabeltier ohne übernatürliche Kräfte; Körpermaße vom realen Kantschil übernommen.",
       "Hinweis": "Neu (Fabeltier). Kein Duplikat zu Aesops/Reineke Fuchs.",
       "Quellen": "https://en.wikipedia.org/wiki/Sang_Kancil\nhttps://ms.wikipedia.org/wiki/Sang_Kancil",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4617,9 +4617,9 @@
     "spielbar": true,
     "description": "Kleine, aufrecht gehende, menschenähnliche Wesen mit braunem bis rötlichem Fell.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_011_agogwe_portrait",
+    "icon": "ruff_icon_v2_i_011_agogwe",
+    "cover": "ruff_cover_v2_i_011_agogwe",
     "fields": {
       "ID": "V2-I-011",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4641,7 +4641,7 @@
       "Unsicherheiten": "Kryptid (Sichtungsberichte 1927/1937), kein klassisches Volksglaubenswesen; Schwäche unbelegt.",
       "Hinweis": "Neu. Ersetzt „Abatwa“: en. Wikipedia leitet auf das reale Volk der Twa um – nicht aufgenommen, um keine reale Volksgruppe als Kreatur zu führen.",
       "Quellen": "https://en.wikipedia.org/wiki/Agogwe",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4654,9 +4654,9 @@
     "spielbar": true,
     "description": "Kleines Waldvolk; eine Einzelgestalt „Aziza“ als kleiner, einbeiniger Mann mit Pfeife; geflügelte Form nur spät belegt.",
     "archetype": "",
-    "portrait": "",
+    "portrait": "ruff_wesen_v2_i_012_aziza_portrait",
     "icon": "",
-    "cover": "",
+    "cover": "ruff_cover_v2_i_012_aziza",
     "fields": {
       "ID": "V2-I-012",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4678,7 +4678,7 @@
       "Unsicherheiten": "Quellenlage dünn; geflügelte Aziza nur aus einer einzigen, späten Quelle.",
       "Hinweis": "Neu.",
       "Quellen": "https://en.wikipedia.org/wiki/Aziza_%28mythology%29",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4691,9 +4691,9 @@
     "spielbar": true,
     "description": "Perlweiße Totengeister mit teils silbernem Haar; Name Bakhna Rakhna = „gute Leute“.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_013_yumboes_portrait",
+    "icon": "ruff_icon_v2_i_013_yumboes",
+    "cover": "ruff_cover_v2_i_013_yumboes",
     "fields": {
       "ID": "V2-I-013",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4715,7 +4715,7 @@
       "Unsicherheiten": "Einzige Quelle: Keightley, The Fairy Mythology (19. Jh.), über Zwischenerzählerin.",
       "Hinweis": "Neu.",
       "Quellen": "https://en.wikipedia.org/wiki/Yumboes",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4728,9 +4728,9 @@
     "spielbar": true,
     "description": "Hase – kleiner, listiger Trickster.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_014_kalulu_portrait",
+    "icon": "ruff_icon_v2_i_014_kalulu",
+    "cover": "ruff_cover_v2_i_014_kalulu",
     "fields": {
       "ID": "V2-I-014",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4752,7 +4752,7 @@
       "Unsicherheiten": "Als Hasen-Trickster im ganzen Bantu-Raum verbreitet; Belegtext hier aus der Tumbuka-Mythologie.",
       "Hinweis": "Neu (Fabeltier). Kein Duplikat zu Anansi (Spinne).",
       "Quellen": "https://en.wikipedia.org/wiki/Tumbuka_mythology",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4803,9 +4803,9 @@
     "spielbar": true,
     "description": "Kleines, aggressives Volk mit winzigen Bögen und Giftpfeilen; Name etwa „Menschenfresser“.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_016_nimerigar_portrait",
+    "icon": "ruff_icon_v2_i_016_nimerigar",
+    "cover": "ruff_cover_v2_i_016_nimerigar",
     "fields": {
       "ID": "V2-I-016",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4827,7 +4827,7 @@
       "Unsicherheiten": "Quellen dünn; die „San-Pedro-Mumie“ ist ein anenzephales Kind, kein Beleg.",
       "Hinweis": "Neu. Statt „Alux“ (Maya): en. Wikipedia setzt Alux mit dem Chaneque gleich, der schon in v2 steht – Duplikat vermieden.",
       "Quellen": "https://en.wikipedia.org/wiki/Nimerigar",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4840,9 +4840,9 @@
     "spielbar": true,
     "description": "Unsterbliches Geistervolk; wenn sichtbar, wie gewöhnliche Cherokee.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_017_nunnehi_portrait",
+    "icon": "ruff_icon_v2_i_017_nunnehi",
+    "cover": "ruff_cover_v2_i_017_nunnehi",
     "fields": {
       "ID": "V2-I-017",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4864,7 +4864,7 @@
       "Unsicherheiten": "Eigentlich „Little People“ = Yunwi Tsunsdi; Nunnehi sind die menschengroße Variante.",
       "Hinweis": "Neu.",
       "Quellen": "https://en.wikipedia.org/wiki/N%C3%BB%C3%B1n%C3%AB%27h%C3%AF",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4915,9 +4915,9 @@
     "spielbar": true,
     "description": "Kleine, meist unsichtbare Leute in Westen und Hosen aus federgeschmückten Eichhörnchenfellen.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_019_jogah_portrait",
+    "icon": "ruff_icon_v2_i_019_jogah",
+    "cover": "ruff_cover_v2_i_019_jogah",
     "fields": {
       "ID": "V2-I-019",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4939,7 +4939,7 @@
       "Unsicherheiten": "Gruppenaufteilung nach Wikipedia-Zusammenfassung.",
       "Hinweis": "Neu. Kein Duplikat zu Pukwudgie (Wampanoag).",
       "Quellen": "https://en.wikipedia.org/wiki/Jogah",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4952,9 +4952,9 @@
     "spielbar": true,
     "description": "Kleiner, roter, froschartiger Mann mit sehr großem Kopf, zahnlosem großen Maul und Saugnäpfen an Händen und Füßen.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_020_yara_ma_yha_who_portrait",
+    "icon": "ruff_icon_v2_i_020_yara_ma_yha_who",
+    "cover": "ruff_cover_v2_i_020_yara_ma_yha_who",
     "fields": {
       "ID": "V2-I-020",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -4976,7 +4976,7 @@
       "Unsicherheiten": "Überliefert von David Unaipon; Herkunftsthesen (Koboldmaki, Thylacoleo) unsicher.",
       "Hinweis": "Neu. Grenzfall I/II wegen Verwandlung der Opfer.",
       "Quellen": "https://en.wikipedia.org/wiki/Yara-ma-yha-who",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -4989,9 +4989,9 @@
     "spielbar": true,
     "description": "Ahnengeister der „Menschen vor der Geschichte“; als riesenhafte frühere Bewohner vorgestellt*.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_021_taotao_mona_portrait",
+    "icon": "ruff_icon_v2_i_021_taotao_mona",
+    "cover": "ruff_cover_v2_i_021_taotao_mona",
     "fields": {
       "ID": "V2-I-021",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -5013,7 +5013,7 @@
       "Unsicherheiten": "Größe und konkrete Rituale nur volkstümlich überliefert; Konzept laut Wikipedia erst in spanischer Kolonialzeit entstanden.",
       "Hinweis": "Neu. Grenzfall: „riesenhaft“ widerspricht Kleinwesen-Typ; als Stufe I wegen geringer Kampfkraft (nur Flüche).",
       "Quellen": "https://en.wikipedia.org/wiki/Taotao_Mona",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -5064,9 +5064,9 @@
     "spielbar": true,
     "description": "Armenisch: Lehmnase, feurige Augen, Reißzähne, zerzaustes Haar, Kupferkrallen, Eisenzähne, Eberhauer – wie eine Alte. Iranisch: knochige, dürre Alte.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_i_023_al_portrait",
+    "icon": "ruff_icon_v2_i_023_al",
+    "cover": "ruff_cover_v2_i_023_al",
     "fields": {
       "ID": "V2-I-023",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -5088,7 +5088,7 @@
       "Unsicherheiten": "Erst ab Mitte 19. Jh. in europäischer Literatur.",
       "Hinweis": "Neu. Grenzfall I/II wegen tödlicher Wirkung auf Wehrlose.",
       "Quellen": "https://en.wikipedia.org/wiki/Al_%28folklore%29",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -5177,9 +5177,9 @@
     "spielbar": false,
     "description": "Donnergott mit Axt oder Keule; Holzidol in Kiew mit silbernem Kopf und goldenem Schnurrbart (Nestorchronik).",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_vi_003_perun_portrait",
+    "icon": "ruff_icon_v2_vi_003_perun",
+    "cover": "ruff_cover_v2_vi_003_perun",
     "fields": {
       "ID": "V2-VI-003",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -5201,7 +5201,7 @@
       "Unsicherheiten": "Mythen weitgehend aus Sprach- und Brauchresten rekonstruiert.",
       "Hinweis": "v2 gestrichen (Gottheit).",
       "Quellen": "https://en.wikipedia.org/wiki/Perun",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -5440,9 +5440,9 @@
     "spielbar": false,
     "description": "Sammelbegriff für Gottheiten, Naturkräfte, Ahnen und verehrte Orte/Dinge; keine einheitliche Gestalt.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_vi_010_kami_portrait",
+    "icon": "ruff_icon_v2_vi_010_kami",
+    "cover": "ruff_cover_v2_vi_010_kami",
     "fields": {
       "ID": "V2-VI-010",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -5464,7 +5464,7 @@
       "Unsicherheiten": "Grenzfall: Sammelbegriff, kein Einzelwesen – nur als Lore-Kategorie geführt.",
       "Hinweis": "Grenzfall: Sammelbegriff. v2 gestrichen.",
       "Quellen": "https://en.wikipedia.org/wiki/Kami",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
@@ -5477,9 +5477,9 @@
     "spielbar": false,
     "description": "Urwasser; als Mann mit Bart und Wasser-Hieroglyphe, die Sonnenbarke emporhebend.",
     "archetype": "",
-    "portrait": "",
-    "icon": "",
-    "cover": "",
+    "portrait": "ruff_wesen_v2_vi_011_nun_portrait",
+    "icon": "ruff_icon_v2_vi_011_nun",
+    "cover": "ruff_cover_v2_vi_011_nun",
     "fields": {
       "ID": "V2-VI-011",
       "Status": "Vorschlag (Katalog v2, Sync 29.10.2026)",
@@ -5501,7 +5501,7 @@
       "Unsicherheiten": "Grenzfall VI/VII: kosmisch, aber klassisch VI.",
       "Hinweis": "Grenzfall VI/VII (kosmisch, klassisch VI bindend).",
       "Quellen": "https://en.wikipedia.org/wiki/Nu_%28mythology%29",
-      "Bilder in der App": "noch keine – Platzhalter (Folge-PR)"
+      "Bilder in der App": "KI-generiert (Ruff Asset Pipeline), Vorschlag"
     }
   },
   {
