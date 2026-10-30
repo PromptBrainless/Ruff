@@ -50,11 +50,11 @@ internal abstract class RuffDatabase : RoomDatabase() {
             object : RoomDatabase.Callback() {
                 override fun onCreate(connection: SQLiteConnection) {
                     SearchIndex.create(connection)
-                    connection.execSQL(ContentEditStore.CREATE_TABLE)
+                    connection.execSQL(RoomContentEditStore.CREATE_TABLE)
                 }
 
                 override fun onOpen(connection: SQLiteConnection) {
-                    connection.execSQL(ContentEditStore.CREATE_TABLE)
+                    connection.execSQL(RoomContentEditStore.CREATE_TABLE)
                 }
             }
 
