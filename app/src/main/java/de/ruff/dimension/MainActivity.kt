@@ -11,6 +11,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,9 +21,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -36,6 +40,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -131,11 +136,25 @@ private fun RuffApp(
             selectedCreature != null ->
                 CreatureDetails(
                     creature = selectedCreature,
+                    editing = state.editing,
+                    canEdit = state.canEdit,
+                    error = state.editorError,
+                    onEdit = { viewModel.setEditing(true) },
+                    onCancelEdit = { viewModel.setEditing(false) },
+                    onSave = viewModel::saveCreature,
+                    onRestore = { viewModel.restoreCreature(selectedCreature.id) },
                     modifier = Modifier.padding(padding),
                 )
             selectedRule != null ->
                 RuleDetails(
                     rule = selectedRule,
+                    editing = state.editing,
+                    canEdit = state.canEdit,
+                    error = state.editorError,
+                    onEdit = { viewModel.setEditing(true) },
+                    onCancelEdit = { viewModel.setEditing(false) },
+                    onSave = viewModel::saveRule,
+                    onRestore = { viewModel.restoreRule(selectedRule.source) },
                     modifier = Modifier.padding(padding),
                 )
             else ->
@@ -473,8 +492,27 @@ private fun RuleCard(
 @Composable
 private fun CreatureDetails(
     creature: Creature,
+    editing: Boolean,
+    canEdit: Boolean,
+    error: String?,
+    onEdit: () -> Unit,
+    onCancelEdit: () -> Unit,
+    onSave: (Creature) -> Unit,
+    onRestore: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    if (editing) {
+        CreatureEditor(
+            creature = creature,
+            error = error,
+            onCancel = onCancelEdit,
+            onSave = onSave,
+            onRestore = onRestore,
+            modifier = modifier,
+        )
+        return
+    }
+
     Column(
         modifier =
             modifier
@@ -498,6 +536,16 @@ private fun CreatureDetails(
         creature.fields.forEach { (label, value) ->
             if (value.isNotBlank() && label != "Machtstufe" && label != "Archetyp") {
                 DetailField(label = label, value = value)
+            }
+        }
+        error?.let { Text(it, color = Flame, modifier = Modifier.padding(vertical = 8.dp)) }
+        if (canEdit) {
+            Button(
+                onClick = onEdit,
+                colors = ButtonDefaults.buttonColors(containerColor = Ember),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("Inhalt bearbeiten")
             }
         }
         Spacer(Modifier.height(24.dp))
@@ -536,8 +584,27 @@ private fun CreatureImage(creature: Creature) {
 @Composable
 private fun RuleDetails(
     rule: RulePage,
+    editing: Boolean,
+    canEdit: Boolean,
+    error: String?,
+    onEdit: () -> Unit,
+    onCancelEdit: () -> Unit,
+    onSave: (RulePage) -> Unit,
+    onRestore: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    if (editing) {
+        RuleEditor(
+            rule = rule,
+            error = error,
+            onCancel = onCancelEdit,
+            onSave = onSave,
+            onRestore = onRestore,
+            modifier = modifier,
+        )
+        return
+    }
+
     Column(
         modifier =
             modifier
@@ -577,7 +644,183 @@ private fun RuleDetails(
                     )
             }
         }
+        error?.let { Text(it, color = Flame, modifier = Modifier.padding(vertical = 8.dp)) }
+        if (canEdit) {
+            Button(
+                onClick = onEdit,
+                colors = ButtonDefaults.buttonColors(containerColor = Ember),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("Inhalt bearbeiten")
+            }
+        }
         Spacer(Modifier.height(24.dp))
+    }
+}
+
+@Composable
+private fun CreatureEditor(
+    creature: Creature,
+    error: String?,
+    onCancel: () -> Unit,
+    onSave: (Creature) -> Unit,
+    onRestore: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    var name by remember(creature.id) { mutableStateOf(creature.name) }
+    var description by remember(creature.id) { mutableStateOf(creature.description) }
+    var archetype by remember(creature.id) { mutableStateOf(creature.archetype) }
+    var powerLabel by remember(creature.id) { mutableStateOf(creature.powerLabel) }
+    var powerLevel by remember(creature.id) { mutableStateOf(creature.powerLevel.toString()) }
+    var fields by remember(creature.id) { mutableStateOf(creature.fields) }
+    var restoreConfirmation by remember(creature.id) { mutableStateOf(false) }
+    val parsedPowerLevel = powerLevel.toIntOrNull()
+
+    Column(
+        modifier =
+            modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(18.dp),
+    ) {
+        Text("Wesen bearbeiten", style = MaterialTheme.typography.titleLarge, color = Flame)
+        Spacer(Modifier.height(12.dp))
+        OutlinedTextField(name, { name = it }, label = { Text("Name") }, modifier = Modifier.fillMaxWidth())
+        OutlinedTextField(
+            description,
+            { description = it },
+            label = { Text("Beschreibung") },
+            modifier = Modifier.fillMaxWidth(),
+            minLines = 3,
+        )
+        OutlinedTextField(archetype, { archetype = it }, label = { Text("Archetyp") }, modifier = Modifier.fillMaxWidth())
+        OutlinedTextField(powerLabel, { powerLabel = it }, label = { Text("Machtstufe") }, modifier = Modifier.fillMaxWidth())
+        OutlinedTextField(
+            powerLevel,
+            { powerLevel = it },
+            label = { Text("Machtstufen-Wert") },
+            modifier = Modifier.fillMaxWidth(),
+            isError = parsedPowerLevel == null,
+        )
+        fields.forEach { (label, value) ->
+            OutlinedTextField(
+                value = value,
+                onValueChange = { fields = fields + (label to it) },
+                label = { Text(label) },
+                modifier = Modifier.fillMaxWidth(),
+                minLines = 2,
+            )
+        }
+        error?.let { Text(it, color = Flame, modifier = Modifier.padding(vertical = 8.dp)) }
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(
+                onClick = {
+                    parsedPowerLevel?.let {
+                        onSave(
+                            creature.copy(
+                                name = name,
+                                description = description,
+                                archetype = archetype,
+                                powerLabel = powerLabel,
+                                powerLevel = it,
+                                fields = fields,
+                            ),
+                        )
+                    }
+                },
+                enabled = parsedPowerLevel != null && name.isNotBlank(),
+                colors = ButtonDefaults.buttonColors(containerColor = Ember),
+            ) {
+                Text("Speichern")
+            }
+            TextButton(onClick = onCancel) { Text("Abbrechen") }
+        }
+        TextButton(onClick = { restoreConfirmation = true }) { Text("Seed-Original wiederherstellen") }
+    }
+    if (restoreConfirmation) {
+        AlertDialog(
+            onDismissRequest = { restoreConfirmation = false },
+            title = { Text("Original wiederherstellen?") },
+            text = { Text("Die lokale Bearbeitung wird verworfen. Die Seed-Daten bleiben unverändert.") },
+            confirmButton = {
+                TextButton(onClick = {
+                    restoreConfirmation = false
+                    onRestore()
+                }) { Text("Wiederherstellen") }
+            },
+            dismissButton = {
+                TextButton(onClick = { restoreConfirmation = false }) { Text("Abbrechen") }
+            },
+        )
+    }
+}
+
+@Composable
+private fun RuleEditor(
+    rule: RulePage,
+    error: String?,
+    onCancel: () -> Unit,
+    onSave: (RulePage) -> Unit,
+    onRestore: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    var title by remember(rule.source) { mutableStateOf(rule.title) }
+    var blocks by remember(rule.source) { mutableStateOf(rule.blocks) }
+    var restoreConfirmation by remember(rule.source) { mutableStateOf(false) }
+
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(18.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        item {
+            Text("Regelseite bearbeiten", style = MaterialTheme.typography.titleLarge, color = Flame)
+            OutlinedTextField(
+                title,
+                { title = it },
+                label = { Text("Titel") },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+        itemsIndexed(blocks, key = { index, block -> "$index:${block.type}" }) { index, block ->
+            OutlinedTextField(
+                value = block.text,
+                onValueChange = { text -> blocks = blocks.toMutableList().also { it[index] = block.copy(text = text) } },
+                label = { Text("Block ${index + 1} · ${block.type}") },
+                modifier = Modifier.fillMaxWidth(),
+                minLines = if (block.type in setOf("h2", "h3", "h4")) 1 else 2,
+            )
+        }
+        item {
+            error?.let { Text(it, color = Flame, modifier = Modifier.padding(vertical = 8.dp)) }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(
+                    onClick = { onSave(rule.copy(title = title, blocks = blocks)) },
+                    enabled = title.isNotBlank(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Ember),
+                ) {
+                    Text("Speichern")
+                }
+                TextButton(onClick = onCancel) { Text("Abbrechen") }
+            }
+            TextButton(onClick = { restoreConfirmation = true }) { Text("Seed-Original wiederherstellen") }
+        }
+    }
+    if (restoreConfirmation) {
+        AlertDialog(
+            onDismissRequest = { restoreConfirmation = false },
+            title = { Text("Original wiederherstellen?") },
+            text = { Text("Die lokale Bearbeitung wird verworfen. Die Seed-Daten bleiben unverändert.") },
+            confirmButton = {
+                TextButton(onClick = {
+                    restoreConfirmation = false
+                    onRestore()
+                }) { Text("Wiederherstellen") }
+            },
+            dismissButton = {
+                TextButton(onClick = { restoreConfirmation = false }) { Text("Abbrechen") }
+            },
+        )
     }
 }
 

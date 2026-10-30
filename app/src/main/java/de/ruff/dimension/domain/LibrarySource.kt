@@ -20,6 +20,7 @@ internal data class LibraryData(
     val creatures: List<Creature>,
     val rules: List<RulePage>,
     val origin: DataOrigin,
+    val hasLocalEdits: Boolean = false,
 )
 
 /** Liefert die Bibliotheksdaten; blockierend, daher nur außerhalb des Main-Threads aufrufen. */

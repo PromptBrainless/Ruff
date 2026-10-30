@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.repository.ContentEditorRepository
 import de.ruff.dimension.data.repository.SearchHits
 import de.ruff.dimension.di.IoDispatcher
 import de.ruff.dimension.domain.DataOrigin
@@ -54,9 +55,12 @@ internal data class LibraryUiState(
     val selectedCreature: Creature? = null,
     val selectedRule: RulePage? = null,
     val searchHits: SearchHits? = null,
+    val editing: Boolean = false,
+    val editorError: String? = null,
 ) {
     val creatures: List<Creature> get() = (load as? LoadState.Ready)?.data?.creatures.orEmpty()
     val rules: List<RulePage> get() = (load as? LoadState.Ready)?.data?.rules.orEmpty()
+    val canEdit: Boolean get() = (load as? LoadState.Ready)?.data?.origin == DataOrigin.DATABASE
 }
 
 @HiltViewModel
@@ -65,11 +69,14 @@ internal class LibraryViewModel
     constructor(
         private val savedState: SavedStateHandle,
         private val source: LibrarySource,
+        private val editor: ContentEditorRepository,
         private val search: SearchLibrary,
         @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     ) : ViewModel() {
         private val load = MutableStateFlow<LoadState>(LoadState.Loading)
         private val searchHits = MutableStateFlow<SearchHits?>(null)
+        private val editing = MutableStateFlow(false)
+        private val editorError = MutableStateFlow<String?>(null)
 
         private data class Selection(
             val tab: LibraryTab,
@@ -91,7 +98,7 @@ internal class LibraryViewModel
             }
 
         val uiState: StateFlow<LibraryUiState> =
-            combine(load.asStateFlow(), selection, searchHits) { loadState, sel, hits ->
+            combine(load.asStateFlow(), selection, searchHits, editing, editorError) { loadState, sel, hits, isEditing, error ->
                 val data = (loadState as? LoadState.Ready)?.data
                 LibraryUiState(
                     load = loadState,
@@ -101,6 +108,8 @@ internal class LibraryViewModel
                     selectedCreature = sel.creatureId?.let { id -> data?.creatures?.firstOrNull { it.id == id } },
                     selectedRule = sel.ruleId?.let { id -> data?.rules?.firstOrNull { it.source == id } },
                     searchHits = hits,
+                    editing = isEditing,
+                    editorError = error,
                 )
             }.stateIn(viewModelScope, SharingStarted.Eagerly, LibraryUiState())
 
@@ -110,9 +119,10 @@ internal class LibraryViewModel
             viewModelScope.launch {
                 combine(load, savedState.getStateFlow(KEY_QUERY, "")) { loadState, query -> loadState to query }
                     .collectLatest { (loadState, query) ->
-                        val fromDatabase = (loadState as? LoadState.Ready)?.data?.origin == DataOrigin.DATABASE
+                        val data = (loadState as? LoadState.Ready)?.data
+                        val useFullText = data?.origin == DataOrigin.DATABASE && !data.hasLocalEdits
                         searchHits.value =
-                            if (fromDatabase) {
+                            if (useFullText) {
                                 try {
                                     withContext(ioDispatcher) { search(query) }
                                 } catch (e: CancellationException) {
@@ -133,7 +143,13 @@ internal class LibraryViewModel
             viewModelScope.launch {
                 load.value =
                     try {
-                        LoadState.Ready(withContext(ioDispatcher) { source.load() })
+                        LoadState.Ready(
+                            withContext(ioDispatcher) {
+                                source.load().let { data ->
+                                    if (data.origin == DataOrigin.DATABASE) editor.apply(data) else data
+                                }
+                            },
+                        )
                     } catch (e: CancellationException) {
                         throw e
                     } catch (e: Exception) {
@@ -166,6 +182,44 @@ internal class LibraryViewModel
         fun closeDetails() {
             savedState[KEY_CREATURE] = null
             savedState[KEY_RULE] = null
+            editing.value = false
+            editorError.value = null
+        }
+
+        fun setEditing(value: Boolean) {
+            editing.value = value
+            editorError.value = null
+        }
+
+        fun saveCreature(creature: Creature) {
+            saveContent { editor.saveCreature(creature) }
+        }
+
+        fun saveRule(rule: RulePage) {
+            saveContent { editor.saveRule(rule) }
+        }
+
+        fun restoreCreature(id: String) {
+            saveContent { editor.restoreCreature(id) }
+        }
+
+        fun restoreRule(source: String) {
+            saveContent { editor.restoreRule(source) }
+        }
+
+        private fun saveContent(operation: suspend () -> Unit) {
+            editorError.value = null
+            viewModelScope.launch {
+                try {
+                    withContext(ioDispatcher) { operation() }
+                    editing.value = false
+                    reload()
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    editorError.value = "Die Änderung konnte nicht gespeichert werden (${e.javaClass.simpleName})."
+                }
+            }
         }
 
         internal companion object {
