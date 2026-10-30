@@ -4,6 +4,8 @@ package de.ruff.dimension.data
  * Ein Wesen aus `assets/creatures.json`.
  *
  * Alle Felder haben Standardwerte, damit Gson fehlende Schlüssel toleriert.
+ * `id`, `source`, `status` und `spielbar` stehen bereits im JSON und werden
+ * hier nur zusätzlich gelesen; die App-Oberfläche nutzt sie noch nicht.
  */
 internal data class Creature(
     val name: String = "",
@@ -15,6 +17,10 @@ internal data class Creature(
     val portrait: String = "",
     val icon: String = "",
     val cover: String = "",
+    val id: String = "",
+    val source: String = "",
+    val status: String = "",
+    val spielbar: Boolean? = null,
 )
 
 /** Eine Regel-Wiki-Seite aus `assets/rules.json`. */
