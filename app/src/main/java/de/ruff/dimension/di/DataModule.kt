@@ -16,6 +16,8 @@ import de.ruff.dimension.data.local.SeedImporter
 import de.ruff.dimension.data.local.SeedSource
 import de.ruff.dimension.data.repository.ContentEditorRepository
 import de.ruff.dimension.data.repository.CreatureRepository
+import de.ruff.dimension.data.repository.FavoritesRepository
+import de.ruff.dimension.data.repository.RoomFavoritesRepository
 import de.ruff.dimension.data.repository.RoomContentEditorRepository
 import de.ruff.dimension.data.repository.RoomCreatureRepository
 import de.ruff.dimension.data.repository.RoomRuleRepository
@@ -23,6 +25,8 @@ import de.ruff.dimension.data.repository.RoomSearchRepository
 import de.ruff.dimension.data.repository.RuleRepository
 import de.ruff.dimension.data.repository.SearchRepository
 import de.ruff.dimension.domain.LibrarySource
+import de.ruff.dimension.domain.ObserveFavorites
+import de.ruff.dimension.domain.ToggleFavorite
 import de.ruff.dimension.domain.SearchLibrary
 import de.ruff.dimension.domain.SeededLibrarySource
 import kotlinx.coroutines.CoroutineDispatcher
@@ -102,6 +106,16 @@ internal object DataModule {
 
     @Provides
     fun provideSearchLibrary(repository: SearchRepository): SearchLibrary = SearchLibrary(repository)
+
+    @Provides
+    @Singleton
+    fun provideFavoritesRepository(database: RuffDatabase): FavoritesRepository = RoomFavoritesRepository(database)
+
+    @Provides
+    fun provideObserveFavorites(repository: FavoritesRepository): ObserveFavorites = ObserveFavorites(repository)
+
+    @Provides
+    fun provideToggleFavorite(repository: FavoritesRepository): ToggleFavorite = ToggleFavorite(repository)
 
     @Provides
     @IoDispatcher
