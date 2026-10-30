@@ -2,6 +2,8 @@ package de.ruff.dimension.ui.navigation
 
 import android.net.Uri
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,8 +16,11 @@ import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
 import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -28,7 +33,12 @@ import de.ruff.dimension.ui.LibraryViewModel
 import de.ruff.dimension.ui.LoadState
 import de.ruff.dimension.ui.about.LicensesScreen
 import de.ruff.dimension.ui.common.LoadGate
+import de.ruff.dimension.ui.common.LocalRuffMotion
+import de.ruff.dimension.ui.common.LocalSharedTransitionScope
+import de.ruff.dimension.ui.common.LocalSharedVisibilityScope
+import de.ruff.dimension.ui.common.RuffMotion
 import de.ruff.dimension.ui.common.RuffTopBar
+import de.ruff.dimension.ui.common.readAnimatorDurationScale
 import de.ruff.dimension.ui.common.safeHorizontalPadding
 import de.ruff.dimension.ui.creature.CreatureDetailPane
 import de.ruff.dimension.ui.creature.CreatureListPane
@@ -57,16 +67,40 @@ internal object Routes {
  * Liste/Detail (Handy nacheinander, ab mittlerer Breite nebeneinander). Die
  * System-Zurück-Taste führt Detail → Liste → Menü; nur im Menü schließt sie die App.
  */
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 internal fun RuffNavHost(
     state: LibraryUiState,
     viewModel: LibraryViewModel,
     navController: NavHostController = rememberNavController(),
 ) {
+    // Systemskala einmal pro Start lesen; eine Änderung in den Einstellungen greift nach Neustart der Activity.
+    val context = LocalContext.current
+    val motion = remember(context) { RuffMotion(readAnimatorDurationScale(context)) }
+    CompositionLocalProvider(LocalRuffMotion provides motion) {
+        SharedTransitionLayout(Modifier.fillMaxSize()) {
+            CompositionLocalProvider(LocalSharedTransitionScope provides this) {
+                RuffNavGraph(state, viewModel, navController, motion)
+            }
+        }
+    }
+}
+
+@Composable
+private fun RuffNavGraph(
+    state: LibraryUiState,
+    viewModel: LibraryViewModel,
+    navController: NavHostController,
+    motion: RuffMotion,
+) {
     NavHost(
         navController = navController,
         startDestination = Routes.MENU,
         modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
+        enterTransition = { motion.screenEnter() },
+        exitTransition = { motion.screenExit() },
+        popEnterTransition = { motion.screenPopEnter() },
+        popExitTransition = { motion.screenPopExit() },
     ) {
         composable(Routes.MENU) {
             MenuScreen(
@@ -126,6 +160,9 @@ private fun CreatureSection(
     BackHandler(navigator.canNavigateBack(BackBehavior)) { navigator.navigateBack(BackBehavior) }
     // Zuletzt registriert, hat also Vorrang: Zurück bricht zuerst eine Bearbeitung ab.
     BackHandler(state.editing) { viewModel.setEditing(false) }
+    // Shared Elements nur einspaltig (Handy): Dort ersetzt das Detail die Liste.
+    // Zweispaltig sind Karte und Detail gleichzeitig sichtbar; ein Übergang wäre dort störend.
+    val singlePane = navigator.scaffoldDirective.maxHorizontalPartitions == 1
 
     Column(Modifier.fillMaxSize().safeHorizontalPadding()) {
         if (state.load !is LoadState.Ready) {
@@ -137,26 +174,30 @@ private fun CreatureSection(
                 value = navigator.scaffoldValue,
                 listPane = {
                     AnimatedPane {
-                        CreatureListPane(
-                            state = state,
-                            selectedId = selectedId,
-                            onQueryChange = viewModel::setQuery,
-                            onPowerFilterChange = viewModel::setPowerFilter,
-                            onCreatureClick = { navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, it.id) },
-                        )
+                        CompositionLocalProvider(LocalSharedVisibilityScope provides this.takeIf { singlePane }) {
+                            CreatureListPane(
+                                state = state,
+                                selectedId = selectedId,
+                                onQueryChange = viewModel::setQuery,
+                                onPowerFilterChange = viewModel::setPowerFilter,
+                                onCreatureClick = { navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, it.id) },
+                            )
+                        }
                     }
                 },
                 detailPane = {
                     AnimatedPane {
-                        CreatureDetailPane(
-                            creature = selectedId?.let { id -> state.creatures.firstOrNull { it.id == id } },
-                            state = state,
-                            showBack = navigator.scaffoldValue[ListDetailPaneScaffoldRole.List] == PaneAdaptedValue.Hidden,
-                            onEdit = { viewModel.setEditing(true) },
-                            onCancelEdit = { viewModel.setEditing(false) },
-                            onSave = viewModel::saveCreature,
-                            onRestore = viewModel::restoreCreature,
-                        )
+                        CompositionLocalProvider(LocalSharedVisibilityScope provides this.takeIf { singlePane }) {
+                            CreatureDetailPane(
+                                creature = selectedId?.let { id -> state.creatures.firstOrNull { it.id == id } },
+                                state = state,
+                                showBack = navigator.scaffoldValue[ListDetailPaneScaffoldRole.List] == PaneAdaptedValue.Hidden,
+                                onEdit = { viewModel.setEditing(true) },
+                                onCancelEdit = { viewModel.setEditing(false) },
+                                onSave = viewModel::saveCreature,
+                                onRestore = viewModel::restoreCreature,
+                            )
+                        }
                     }
                 },
             )
