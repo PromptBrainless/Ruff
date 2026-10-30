@@ -172,11 +172,30 @@ internal class LibraryViewModel
         }
 
         fun openCreature(creature: Creature) {
-            savedState[KEY_CREATURE] = creature.id
+            selectCreatureId(creature.id)
         }
 
         fun openRule(rule: RulePage) {
-            savedState[KEY_RULE] = rule.source
+            selectRuleSource(rule.source)
+        }
+
+        /**
+         * Gleicht die Auswahl mit der Navigation ab (`null` = keine Auswahl). Nur ein
+         * echter Wechsel beendet eine offene Bearbeitung; Drehen lässt sie bestehen.
+         */
+        fun selectCreatureId(id: String?) {
+            if (savedState.get<String?>(KEY_CREATURE) == id) return
+            savedState[KEY_CREATURE] = id
+            editing.value = false
+            editorError.value = null
+        }
+
+        /** Wie [selectCreatureId] für Regelseiten (ID = `source`). */
+        fun selectRuleSource(source: String?) {
+            if (savedState.get<String?>(KEY_RULE) == source) return
+            savedState[KEY_RULE] = source
+            editing.value = false
+            editorError.value = null
         }
 
         fun closeDetails() {
