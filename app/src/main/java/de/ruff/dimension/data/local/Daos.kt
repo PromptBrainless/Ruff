@@ -1,8 +1,10 @@
 package de.ruff.dimension.data.local
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Upsert
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -22,8 +24,12 @@ internal interface CreatureDao {
     @Query("SELECT COUNT(*) FROM creatures")
     suspend fun count(): Int
 
-    @Upsert
-    suspend fun upsertAll(creatures: List<CreatureEntity>)
+    /** Nur neue Zeilen; ein Schlüsselkonflikt ist ein Fehler (der Seed prüft vorher). */
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertAll(creatures: List<CreatureEntity>)
+
+    @Update
+    suspend fun updateAll(creatures: List<CreatureEntity>)
 }
 
 @Dao
@@ -52,11 +58,17 @@ internal interface RuleDao {
     @Query("SELECT COUNT(*) FROM rule_blocks")
     suspend fun countBlocks(): Int
 
-    @Upsert
-    suspend fun upsertPages(pages: List<RulePageEntity>)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertPages(pages: List<RulePageEntity>)
 
-    @Upsert
-    suspend fun upsertBlocks(blocks: List<RuleBlockEntity>)
+    @Update
+    suspend fun updatePages(pages: List<RulePageEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertBlocks(blocks: List<RuleBlockEntity>)
+
+    @Update
+    suspend fun updateBlocks(blocks: List<RuleBlockEntity>)
 
     /** Entfernt überzählige Blöcke, wenn eine Seite in neuen Seed-Daten kürzer wird. */
     @Query("DELETE FROM rule_blocks WHERE pageId = :pageId AND position >= :fromPosition")
@@ -71,6 +83,9 @@ internal interface SeedMetaDao {
     @Query("SELECT * FROM seed_meta WHERE `key` = :key")
     suspend fun get(key: String): SeedMetaEntity?
 
-    @Upsert
-    suspend fun upsert(meta: SeedMetaEntity)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insert(meta: SeedMetaEntity)
+
+    @Update
+    suspend fun update(meta: SeedMetaEntity)
 }
