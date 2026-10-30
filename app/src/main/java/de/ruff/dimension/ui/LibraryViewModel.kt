@@ -10,6 +10,7 @@ import de.ruff.dimension.data.repository.ContentEditorRepository
 import de.ruff.dimension.data.repository.SearchHits
 import de.ruff.dimension.di.IoDispatcher
 import de.ruff.dimension.domain.DataOrigin
+import de.ruff.dimension.domain.FavoritesFilter
 import de.ruff.dimension.domain.LibraryData
 import de.ruff.dimension.domain.LibrarySource
 import de.ruff.dimension.domain.ObserveFavorites
@@ -74,6 +75,9 @@ internal data class LibraryUiState(
     val favoritesAvailable: Boolean get() = canEdit
 
     fun isFavorite(creatureId: String): Boolean = creatureId in favoriteIds
+
+    /** Wirksamer Favoriten-Filter; ohne Datenbank immer aus. */
+    val favoritesFilter: FavoritesFilter get() = FavoritesFilter(only = favoritesOnly && favoritesAvailable, ids = favoriteIds)
 }
 
 @HiltViewModel
