@@ -33,7 +33,7 @@ internal class AssetSeedSource(
  *   unverändert → nichts), nie per REPLACE, damit keine Fremdschlüssel-Kaskaden
  *   ausgelöst werden. Es werden keine Wesen oder Seiten
  *   gelöscht; nur überzählige Blöcke einer gekürzten Seite werden entfernt.
- * - Nutzertabellen (künftig Favoriten/Notizen) werden hier nie angefasst.
+ * - Nutzertabellen (Favoriten, künftig Notizen) werden hier nie angefasst.
  * - Der FTS5-Index ([SearchIndex]) wird von Triggern mitgeführt und am Ende
  *   derselben Transaktion zusätzlich vollständig neu aufgebaut.
  */
