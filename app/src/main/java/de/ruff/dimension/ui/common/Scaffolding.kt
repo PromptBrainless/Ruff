@@ -130,7 +130,9 @@ internal fun LoadingState(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        CircularProgressIndicator(color = MaterialTheme.colorScheme.secondary)
+        GlutPuls {
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.secondary)
+        }
         Spacer(Modifier.height(12.dp))
         Text("Archiv wird vorbereitet …", color = MaterialTheme.colorScheme.onSurfaceVariant)
     }

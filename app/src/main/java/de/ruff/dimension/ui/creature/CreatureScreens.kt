@@ -1,8 +1,14 @@
 package de.ruff.dimension.ui.creature
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -40,6 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -54,13 +61,19 @@ import de.ruff.dimension.ui.common.AvatarFrame
 import de.ruff.dimension.ui.common.ChainDivider
 import de.ruff.dimension.ui.common.EmptyState
 import de.ruff.dimension.ui.common.PortraitFrame
+import de.ruff.dimension.ui.common.RuffDurations
 import de.ruff.dimension.ui.common.RuffTopBar
 import de.ruff.dimension.ui.common.SearchField
 import de.ruff.dimension.ui.common.SectionHeader
+import de.ruff.dimension.ui.common.creatureImageKey
 import de.ruff.dimension.ui.common.creaturePortraitId
+import de.ruff.dimension.ui.common.currentMotion
 import de.ruff.dimension.ui.common.drawableId
 import de.ruff.dimension.ui.common.emberButtonColors
+import de.ruff.dimension.ui.common.ruffSharedBounds
 import de.ruff.dimension.ui.editor.CreatureEditor
+import de.ruff.dimension.ui.theme.Glut
+import de.ruff.dimension.ui.theme.Hoellenrot
 import de.ruff.dimension.ui.theme.Pergament
 
 /** Wesen-Liste mit Suchfeld und Machtstufen-Filter (Logik unverändert aus der Bibliothek). */
@@ -148,7 +161,13 @@ private fun PowerLevelMenu(
     }
 }
 
-/** Karte eines Wesens: Icon im Eisenring (sonst Platzhalter), Name, Archetyp, Kurztext, Stufe. */
+/**
+ * Karte eines Wesens: Icon im Eisenring (sonst Platzhalter), Name, Archetyp, Kurztext, Stufe.
+ *
+ * Bewegung: Beim Drücken sinkt die Karte leicht ein (Skalierung nur im Grafik-Layer,
+ * kein neues Layout) und der Rand glüht in Glut auf; die ausgewählte Karte trägt
+ * einen ruhigen Höllenrot-Rand. Im reduzierten Modus wechseln die Werte sofort.
+ */
 @Composable
 internal fun CreatureCard(
     creature: Creature,
@@ -156,17 +175,44 @@ internal fun CreatureCard(
     selected: Boolean = false,
 ) {
     val colors = MaterialTheme.colorScheme
+    val motion = currentMotion
+    val interaction = remember { MutableInteractionSource() }
+    val pressed by interaction.collectIsPressedAsState()
+    val scale by animateFloatAsState(
+        targetValue = if (pressed && !motion.reduced) PRESSED_SCALE else 1f,
+        animationSpec = motion.spec(RuffDurations.KURZ),
+        label = "karte-druck",
+    )
+    val borderColor by animateColorAsState(
+        targetValue =
+            when {
+                pressed -> Glut
+                selected -> Hoellenrot
+                else -> colors.outlineVariant.copy(alpha = 0.35f)
+            },
+        animationSpec = motion.spec(RuffDurations.MITTEL),
+        label = "karte-glut-rand",
+    )
     Card(
         modifier =
             Modifier
                 .fillMaxWidth()
                 .padding(vertical = 5.dp)
-                .clip(CardDefaults.shape)
-                .clickable(onClickLabel = "${creature.name} öffnen", onClick = onClick),
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                }.clip(CardDefaults.shape)
+                .clickable(
+                    interactionSource = interaction,
+                    indication = LocalIndication.current,
+                    onClickLabel = "${creature.name} öffnen",
+                    onClick = onClick,
+                ),
         colors =
             CardDefaults.cardColors(
                 containerColor = if (selected) colors.secondaryContainer else colors.surfaceContainerHigh,
             ),
+        border = BorderStroke(if (pressed || selected) 1.5.dp else 1.dp, borderColor),
     ) {
         Row(
             modifier =
@@ -175,7 +221,10 @@ internal fun CreatureCard(
                     .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            AvatarFrame(iconRes = drawableId(creature.icon).takeIf { it != 0 })
+            AvatarFrame(
+                iconRes = drawableId(creature.icon).takeIf { it != 0 },
+                modifier = Modifier.ruffSharedBounds(creatureImageKey(creature.id)),
+            )
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(creature.name, style = MaterialTheme.typography.titleSmall, color = colors.onSurface)
@@ -280,6 +329,7 @@ private fun CreatureDetails(
             imageRes = portraitId,
             contentDescription = if (portraitId != null) "Bild: ${creature.name}" else "Platzhalter: noch kein Bild",
             maxWidth = 260.dp,
+            modifier = Modifier.ruffSharedBounds(creatureImageKey(creature.id)),
         )
         Text(
             creature.name,
@@ -325,3 +375,6 @@ private fun CreatureDetails(
         Spacer(Modifier.height(24.dp))
     }
 }
+
+/** Leichtes Einsinken beim Drücken; klein genug, dass Nachbarkarten nicht überdeckt werden. */
+private const val PRESSED_SCALE = 0.975f
