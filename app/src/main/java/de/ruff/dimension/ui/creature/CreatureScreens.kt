@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,6 +33,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -63,7 +66,9 @@ import de.ruff.dimension.ui.LibraryUiState
 import de.ruff.dimension.ui.common.AvatarFrame
 import de.ruff.dimension.ui.common.ChainDivider
 import de.ruff.dimension.ui.common.EmptyState
+import de.ruff.dimension.ui.common.FavoriteHeart
 import de.ruff.dimension.ui.common.GlutPartikel
+import de.ruff.dimension.ui.common.HeartGlyph
 import de.ruff.dimension.ui.common.PortraitFrame
 import de.ruff.dimension.ui.common.RuffDurations
 import de.ruff.dimension.ui.common.RuffHaptik
@@ -75,6 +80,7 @@ import de.ruff.dimension.ui.common.creaturePortraitId
 import de.ruff.dimension.ui.common.currentMotion
 import de.ruff.dimension.ui.common.drawableId
 import de.ruff.dimension.ui.common.emberButtonColors
+import de.ruff.dimension.ui.common.favoriteHeartTag
 import de.ruff.dimension.ui.common.rememberRuffHaptik
 import de.ruff.dimension.ui.common.ruffParallax
 import de.ruff.dimension.ui.common.ruffSharedBounds
@@ -90,14 +96,19 @@ internal fun CreatureListPane(
     selectedId: String?,
     onQueryChange: (String) -> Unit,
     onPowerFilterChange: (Int?) -> Unit,
+    onFavoritesOnlyChange: (Boolean) -> Unit,
+    onToggleFavorite: (String) -> Unit,
     onCreatureClick: (Creature) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val creatures = state.creatures
+    val favoritesFilter = state.favoritesFilter
     val filtered =
-        remember(creatures, state.query, state.powerFilter, state.searchHits) {
-            searchCreatures(creatures, state.query, state.powerFilter, state.searchHits)
+        remember(creatures, state.query, state.powerFilter, state.searchHits, favoritesFilter) {
+            searchCreatures(creatures, state.query, state.powerFilter, state.searchHits, favoritesFilter)
         }
+    // Verwaiste Favoriten (Wesen nicht mehr im Seed) zählen hier nicht mit.
+    val visibleFavorites = remember(creatures, state.favoriteIds) { creatures.count { it.id in state.favoriteIds } }
     Column(modifier = modifier.fillMaxSize()) {
         RuffTopBar(title = "Wesen", showBack = true)
         Column(Modifier.padding(horizontal = 16.dp)) {
@@ -105,16 +116,34 @@ internal fun CreatureListPane(
             Spacer(Modifier.height(8.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 PowerLevelMenu(creatures = creatures, selected = state.powerFilter, onSelected = onPowerFilterChange)
-                Spacer(Modifier.weight(1f))
-                Text(
-                    "${filtered.size} von ${creatures.size} Wesen",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    style = MaterialTheme.typography.labelLarge,
-                )
+                if (state.favoritesAvailable) {
+                    Spacer(Modifier.width(8.dp))
+                    FavoritesOnlyChip(
+                        selected = favoritesFilter.only,
+                        count = visibleFavorites,
+                        onSelectedChange = onFavoritesOnlyChange,
+                    )
+                }
+            }
+            Text(
+                "${filtered.size} von ${creatures.size} Wesen",
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                style = MaterialTheme.typography.labelLarge,
+                modifier = Modifier.align(Alignment.End).testTag("creature_count"),
+            )
+            state.favoriteError?.let {
+                Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
             }
         }
         if (filtered.isEmpty()) {
-            EmptyState("Keine Wesen gefunden. Suchbegriff oder Machtstufe ändern.", Modifier.padding(horizontal = 16.dp))
+            val message =
+                when {
+                    favoritesFilter.only && visibleFavorites == 0 ->
+                        "Noch keine Favoriten. Tippe bei einem Wesen auf das Herz, um es hier zu sammeln."
+                    favoritesFilter.only -> "Keine Favoriten passen zu Suche oder Machtstufe."
+                    else -> "Keine Wesen gefunden. Suchbegriff oder Machtstufe ändern."
+                }
+            EmptyState(message, Modifier.padding(horizontal = 16.dp).testTag("creature_empty"))
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().testTag("creature_list"),
@@ -127,11 +156,45 @@ internal fun CreatureListPane(
                     ),
             ) {
                 items(filtered, key = { it.id.ifBlank { it.name } }) { creature ->
-                    CreatureCard(creature = creature, selected = creature.id == selectedId, onClick = { onCreatureClick(creature) })
+                    CreatureCard(
+                        creature = creature,
+                        selected = creature.id == selectedId,
+                        onClick = { onCreatureClick(creature) },
+                        favorite = if (state.favoritesAvailable) state.isFavorite(creature.id) else null,
+                        onToggleFavorite = { onToggleFavorite(creature.id) },
+                        favoritePlace = "liste",
+                    )
                 }
             }
         }
     }
+}
+
+/** Filter „Nur Favoriten“ mit Anzahl; leichter Haptik-Tick beim Umschalten. */
+@Composable
+private fun FavoritesOnlyChip(
+    selected: Boolean,
+    count: Int,
+    onSelectedChange: (Boolean) -> Unit,
+) {
+    val haptik = rememberRuffHaptik()
+    FilterChip(
+        selected = selected,
+        onClick = {
+            haptik(RuffHaptik.AUSWAHL)
+            onSelectedChange(!selected)
+        },
+        label = { Text(if (count > 0) "Nur Favoriten · $count" else "Nur Favoriten") },
+        leadingIcon = {
+            HeartGlyph(filled = selected, modifier = Modifier.size(FilterChipDefaults.IconSize))
+        },
+        colors =
+            FilterChipDefaults.filterChipColors(
+                selectedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                selectedLabelColor = Pergament,
+            ),
+        modifier = Modifier.testTag("filter_nur_favoriten"),
+    )
 }
 
 @Composable
@@ -186,6 +249,10 @@ internal fun CreatureCard(
     creature: Creature,
     onClick: () -> Unit,
     selected: Boolean = false,
+    /** `null` = kein Herz (z. B. Asset-Notbetrieb ohne Datenbank). */
+    favorite: Boolean? = null,
+    onToggleFavorite: () -> Unit = {},
+    favoritePlace: String = "liste",
 ) {
     val colors = MaterialTheme.colorScheme
     val motion = currentMotion
@@ -260,6 +327,15 @@ internal fun CreatureCard(
                     style = MaterialTheme.typography.labelLarge,
                 )
             }
+            if (favorite != null) {
+                FavoriteHeart(
+                    favorite = favorite,
+                    label = "${creature.name} als Favorit",
+                    onToggle = onToggleFavorite,
+                    testTag = favoriteHeartTag(creature.id, favoritePlace),
+                    heartSize = 22.dp,
+                )
+            }
         }
     }
 }
@@ -277,6 +353,7 @@ internal fun CreatureDetailPane(
     onCancelEdit: () -> Unit,
     onSave: (Creature) -> Unit,
     onRestore: (String) -> Unit,
+    onToggleFavorite: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.fillMaxSize()) {
@@ -292,7 +369,15 @@ internal fun CreatureDetailPane(
                     onSave = onSave,
                     onRestore = { onRestore(creature.id) },
                 )
-            else -> CreatureDetails(creature, state.canEdit, state.editorError, onEdit)
+            else ->
+                CreatureDetails(
+                    creature = creature,
+                    canEdit = state.canEdit,
+                    error = state.editorError ?: state.favoriteError,
+                    favorite = if (state.favoritesAvailable) state.isFavorite(creature.id) else null,
+                    onToggleFavorite = { onToggleFavorite(creature.id) },
+                    onEdit = onEdit,
+                )
         }
     }
 }
@@ -302,6 +387,8 @@ private fun CreatureDetails(
     creature: Creature,
     canEdit: Boolean,
     error: String?,
+    favorite: Boolean?,
+    onToggleFavorite: () -> Unit,
     onEdit: () -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
@@ -359,12 +446,26 @@ private fun CreatureDetails(
                 modifier = Modifier.ruffSharedBounds(creatureImageKey(creature.id)),
             )
         }
-        Text(
-            creature.name,
-            style = MaterialTheme.typography.headlineSmall,
-            color = Pergament,
-            textAlign = TextAlign.Center,
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            // Gleich breiter Platzhalter links hält den Namen optisch mittig.
+            if (favorite != null) Spacer(Modifier.width(48.dp))
+            Text(
+                creature.name,
+                style = MaterialTheme.typography.headlineSmall,
+                color = Pergament,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.weight(1f, fill = false),
+            )
+            if (favorite != null) {
+                FavoriteHeart(
+                    favorite = favorite,
+                    label = "${creature.name} als Favorit",
+                    onToggle = onToggleFavorite,
+                    testTag = favoriteHeartTag(creature.id, "detail"),
+                    heartSize = 28.dp,
+                )
+            }
+        }
         Text(
             creature.powerLabel.ifBlank { "Machtstufe nicht angegeben" },
             color = colors.secondary,

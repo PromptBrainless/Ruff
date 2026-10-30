@@ -134,6 +134,7 @@ private fun RuffNavGraph(
                 onQueryChange = viewModel::setQuery,
                 onRetry = viewModel::reload,
                 onCreatureClick = { navController.navigate(Routes.creature(it.id)) },
+                onToggleFavorite = viewModel::toggleFavorite,
                 onRuleClick = { navController.navigate(Routes.rule(it.source)) },
             )
         }
@@ -180,6 +181,8 @@ private fun CreatureSection(
                                 selectedId = selectedId,
                                 onQueryChange = viewModel::setQuery,
                                 onPowerFilterChange = viewModel::setPowerFilter,
+                                onFavoritesOnlyChange = viewModel::setFavoritesOnly,
+                                onToggleFavorite = viewModel::toggleFavorite,
                                 onCreatureClick = { navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, it.id) },
                             )
                         }
@@ -196,6 +199,7 @@ private fun CreatureSection(
                                 onCancelEdit = { viewModel.setEditing(false) },
                                 onSave = viewModel::saveCreature,
                                 onRestore = viewModel::restoreCreature,
+                                onToggleFavorite = viewModel::toggleFavorite,
                             )
                         }
                     }
@@ -275,6 +279,7 @@ private fun CreatureStandalone(
                 onCancelEdit = { viewModel.setEditing(false) },
                 onSave = viewModel::saveCreature,
                 onRestore = viewModel::restoreCreature,
+                onToggleFavorite = viewModel::toggleFavorite,
             )
         }
     }
