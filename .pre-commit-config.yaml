@@ -18,6 +18,9 @@ repos:
     hooks:
       - id: detect-secrets
         args: ["--baseline", ".secrets.baseline"]
+        # Von Room generierte Schemas enthalten nur den identityHash des
+        # Schemas, der als Hex-String fälschlich als Geheimnis erkannt wird.
+        exclude: ^app/schemas/.*\.json$
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.39.0
