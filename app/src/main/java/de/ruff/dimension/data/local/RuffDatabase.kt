@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import androidx.sqlite.execSQL
 
 /**
  * Lokale Datenbank der App, Single Source of Truth.
@@ -49,6 +50,11 @@ internal abstract class RuffDatabase : RoomDatabase() {
             object : RoomDatabase.Callback() {
                 override fun onCreate(connection: SQLiteConnection) {
                     SearchIndex.create(connection)
+                    connection.execSQL(ContentEditStore.CREATE_TABLE)
+                }
+
+                override fun onOpen(connection: SQLiteConnection) {
+                    connection.execSQL(ContentEditStore.CREATE_TABLE)
                 }
             }
 

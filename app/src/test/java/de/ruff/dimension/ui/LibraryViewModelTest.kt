@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RuleBlock
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.repository.ContentEditorRepository
 import de.ruff.dimension.data.repository.SearchRepository
 import de.ruff.dimension.domain.DataOrigin
 import de.ruff.dimension.domain.LibraryData
@@ -12,6 +13,7 @@ import de.ruff.dimension.domain.LibrarySource
 import de.ruff.dimension.domain.SearchLibrary
 import kotlinx.coroutines.Dispatchers
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -27,11 +29,29 @@ class LibraryViewModelTest {
     private val drache = Creature(id = "A-2", name = "Drache", powerLevel = 3, powerLabel = "Stufe III")
     private val rule = RulePage(title = "Kampf", source = "regeln/kampf.md", blocks = listOf(RuleBlock("p", "Text")))
     private val data = LibraryData(listOf(fuchs, drache), listOf(rule), DataOrigin.DATABASE)
+    private val editor =
+        object : ContentEditorRepository {
+            override suspend fun apply(data: LibraryData) = data
+
+            override suspend fun saveCreature(creature: Creature) = Unit
+
+            override suspend fun saveRule(rule: RulePage) = Unit
+
+            override suspend fun restoreCreature(id: String) = Unit
+
+            override suspend fun restoreRule(source: String) = Unit
+        }
 
     private fun viewModel(
         handle: SavedStateHandle = SavedStateHandle(),
         source: LibrarySource = LibrarySource { data },
-    ) = LibraryViewModel(handle, source, SearchLibrary(SearchRepository { null }), Dispatchers.Unconfined).also { idle() }
+    ) = LibraryViewModel(
+        handle,
+        source,
+        editor,
+        SearchLibrary(SearchRepository { null }),
+        Dispatchers.Unconfined,
+    ).also { idle() }
 
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
@@ -43,6 +63,7 @@ class LibraryViewModelTest {
         assertEquals(listOf(rule), state.rules)
         assertEquals(LibraryTab.CREATURES, state.tab)
         assertNull(state.selectedCreature)
+        assertTrue(state.canEdit)
     }
 
     @Test
@@ -84,6 +105,56 @@ class LibraryViewModelTest {
         idle()
         assertNull(vm.uiState.value.selectedRule)
         assertNull(vm.uiState.value.selectedCreature)
+    }
+
+    @Test
+    fun editorModeOpensAndClosesWithDetails() {
+        val vm = viewModel()
+        vm.openCreature(fuchs)
+        vm.setEditing(true)
+        idle()
+        assertTrue(vm.uiState.value.editing)
+
+        vm.closeDetails()
+        idle()
+        assertFalse(vm.uiState.value.editing)
+    }
+
+    @Test
+    fun localEditsUseSubstringSearchInsteadOfStaleFtsIndex() {
+        var searchCalls = 0
+        val editedData = data.copy(hasLocalEdits = true)
+        val editedSource = LibrarySource { editedData }
+        val editedRepository =
+            object : ContentEditorRepository {
+                override suspend fun apply(data: LibraryData) = editedData
+
+                override suspend fun saveCreature(creature: Creature) = Unit
+
+                override suspend fun saveRule(rule: RulePage) = Unit
+
+                override suspend fun restoreCreature(id: String) = Unit
+
+                override suspend fun restoreRule(source: String) = Unit
+            }
+        val vm =
+            LibraryViewModel(
+                SavedStateHandle(),
+                editedSource,
+                editedRepository,
+                SearchLibrary(
+                    SearchRepository {
+                        searchCalls++
+                        null
+                    },
+                ),
+                Dispatchers.Unconfined,
+            )
+        idle()
+        vm.setQuery("bearbeitet")
+        idle()
+
+        assertEquals(0, searchCalls)
     }
 
     @Test

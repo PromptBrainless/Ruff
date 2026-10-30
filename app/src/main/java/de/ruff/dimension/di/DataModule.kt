@@ -7,12 +7,16 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import de.ruff.dimension.data.local.AssetSeedSource
+import de.ruff.dimension.data.local.ContentEditStore
 import de.ruff.dimension.data.local.CreatureDao
+import de.ruff.dimension.data.local.RoomContentEditStore
 import de.ruff.dimension.data.local.RuffDatabase
 import de.ruff.dimension.data.local.RuleDao
 import de.ruff.dimension.data.local.SeedImporter
 import de.ruff.dimension.data.local.SeedSource
+import de.ruff.dimension.data.repository.ContentEditorRepository
 import de.ruff.dimension.data.repository.CreatureRepository
+import de.ruff.dimension.data.repository.RoomContentEditorRepository
 import de.ruff.dimension.data.repository.RoomCreatureRepository
 import de.ruff.dimension.data.repository.RoomRuleRepository
 import de.ruff.dimension.data.repository.RoomSearchRepository
@@ -68,6 +72,14 @@ internal object DataModule {
     @Provides
     @Singleton
     fun provideRuleRepository(dao: RuleDao): RuleRepository = RoomRuleRepository(dao)
+
+    @Provides
+    @Singleton
+    fun provideContentEditStore(database: RuffDatabase): ContentEditStore = RoomContentEditStore(database)
+
+    @Provides
+    @Singleton
+    fun provideContentEditorRepository(store: ContentEditStore): ContentEditorRepository = RoomContentEditorRepository(store)
 
     @Provides
     @Singleton
