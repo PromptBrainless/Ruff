@@ -20,6 +20,8 @@ import androidx.sqlite.execSQL
  * - Version 2: FTS5-Volltextindex [SearchIndex] per [MIGRATION_1_2]. Die
  *   Entities sind unverändert; die virtuelle Tabelle steht daher nicht im
  *   exportierten Room-Schema, sondern in [SearchIndex].
+ * - Version 3: Nutzertabelle `favorites` ([FavoriteEntity]) per [MIGRATION_2_3],
+ *   rein additiv. Der Seed fasst sie nie an.
  *
  * Als SQLite wird das mit der App gebündelte SQLite (`sqlite-bundled`)
  * verwendet, weil das Android-System-SQLite FTS5 nicht garantiert.
@@ -30,8 +32,9 @@ import androidx.sqlite.execSQL
         RulePageEntity::class,
         RuleBlockEntity::class,
         SeedMetaEntity::class,
+        FavoriteEntity::class,
     ],
-    version = 2,
+    version = 3,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -41,6 +44,8 @@ internal abstract class RuffDatabase : RoomDatabase() {
     abstract fun ruleDao(): RuleDao
 
     abstract fun seedMetaDao(): SeedMetaDao
+
+    abstract fun favoriteDao(): FavoriteDao
 
     companion object {
         const val NAME = "ruff.db"
@@ -67,7 +72,7 @@ internal abstract class RuffDatabase : RoomDatabase() {
         /** Gemeinsame Konfiguration für App und Tests: gebündeltes SQLite, Migrationen, Callback. */
         fun RoomDatabase.Builder<RuffDatabase>.configure(): RoomDatabase.Builder<RuffDatabase> =
             setDriver(BundledSQLiteDriver())
-                .addMigrations(MIGRATION_1_2)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                 .addCallback(CALLBACK)
     }
 }
