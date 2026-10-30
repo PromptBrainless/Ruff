@@ -175,6 +175,7 @@ internal fun ChainDivider(
 /**
  * Klingen-Knopf `ruff_ui_button_klinge` (1089×331). Wird nicht verzerrt; die
  * Beschriftung sitzt im glatten Teil der Klinge (x 330–850, y 70–230) auf einem Scrim.
+ * Ein Druck gibt eine deutliche haptische Bestätigung.
  */
 @Composable
 internal fun BladeButton(
@@ -182,6 +183,7 @@ internal fun BladeButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val haptik = rememberRuffHaptik()
     BoxWithConstraints(
         modifier =
             modifier
@@ -189,7 +191,10 @@ internal fun BladeButton(
                 .fillMaxWidth()
                 .aspectRatio(1089f / 331f)
                 .clip(RoundedCornerShape(12.dp))
-                .clickable(role = Role.Button, onClickLabel = text, onClick = onClick),
+                .clickable(role = Role.Button, onClickLabel = text) {
+                    haptik(RuffHaptik.BESTAETIGUNG)
+                    onClick()
+                },
     ) {
         Image(
             painter = painterResource(R.drawable.ruff_ui_button_klinge),
