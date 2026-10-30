@@ -2,6 +2,7 @@ package de.ruff.dimension.data.local
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.useReaderConnection
 import androidx.test.core.app.ApplicationProvider
 import com.google.gson.JsonParser
 import de.ruff.dimension.data.AssetLoader
@@ -141,6 +142,62 @@ class SeedImporterTest {
             assertEquals(creaturesBefore, db.creatureDao().getAll())
             assertEquals(pagesBefore, db.ruleDao().getPages())
             assertEquals(blocksBefore, db.ruleDao().getAllBlocks())
+        }
+
+    @Test
+    fun `wiederholter Import haelt 187 12 1308 und den Suchindex exakt`() =
+        runBlocking {
+            repeat(3) { importer.importAll() }
+
+            assertEquals(187, db.creatureDao().count())
+            assertEquals(12, db.ruleDao().countPages())
+            assertEquals(1308, db.ruleDao().countBlocks())
+            assertEquals(187 + 12, countSearchRows())
+        }
+
+    @Test
+    fun `geaenderte Seed-Daten werden aktualisiert ohne Duplikate`() =
+        runBlocking {
+            importer.importAll()
+            val first = jsonCreatures.first()
+            val shortened = jsonRules.first()
+            val changedSource =
+                object : SeedSource {
+                    override fun openCreatures(): Reader =
+                        java.io.StringReader(
+                            com.google.gson.Gson().toJson(
+                                File(assetsDir, AssetLoader.CREATURES_FILE).reader().use { JsonParser.parseReader(it) }.asJsonArray.also {
+                                    it[0].asJsonObject.addProperty("name", first.name + " (neu)")
+                                },
+                            ),
+                        )
+
+                    override fun openRules(): Reader =
+                        java.io.StringReader(
+                            com.google.gson.Gson().toJson(
+                                File(assetsDir, AssetLoader.RULES_FILE).reader().use { JsonParser.parseReader(it) }.asJsonArray.also {
+                                    val blocks = it[0].asJsonObject.getAsJsonArray("blocks")
+                                    blocks.remove(blocks.size() - 1)
+                                },
+                            ),
+                        )
+                }
+            SeedImporter(db, changedSource, clock = { now }).importAll()
+
+            assertEquals(187, db.creatureDao().count())
+            assertEquals(first.name + " (neu)", db.creatureDao().getById(first.id)?.name)
+            assertEquals(12, db.ruleDao().countPages())
+            assertEquals(1307, db.ruleDao().countBlocks())
+            assertEquals(shortened.blocks.size - 1, db.ruleDao().getBlocks(shortened.source).size)
+            assertEquals(187 + 12, countSearchRows())
+        }
+
+    private suspend fun countSearchRows(): Int =
+        db.useReaderConnection { connection ->
+            connection.usePrepared("SELECT COUNT(*) FROM ${SearchIndex.TABLE}") { statement ->
+                statement.step()
+                statement.getLong(0).toInt()
+            }
         }
 
     @Test

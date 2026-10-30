@@ -17,7 +17,7 @@ import androidx.sqlite.execSQL
  * - Regelseiten: Titel, leer, alle Blocktexte.
  *
  * Trigger halten den Index bei Insert, Update und Delete synchron (auch bei
- * Upserts aus dem Seed). Nach dem Seed und in der Migration wird er zusätzlich
+ * dem Abgleich im Seed). Nach dem Seed und in der Migration wird er zusätzlich
  * vollständig neu aufgebaut ([REBUILD]).
  */
 internal object SearchIndex {

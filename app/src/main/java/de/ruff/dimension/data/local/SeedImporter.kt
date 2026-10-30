@@ -29,8 +29,9 @@ internal class AssetSeedSource(
  *
  * - Läuft nur, wenn die gespeicherte Seed-Version kleiner als [SEED_VERSION] ist.
  * - Alles geschieht in einer Transaktion: entweder vollständig oder gar nicht.
- * - Inhaltstabellen werden per Upsert geschrieben, nie per REPLACE, damit keine
- *   Fremdschlüssel-Kaskaden ausgelöst werden. Es werden keine Wesen oder Seiten
+ * - Inhaltstabellen werden abgeglichen (neu → INSERT, geändert → UPDATE,
+ *   unverändert → nichts), nie per REPLACE, damit keine Fremdschlüssel-Kaskaden
+ *   ausgelöst werden. Es werden keine Wesen oder Seiten
  *   gelöscht; nur überzählige Blöcke einer gekürzten Seite werden entfernt.
  * - Nutzertabellen (künftig Favoriten/Notizen) werden hier nie angefasst.
  * - Der FTS5-Index ([SearchIndex]) wird von Triggern mitgeführt und am Ende
@@ -55,22 +56,60 @@ internal class SeedImporter(
         val rules = source.openRules().use { AssetLoader.parseRules(it) }
         database.useWriterConnection { connection ->
             connection.immediateTransaction {
-                database.creatureDao().upsertAll(creatures.mapIndexed { index, it -> it.toEntity(index) })
-                val ruleDao = database.ruleDao()
-                ruleDao.upsertPages(rules.mapIndexed { index, it -> it.toEntity(index) })
-                rules.forEach { page ->
-                    val pageId = page.stableId()
-                    ruleDao.upsertBlocks(
-                        page.blocks.mapIndexed { index, block ->
-                            RuleBlockEntity(pageId = pageId, position = index, type = block.type, text = block.text)
-                        },
-                    )
-                    ruleDao.deleteBlocksFrom(pageId, page.blocks.size)
-                }
-                database.seedMetaDao().upsert(SeedMetaEntity(SEED_KEY, SEED_VERSION, clock()))
+                syncCreatures(creatures.mapIndexed { index, it -> it.toEntity(index) })
+                syncRules(rules)
+                syncMeta(SeedMetaEntity(SEED_KEY, SEED_VERSION, clock()))
                 SearchIndex.REBUILD.forEach { connection.execSQL(it) }
             }
         }
+    }
+
+    /*
+     * Abgleich statt @Upsert: Room erkennt bei @Upsert einen Schlüsselkonflikt nur
+     * am Text der SQLException („unique“, „1555“ oder „2067“). Liefert der Treiber
+     * diesen Text nicht (gebündeltes SQLite unter der JVM/Robolectric meldet nur
+     * „Error code: “), wirft der zweite Lauf statt zu aktualisieren. Deshalb werden
+     * vorhandene Schlüssel vorher gelesen: neue Zeilen per INSERT (ABORT), geänderte
+     * per UPDATE, unveränderte gar nicht – unabhängig von Treiber und Fehlertext,
+     * und ohne Trigger-Last für unveränderte Zeilen.
+     */
+
+    private suspend fun syncCreatures(entities: List<CreatureEntity>) {
+        val dao = database.creatureDao()
+        val existing = dao.getAll().associateBy { it.id }
+        val (known, fresh) = entities.partition { it.id in existing }
+        if (fresh.isNotEmpty()) dao.insertAll(fresh)
+        val changed = known.filter { existing[it.id] != it }
+        if (changed.isNotEmpty()) dao.updateAll(changed)
+    }
+
+    private suspend fun syncRules(rules: List<RulePage>) {
+        val dao = database.ruleDao()
+        val pages = rules.mapIndexed { index, it -> it.toEntity(index) }
+        val existingPages = dao.getPages().associateBy { it.id }
+        val (knownPages, freshPages) = pages.partition { it.id in existingPages }
+        if (freshPages.isNotEmpty()) dao.insertPages(freshPages)
+        val changedPages = knownPages.filter { existingPages[it.id] != it }
+        if (changedPages.isNotEmpty()) dao.updatePages(changedPages)
+
+        val existingBlocks = dao.getAllBlocks().associateBy { it.pageId to it.position }
+        rules.forEach { page ->
+            val pageId = page.stableId()
+            val blocks =
+                page.blocks.mapIndexed { index, block ->
+                    RuleBlockEntity(pageId = pageId, position = index, type = block.type, text = block.text)
+                }
+            val (knownBlocks, freshBlocks) = blocks.partition { (it.pageId to it.position) in existingBlocks }
+            if (freshBlocks.isNotEmpty()) dao.insertBlocks(freshBlocks)
+            val changedBlocks = knownBlocks.filter { existingBlocks[it.pageId to it.position] != it }
+            if (changedBlocks.isNotEmpty()) dao.updateBlocks(changedBlocks)
+            dao.deleteBlocksFrom(pageId, page.blocks.size)
+        }
+    }
+
+    private suspend fun syncMeta(meta: SeedMetaEntity) {
+        val dao = database.seedMetaDao()
+        if (dao.get(meta.key) == null) dao.insert(meta) else dao.update(meta)
     }
 
     companion object {
