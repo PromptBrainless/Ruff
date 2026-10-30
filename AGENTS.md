@@ -49,3 +49,5 @@
 - Relevante Tests und Prüfungen ausführen und Ergebnisse ehrlich dokumentieren.
 - Agentenrollen in `.github/agents/` haben eigene Freigabegrenzen; insbesondere
   Kanon-Hüter und Reviewer ändern nichts selbst.
+- Für die App-Weiterentwicklung (Ruff 2.0) gilt ergänzend
+  [docs/MASTERPROMPT_CODESPACE.md](docs/MASTERPROMPT_CODESPACE.md).
