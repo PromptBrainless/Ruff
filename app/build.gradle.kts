@@ -35,6 +35,11 @@ android {
     lint {
         abortOnError = true
     }
+
+    testOptions {
+        // Robolectric nutzt Manifest und Ressourcen der App (Start-Smoke-Test).
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 ksp {

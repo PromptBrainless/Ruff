@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,6 +27,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilterChip
@@ -52,9 +54,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import de.ruff.dimension.data.AssetLoader
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import dagger.hilt.android.AndroidEntryPoint
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.domain.filterCreatures
+import de.ruff.dimension.domain.filterRules
+import de.ruff.dimension.domain.powerLevelOptions
+import de.ruff.dimension.ui.LibraryTab
+import de.ruff.dimension.ui.LibraryUiState
+import de.ruff.dimension.ui.LibraryViewModel
+import de.ruff.dimension.ui.LoadState
 
 private val Soot = Color(0xFF16171A)
 private val Iron = Color(0xFF25282D)
@@ -73,30 +83,18 @@ private val RuffColors =
         onSurface = Parchment,
     )
 
-private enum class LibraryTab(
-    val label: String,
-) {
-    CREATURES("Wesen"),
-    RULES("Regeln"),
-}
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val viewModel: LibraryViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val creatures =
-            assets.open(AssetLoader.CREATURES_FILE).bufferedReader().use {
-                AssetLoader.parseCreatures(it)
-            }
-        val rules =
-            assets.open(AssetLoader.RULES_FILE).bufferedReader().use {
-                AssetLoader.parseRules(it)
-            }
-
         window.statusBarColor = android.graphics.Color.rgb(22, 23, 26)
         window.navigationBarColor = android.graphics.Color.rgb(22, 23, 26)
         setContent {
             MaterialTheme(colorScheme = RuffColors) {
-                RuffApp(creatures = creatures, rules = rules)
+                val state by viewModel.uiState.collectAsStateWithLifecycle()
+                RuffApp(state = state, viewModel = viewModel)
             }
         }
     }
@@ -104,54 +102,53 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun RuffApp(
-    creatures: List<Creature>,
-    rules: List<RulePage>,
+    state: LibraryUiState,
+    viewModel: LibraryViewModel,
 ) {
-    var tab by remember { mutableStateOf(LibraryTab.CREATURES) }
-    var query by remember { mutableStateOf("") }
-    var powerFilter by remember { mutableStateOf<Int?>(null) }
-    var selectedCreature by remember { mutableStateOf<Creature?>(null) }
-    var selectedRule by remember { mutableStateOf<RulePage?>(null) }
+    val selectedCreature = state.selectedCreature
+    val selectedRule = state.selectedRule
 
     Scaffold(
         topBar = {
             Header(
                 title = selectedCreature?.name ?: selectedRule?.title ?: "Ruff",
                 showBack = selectedCreature != null || selectedRule != null,
-                onBack = {
-                    selectedCreature = null
-                    selectedRule = null
-                },
+                onBack = viewModel::closeDetails,
             )
         },
         containerColor = Soot,
     ) { padding ->
         when {
+            state.load is LoadState.Loading ->
+                LoadingState(modifier = Modifier.padding(padding))
+            state.load is LoadState.Error ->
+                ErrorState(
+                    message = state.load.message,
+                    onRetry = viewModel::reload,
+                    modifier = Modifier.padding(padding),
+                )
             selectedCreature != null ->
                 CreatureDetails(
-                    creature = selectedCreature!!,
+                    creature = selectedCreature,
                     modifier = Modifier.padding(padding),
                 )
             selectedRule != null ->
                 RuleDetails(
-                    rule = selectedRule!!,
+                    rule = selectedRule,
                     modifier = Modifier.padding(padding),
                 )
             else ->
                 Library(
-                    creatures = creatures,
-                    rules = rules,
-                    tab = tab,
-                    query = query,
-                    powerFilter = powerFilter,
-                    onTabChange = {
-                        tab = it
-                        powerFilter = null
-                    },
-                    onQueryChange = { query = it },
-                    onPowerFilterChange = { powerFilter = it },
-                    onCreatureClick = { selectedCreature = it },
-                    onRuleClick = { selectedRule = it },
+                    creatures = state.creatures,
+                    rules = state.rules,
+                    tab = state.tab,
+                    query = state.query,
+                    powerFilter = state.powerFilter,
+                    onTabChange = viewModel::selectTab,
+                    onQueryChange = viewModel::setQuery,
+                    onPowerFilterChange = viewModel::setPowerFilter,
+                    onCreatureClick = viewModel::openCreature,
+                    onRuleClick = viewModel::openRule,
                     modifier = Modifier.padding(padding),
                 )
         }
@@ -222,27 +219,8 @@ private fun Library(
     onRuleClick: (RulePage) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val normalizedQuery = query.trim().lowercase()
-    val filteredCreatures =
-        remember(creatures, normalizedQuery, powerFilter) {
-            creatures.filter { creature ->
-                (powerFilter == null || creature.powerLevel == powerFilter) &&
-                    (
-                        normalizedQuery.isEmpty() ||
-                            creature.name.lowercase().contains(normalizedQuery) ||
-                            creature.archetype.lowercase().contains(normalizedQuery) ||
-                            creature.fields.values.any { it.lowercase().contains(normalizedQuery) }
-                    )
-            }
-        }
-    val filteredRules =
-        remember(rules, normalizedQuery) {
-            rules.filter { rule ->
-                normalizedQuery.isEmpty() ||
-                    rule.title.lowercase().contains(normalizedQuery) ||
-                    rule.blocks.any { it.text.lowercase().contains(normalizedQuery) }
-            }
-        }
+    val filteredCreatures = remember(creatures, query, powerFilter) { filterCreatures(creatures, query, powerFilter) }
+    val filteredRules = remember(rules, query) { filterRules(rules, query) }
 
     Column(
         modifier =
@@ -362,11 +340,7 @@ private fun PowerLevelMenu(
     onSelected: (Int?) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
-    val levels =
-        creatures
-            .filter { it.powerLevel > 0 }
-            .distinctBy { it.powerLevel }
-            .sortedBy { it.powerLevel }
+    val levels = remember(creatures) { powerLevelOptions(creatures) }
 
     Box {
         Button(
@@ -634,5 +608,42 @@ private fun EmptyState(message: String) {
         shape = RoundedCornerShape(12.dp),
     ) {
         Text(message, color = Storm, modifier = Modifier.padding(18.dp))
+    }
+}
+
+@Composable
+private fun LoadingState(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        CircularProgressIndicator(color = Flame)
+        Spacer(Modifier.height(12.dp))
+        Text("Archiv wird vorbereitet …", color = Storm)
+    }
+}
+
+@Composable
+private fun ErrorState(
+    message: String,
+    onRetry: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier =
+            modifier
+                .fillMaxSize()
+                .padding(18.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        EmptyState(message)
+        Button(
+            onClick = onRetry,
+            colors = ButtonDefaults.buttonColors(containerColor = Iron),
+        ) {
+            Text("Erneut versuchen")
+        }
     }
 }
