@@ -6,15 +6,19 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.repository.SearchHits
 import de.ruff.dimension.di.IoDispatcher
+import de.ruff.dimension.domain.DataOrigin
 import de.ruff.dimension.domain.LibraryData
 import de.ruff.dimension.domain.LibrarySource
+import de.ruff.dimension.domain.SearchLibrary
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -49,6 +53,7 @@ internal data class LibraryUiState(
     val powerFilter: Int? = null,
     val selectedCreature: Creature? = null,
     val selectedRule: RulePage? = null,
+    val searchHits: SearchHits? = null,
 ) {
     val creatures: List<Creature> get() = (load as? LoadState.Ready)?.data?.creatures.orEmpty()
     val rules: List<RulePage> get() = (load as? LoadState.Ready)?.data?.rules.orEmpty()
@@ -60,9 +65,11 @@ internal class LibraryViewModel
     constructor(
         private val savedState: SavedStateHandle,
         private val source: LibrarySource,
+        private val search: SearchLibrary,
         @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     ) : ViewModel() {
         private val load = MutableStateFlow<LoadState>(LoadState.Loading)
+        private val searchHits = MutableStateFlow<SearchHits?>(null)
 
         private data class Selection(
             val tab: LibraryTab,
@@ -84,7 +91,7 @@ internal class LibraryViewModel
             }
 
         val uiState: StateFlow<LibraryUiState> =
-            combine(load.asStateFlow(), selection) { loadState, sel ->
+            combine(load.asStateFlow(), selection, searchHits) { loadState, sel, hits ->
                 val data = (loadState as? LoadState.Ready)?.data
                 LibraryUiState(
                     load = loadState,
@@ -93,11 +100,31 @@ internal class LibraryViewModel
                     powerFilter = sel.powerFilter,
                     selectedCreature = sel.creatureId?.let { id -> data?.creatures?.firstOrNull { it.id == id } },
                     selectedRule = sel.ruleId?.let { id -> data?.rules?.firstOrNull { it.source == id } },
+                    searchHits = hits,
                 )
             }.stateIn(viewModelScope, SharingStarted.Eagerly, LibraryUiState())
 
         init {
             reload()
+            // Volltextsuche nur, wenn die Daten aus Room kommen; sonst bleibt es bei der Teilstring-Suche.
+            viewModelScope.launch {
+                combine(load, savedState.getStateFlow(KEY_QUERY, "")) { loadState, query -> loadState to query }
+                    .collectLatest { (loadState, query) ->
+                        val fromDatabase = (loadState as? LoadState.Ready)?.data?.origin == DataOrigin.DATABASE
+                        searchHits.value =
+                            if (fromDatabase) {
+                                try {
+                                    withContext(ioDispatcher) { search(query) }
+                                } catch (e: CancellationException) {
+                                    throw e
+                                } catch (e: Exception) {
+                                    null
+                                }
+                            } else {
+                                null
+                            }
+                    }
+            }
         }
 
         /** Lädt die Inhalte im Hintergrund; beim ersten Start inklusive Seed. */

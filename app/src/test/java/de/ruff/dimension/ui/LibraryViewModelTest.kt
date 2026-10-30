@@ -5,9 +5,11 @@ import androidx.lifecycle.SavedStateHandle
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RuleBlock
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.repository.SearchRepository
 import de.ruff.dimension.domain.DataOrigin
 import de.ruff.dimension.domain.LibraryData
 import de.ruff.dimension.domain.LibrarySource
+import de.ruff.dimension.domain.SearchLibrary
 import kotlinx.coroutines.Dispatchers
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -29,7 +31,7 @@ class LibraryViewModelTest {
     private fun viewModel(
         handle: SavedStateHandle = SavedStateHandle(),
         source: LibrarySource = LibrarySource { data },
-    ) = LibraryViewModel(handle, source, Dispatchers.Unconfined).also { idle() }
+    ) = LibraryViewModel(handle, source, SearchLibrary(SearchRepository { null }), Dispatchers.Unconfined).also { idle() }
 
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 

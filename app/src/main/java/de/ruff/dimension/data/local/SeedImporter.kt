@@ -1,7 +1,9 @@
 package de.ruff.dimension.data.local
 
 import android.content.res.AssetManager
-import androidx.room.withTransaction
+import androidx.room.execSQL
+import androidx.room.immediateTransaction
+import androidx.room.useWriterConnection
 import de.ruff.dimension.data.AssetLoader
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
@@ -31,8 +33,8 @@ internal class AssetSeedSource(
  *   Fremdschlüssel-Kaskaden ausgelöst werden. Es werden keine Wesen oder Seiten
  *   gelöscht; nur überzählige Blöcke einer gekürzten Seite werden entfernt.
  * - Nutzertabellen (künftig Favoriten/Notizen) werden hier nie angefasst.
- * - Ab der FTS5-Migration muss der Index nach dem Upsert hier (oder per
- *   Trigger) aktualisiert werden.
+ * - Der FTS5-Index ([SearchIndex]) wird von Triggern mitgeführt und am Ende
+ *   derselben Transaktion zusätzlich vollständig neu aufgebaut.
  */
 internal class SeedImporter(
     private val database: RuffDatabase,
@@ -51,20 +53,23 @@ internal class SeedImporter(
     suspend fun importAll() {
         val creatures = source.openCreatures().use { AssetLoader.parseCreatures(it) }
         val rules = source.openRules().use { AssetLoader.parseRules(it) }
-        database.withTransaction {
-            database.creatureDao().upsertAll(creatures.mapIndexed { index, it -> it.toEntity(index) })
-            val ruleDao = database.ruleDao()
-            ruleDao.upsertPages(rules.mapIndexed { index, it -> it.toEntity(index) })
-            rules.forEach { page ->
-                val pageId = page.stableId()
-                ruleDao.upsertBlocks(
-                    page.blocks.mapIndexed { index, block ->
-                        RuleBlockEntity(pageId = pageId, position = index, type = block.type, text = block.text)
-                    },
-                )
-                ruleDao.deleteBlocksFrom(pageId, page.blocks.size)
+        database.useWriterConnection { connection ->
+            connection.immediateTransaction {
+                database.creatureDao().upsertAll(creatures.mapIndexed { index, it -> it.toEntity(index) })
+                val ruleDao = database.ruleDao()
+                ruleDao.upsertPages(rules.mapIndexed { index, it -> it.toEntity(index) })
+                rules.forEach { page ->
+                    val pageId = page.stableId()
+                    ruleDao.upsertBlocks(
+                        page.blocks.mapIndexed { index, block ->
+                            RuleBlockEntity(pageId = pageId, position = index, type = block.type, text = block.text)
+                        },
+                    )
+                    ruleDao.deleteBlocksFrom(pageId, page.blocks.size)
+                }
+                database.seedMetaDao().upsert(SeedMetaEntity(SEED_KEY, SEED_VERSION, clock()))
+                SearchIndex.REBUILD.forEach { connection.execSQL(it) }
             }
-            database.seedMetaDao().upsert(SeedMetaEntity(SEED_KEY, SEED_VERSION, clock()))
         }
     }
 

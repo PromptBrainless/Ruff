@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import de.ruff.dimension.data.AssetLoader
 import de.ruff.dimension.data.local.RuffDatabase
+import de.ruff.dimension.data.local.RuffDatabase.Companion.configure
 import de.ruff.dimension.data.local.SeedImporter
 import de.ruff.dimension.data.local.SeedSource
 import de.ruff.dimension.data.repository.RoomCreatureRepository
@@ -56,6 +57,7 @@ class LibrarySourceTest {
         db =
             Room
                 .inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext<Context>(), RuffDatabase::class.java)
+                .configure()
                 .build()
     }
 

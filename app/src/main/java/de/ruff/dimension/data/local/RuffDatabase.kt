@@ -5,15 +5,23 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.sqlite.SQLiteConnection
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 
 /**
- * Lokale Datenbank der App, künftig Single Source of Truth.
+ * Lokale Datenbank der App, Single Source of Truth.
  *
- * Version 1. Es gibt bewusst keinen destruktiven Migrations-Fallback: jede
+ * Es gibt bewusst keinen destruktiven Migrations-Fallback: jede
  * Schemaänderung braucht eine geprüfte Migration, damit spätere Nutzerdaten
- * (Favoriten, Notizen) nie verloren gehen. Die geplante FTS5-Volltextsuche
- * kommt als eigene Migration (Version 2), die die virtuelle Tabelle per
- * `execSQL` anlegt und aus `creatures`, `rule_pages` und `rule_blocks` füllt.
+ * (Favoriten, Notizen) nie verloren gehen.
+ *
+ * - Version 1: Inhaltstabellen und Seed-Metadaten.
+ * - Version 2: FTS5-Volltextindex [SearchIndex] per [MIGRATION_1_2]. Die
+ *   Entities sind unverändert; die virtuelle Tabelle steht daher nicht im
+ *   exportierten Room-Schema, sondern in [SearchIndex].
+ *
+ * Als SQLite wird das mit der App gebündelte SQLite (`sqlite-bundled`)
+ * verwendet, weil das Android-System-SQLite FTS5 nicht garantiert.
  */
 @Database(
     entities = [
@@ -22,7 +30,7 @@ import androidx.room.TypeConverters
         RuleBlockEntity::class,
         SeedMetaEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -36,9 +44,24 @@ internal abstract class RuffDatabase : RoomDatabase() {
     companion object {
         const val NAME = "ruff.db"
 
+        /** Legt bei Neuinstallation den Suchindex an (bestehende Installationen: [MIGRATION_1_2]). */
+        val CALLBACK =
+            object : RoomDatabase.Callback() {
+                override fun onCreate(connection: SQLiteConnection) {
+                    SearchIndex.create(connection)
+                }
+            }
+
         fun create(context: Context): RuffDatabase =
             Room
                 .databaseBuilder(context.applicationContext, RuffDatabase::class.java, NAME)
+                .configure()
                 .build()
+
+        /** Gemeinsame Konfiguration für App und Tests: gebündeltes SQLite, Migrationen, Callback. */
+        fun RoomDatabase.Builder<RuffDatabase>.configure(): RoomDatabase.Builder<RuffDatabase> =
+            setDriver(BundledSQLiteDriver())
+                .addMigrations(MIGRATION_1_2)
+                .addCallback(CALLBACK)
     }
 }
