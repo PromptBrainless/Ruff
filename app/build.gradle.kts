@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("com.google.devtools.ksp")
     id("org.jlleitschuh.gradle.ktlint")
 }
 
@@ -35,6 +36,11 @@ android {
     }
 }
 
+ksp {
+    // Room-Schema wird versioniert unter app/schemas abgelegt (exportSchema = true).
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 ktlint {
     version.set("1.5.0")
 }
@@ -46,6 +52,9 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("com.google.code.gson:gson:2.11.0")
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 
