@@ -6,12 +6,18 @@ import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RuleBlock
 import de.ruff.dimension.data.RulePage
 import de.ruff.dimension.data.repository.ContentEditorRepository
+import de.ruff.dimension.data.repository.FavoritesRepository
 import de.ruff.dimension.data.repository.SearchRepository
 import de.ruff.dimension.domain.DataOrigin
 import de.ruff.dimension.domain.LibraryData
 import de.ruff.dimension.domain.LibrarySource
+import de.ruff.dimension.domain.ObserveFavorites
 import de.ruff.dimension.domain.SearchLibrary
+import de.ruff.dimension.domain.ToggleFavorite
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flow
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -42,14 +48,42 @@ class LibraryViewModelTest {
             override suspend fun restoreRule(source: String) = Unit
         }
 
+    /** Favoriten im Speicher; [failWrites] simuliert einen Schreibfehler der Datenbank. */
+    private class FakeFavorites : FavoritesRepository {
+        val ids = MutableStateFlow<Set<String>>(emptySet())
+        var failWrites = false
+        var writes = 0
+
+        override fun observeFavoriteIds(): Flow<Set<String>> = ids
+
+        override suspend fun isFavorite(creatureId: String) = creatureId in ids.value
+
+        override suspend fun setFavorite(
+            creatureId: String,
+            favorite: Boolean,
+        ): Boolean {
+            writes++
+            if (failWrites) throw IOException("Platte voll")
+            ids.value = if (favorite) ids.value + creatureId else ids.value - creatureId
+            return favorite
+        }
+
+        override suspend fun toggle(creatureId: String) = setFavorite(creatureId, creatureId !in ids.value)
+    }
+
+    private val favorites = FakeFavorites()
+
     private fun viewModel(
         handle: SavedStateHandle = SavedStateHandle(),
         source: LibrarySource = LibrarySource { data },
+        favoritesRepository: FavoritesRepository = favorites,
     ) = LibraryViewModel(
         handle,
         source,
         editor,
         SearchLibrary(SearchRepository { null }),
+        ObserveFavorites(favoritesRepository),
+        ToggleFavorite(favoritesRepository),
         Dispatchers.Unconfined,
     ).also { idle() }
 
@@ -148,6 +182,8 @@ class LibraryViewModelTest {
                         null
                     },
                 ),
+                ObserveFavorites(favorites),
+                ToggleFavorite(favorites),
                 Dispatchers.Unconfined,
             )
         idle()
@@ -176,5 +212,96 @@ class LibraryViewModelTest {
         idle()
         assertEquals(LoadState.Ready(data), vm.uiState.value.load)
         assertEquals(2, calls)
+    }
+
+    @Test
+    fun toggleFavoriteFollowsRepositoryState() {
+        val vm = viewModel()
+        assertTrue(vm.uiState.value.favoritesAvailable)
+        assertFalse(vm.uiState.value.isFavorite("A-1"))
+
+        vm.toggleFavorite("A-1")
+        idle()
+        assertEquals(setOf("A-1"), vm.uiState.value.favoriteIds)
+
+        vm.toggleFavorite("A-1")
+        idle()
+        assertEquals(emptySet<String>(), vm.uiState.value.favoriteIds)
+    }
+
+    @Test
+    fun favoritesOnlyIsSavedAndResetOnTabChange() {
+        val handle = SavedStateHandle()
+        val vm = viewModel(handle)
+        vm.setFavoritesOnly(true)
+        idle()
+        assertTrue(vm.uiState.value.favoritesOnly)
+        assertEquals(true, handle.get<Boolean>(LibraryViewModel.KEY_FAVORITES_ONLY))
+
+        // Neu erzeugtes ViewModel (Prozess-Tod) übernimmt den Filter.
+        assertTrue(viewModel(handle).uiState.value.favoritesOnly)
+
+        vm.selectTab(LibraryTab.RULES)
+        idle()
+        assertFalse(vm.uiState.value.favoritesOnly)
+    }
+
+    @Test
+    fun favoritesFilterKeepsOnlyFavoritesAndIgnoresOrphans() {
+        favorites.ids.value = setOf("A-2", "gibt-es-nicht")
+        val vm = viewModel()
+        vm.setFavoritesOnly(true)
+        idle()
+        val state = vm.uiState.value
+        assertEquals(
+            listOf(drache),
+            de.ruff.dimension.domain
+                .searchCreatures(state.creatures, "", null, null, state.favoritesFilter),
+        )
+    }
+
+    @Test
+    fun writeFailureShowsErrorAndKeepsState() {
+        favorites.failWrites = true
+        val vm = viewModel()
+        vm.toggleFavorite("A-1")
+        idle()
+        assertEquals(emptySet<String>(), vm.uiState.value.favoriteIds)
+        assertTrue(
+            vm.uiState.value.favoriteError!!
+                .contains("IOException"),
+        )
+
+        favorites.failWrites = false
+        vm.toggleFavorite("A-1")
+        idle()
+        assertNull(vm.uiState.value.favoriteError)
+        assertEquals(setOf("A-1"), vm.uiState.value.favoriteIds)
+    }
+
+    @Test
+    fun readFailureShowsError() {
+        val broken =
+            object : FavoritesRepository by favorites {
+                override fun observeFavoriteIds(): Flow<Set<String>> = flow { throw IOException("kaputt") }
+            }
+        val vm = viewModel(favoritesRepository = broken)
+        assertTrue(
+            vm.uiState.value.favoriteError!!
+                .contains("IOException"),
+        )
+    }
+
+    @Test
+    fun noFavoritesWithoutDatabase() {
+        val assetsOnly = data.copy(origin = DataOrigin.ASSETS_FALLBACK)
+        val vm = viewModel(source = LibrarySource { assetsOnly })
+        vm.setFavoritesOnly(true)
+        vm.toggleFavorite("A-1")
+        idle()
+        val state = vm.uiState.value
+        assertFalse(state.favoritesAvailable)
+        assertFalse(state.favoritesFilter.only)
+        assertEquals(0, favorites.writes)
     }
 }
