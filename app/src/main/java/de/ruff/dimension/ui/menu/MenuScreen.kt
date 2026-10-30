@@ -37,6 +37,7 @@ import de.ruff.dimension.ui.LoadState
 import de.ruff.dimension.ui.common.BladeButton
 import de.ruff.dimension.ui.common.ChainDivider
 import de.ruff.dimension.ui.common.DetailFrame
+import de.ruff.dimension.ui.common.GlutPartikel
 import de.ruff.dimension.ui.common.TextOnArtShadow
 import de.ruff.dimension.ui.theme.Glut
 import de.ruff.dimension.ui.theme.Pergament
@@ -66,6 +67,8 @@ internal fun MenuScreen(
                 .fillMaxSize()
                 .background(Brush.verticalGradient(listOf(Color.Black.copy(alpha = 0.55f), Color.Black.copy(alpha = 0.85f)))),
         )
+        // Dezente Funken über dem Thronsaal, unter Titel und Knöpfen (im reduzierten Modus aus).
+        GlutPartikel(Modifier.fillMaxSize(), count = 18)
         BoxWithConstraints(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
             Column(
                 modifier =

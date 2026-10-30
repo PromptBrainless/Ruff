@@ -36,7 +36,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -48,6 +50,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -60,8 +63,10 @@ import de.ruff.dimension.ui.LibraryUiState
 import de.ruff.dimension.ui.common.AvatarFrame
 import de.ruff.dimension.ui.common.ChainDivider
 import de.ruff.dimension.ui.common.EmptyState
+import de.ruff.dimension.ui.common.GlutPartikel
 import de.ruff.dimension.ui.common.PortraitFrame
 import de.ruff.dimension.ui.common.RuffDurations
+import de.ruff.dimension.ui.common.RuffHaptik
 import de.ruff.dimension.ui.common.RuffTopBar
 import de.ruff.dimension.ui.common.SearchField
 import de.ruff.dimension.ui.common.SectionHeader
@@ -70,6 +75,8 @@ import de.ruff.dimension.ui.common.creaturePortraitId
 import de.ruff.dimension.ui.common.currentMotion
 import de.ruff.dimension.ui.common.drawableId
 import de.ruff.dimension.ui.common.emberButtonColors
+import de.ruff.dimension.ui.common.rememberRuffHaptik
+import de.ruff.dimension.ui.common.ruffParallax
 import de.ruff.dimension.ui.common.ruffSharedBounds
 import de.ruff.dimension.ui.editor.CreatureEditor
 import de.ruff.dimension.ui.theme.Glut
@@ -135,15 +142,20 @@ private fun PowerLevelMenu(
 ) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     val levels = remember(creatures) { powerLevelOptions(creatures) }
+    val haptik = rememberRuffHaptik()
 
     Box {
-        OutlinedButton(onClick = { expanded = true }) {
+        OutlinedButton(onClick = {
+            haptik(RuffHaptik.AUSWAHL)
+            expanded = true
+        }) {
             Text(selected?.let { "Machtstufe $it" } ?: "Alle Machtstufen")
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             DropdownMenuItem(
                 text = { Text("Alle Machtstufen") },
                 onClick = {
+                    haptik(RuffHaptik.AUSWAHL)
                     onSelected(null)
                     expanded = false
                 },
@@ -152,6 +164,7 @@ private fun PowerLevelMenu(
                 DropdownMenuItem(
                     text = { Text(creature.powerLabel.substringBefore("(").trim()) },
                     onClick = {
+                        haptik(RuffHaptik.AUSWAHL)
                         onSelected(creature.powerLevel)
                         expanded = false
                     },
@@ -292,11 +305,16 @@ private fun CreatureDetails(
     onEdit: () -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
+    val motion = currentMotion
+    val scroll = rememberScrollState()
+    var headerHeightPx by remember { mutableIntStateOf(0) }
+    // Wechselt nur einmal an der Schwelle → keine Recomposition pro Scrollpixel.
+    val headerHidden by remember { derivedStateOf { headerHeightPx > 0 && scroll.value > headerHeightPx } }
     Column(
         modifier =
             Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(scroll)
                 .padding(horizontal = 16.dp)
                 .padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding())
                 .testTag("creature_detail"),
@@ -325,12 +343,22 @@ private fun CreatureDetails(
             }
         }
         val portraitId = creaturePortraitId(creature)
-        PortraitFrame(
-            imageRes = portraitId,
-            contentDescription = if (portraitId != null) "Bild: ${creature.name}" else "Platzhalter: noch kein Bild",
-            maxWidth = 260.dp,
-            modifier = Modifier.ruffSharedBounds(creatureImageKey(creature.id)),
-        )
+        // Detailkopf: Porträt mit Glutfunken; läuft beim Scrollen per Parallax nach.
+        Box(
+            modifier =
+                Modifier
+                    .onSizeChanged { headerHeightPx = it.height }
+                    .ruffParallax(scroll, motion.reduced) { headerHeightPx * PARALLAX_MAX_ANTEIL },
+            contentAlignment = Alignment.Center,
+        ) {
+            GlutPartikel(Modifier.matchParentSize(), count = 10, paused = headerHidden)
+            PortraitFrame(
+                imageRes = portraitId,
+                contentDescription = if (portraitId != null) "Bild: ${creature.name}" else "Platzhalter: noch kein Bild",
+                maxWidth = 260.dp,
+                modifier = Modifier.ruffSharedBounds(creatureImageKey(creature.id)),
+            )
+        }
         Text(
             creature.name,
             style = MaterialTheme.typography.headlineSmall,
@@ -375,6 +403,9 @@ private fun CreatureDetails(
         Spacer(Modifier.height(24.dp))
     }
 }
+
+/** Höchstens ein Drittel der Kopfhöhe Parallax-Weg. */
+private const val PARALLAX_MAX_ANTEIL = 0.33f
 
 /** Leichtes Einsinken beim Drücken; klein genug, dass Nachbarkarten nicht überdeckt werden. */
 private const val PRESSED_SCALE = 0.975f
