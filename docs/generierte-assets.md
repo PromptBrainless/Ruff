@@ -13,7 +13,7 @@ Eisen-Glühen-Stil, Palette:
 - ruff_icon_streitaxt.jpg – Streitaxt, cracked iron
 - ruff_icon_schild.jpg – Rundschild mit Rune
 - ruff_icon_armbrust.jpg – Armbrust
-- ruff_icon_trank.jpg – Heiltrank / Blutphiole
+- ruff_icon_trank.jpg – Heiltrank / Blutphiole (defekt, siehe unten)
 
 ## Porträts / Tokens
 
@@ -28,3 +28,8 @@ Hinweis (29.10.2026): Datei aus `app/src/main/res/drawable-nodpi/` hierher
 verschoben, weil Android im Ressourcenordner nur Bilddateien akzeptiert und der
 Build sonst abbricht. Im Repository liegt davon derzeit nur
 `ruff_icon_trank.jpg`.
+
+Hinweis (30.10.2026, Vorschlag): `ruff_icon_trank.jpg` ist defekt (200 Bytes
+abgeschnittenes Base64 statt JPG) und liegt jetzt in
+[`archiv/`](../archiv/ruff_icon_trank.HINWEIS.md). Ersetzen, sobald das
+Original auftaucht.

@@ -10,3 +10,8 @@ Hier liegen ausdrücklich abgelöste Projektdateien mit einer kurzen Begründung
   Notion-Export (131 Einträge). Am 29.10.2026 in
   `app/src/main/assets/creatures.json` durch die spielbaren Wesen aus Katalog v2
   ersetzt (Vorschlag); hier unverändert erhalten.
+- `ruff_icon_trank.jpg`: defekte Icon-Datei (200 Bytes abgeschnittenes
+  Base64 statt JPG) aus Commit `caa55e1`. Am 30.10.2026 aus
+  `app/src/main/res/drawable-nodpi/` hierher verschoben; Details in
+  `ruff_icon_trank.HINWEIS.md`. Ersetzen, sobald das Original auftaucht
+  (Vorschlag).
