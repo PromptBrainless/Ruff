@@ -2,6 +2,7 @@ package de.ruff.dimension.domain
 
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.repository.SearchHits
 
 /*
  * Such- und Filterlogik der Bibliothek, unverändert aus MainActivity
@@ -47,3 +48,37 @@ internal fun powerLevelOptions(creatures: List<Creature>): List<Creature> =
         .filter { it.powerLevel > 0 }
         .distinctBy { it.powerLevel }
         .sortedBy { it.powerLevel }
+
+/**
+ * Suche mit Volltext-Ranking: zuerst die FTS-Treffer nach Relevanz, danach alle
+ * weiteren Treffer der bisherigen Teilstring-Suche in der gewohnten Reihenfolge.
+ * Es wird also nie weniger gefunden als bisher. Ohne passende [hits] (leere
+ * Suche, FTS nicht verfügbar oder Ergebnis noch nicht da) gilt [filterCreatures].
+ */
+internal fun searchCreatures(
+    creatures: List<Creature>,
+    query: String,
+    powerFilter: Int?,
+    hits: SearchHits?,
+): List<Creature> {
+    val substring = filterCreatures(creatures, query, powerFilter)
+    if (hits == null || hits.query != query || normalizeQuery(query).isEmpty()) return substring
+    val byId = creatures.associateBy { it.id }
+    val ranked =
+        hits.creatureIds
+            .mapNotNull { byId[it] }
+            .filter { powerFilter == null || it.powerLevel == powerFilter }
+    return (ranked + substring).distinctBy { it.id }
+}
+
+/** Wie [searchCreatures] für Regelseiten (ID = `source`). */
+internal fun searchRules(
+    rules: List<RulePage>,
+    query: String,
+    hits: SearchHits?,
+): List<RulePage> {
+    val substring = filterRules(rules, query)
+    if (hits == null || hits.query != query || normalizeQuery(query).isEmpty()) return substring
+    val bySource = rules.associateBy { it.source }
+    return (hits.ruleIds.mapNotNull { bySource[it] } + substring).distinctBy { it.source }
+}

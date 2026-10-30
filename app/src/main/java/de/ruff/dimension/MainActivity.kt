@@ -58,9 +58,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
-import de.ruff.dimension.domain.filterCreatures
-import de.ruff.dimension.domain.filterRules
+import de.ruff.dimension.data.repository.SearchHits
 import de.ruff.dimension.domain.powerLevelOptions
+import de.ruff.dimension.domain.searchCreatures
+import de.ruff.dimension.domain.searchRules
 import de.ruff.dimension.ui.LibraryTab
 import de.ruff.dimension.ui.LibraryUiState
 import de.ruff.dimension.ui.LibraryViewModel
@@ -144,6 +145,7 @@ private fun RuffApp(
                     tab = state.tab,
                     query = state.query,
                     powerFilter = state.powerFilter,
+                    searchHits = state.searchHits,
                     onTabChange = viewModel::selectTab,
                     onQueryChange = viewModel::setQuery,
                     onPowerFilterChange = viewModel::setPowerFilter,
@@ -212,6 +214,7 @@ private fun Library(
     tab: LibraryTab,
     query: String,
     powerFilter: Int?,
+    searchHits: SearchHits?,
     onTabChange: (LibraryTab) -> Unit,
     onQueryChange: (String) -> Unit,
     onPowerFilterChange: (Int?) -> Unit,
@@ -219,8 +222,9 @@ private fun Library(
     onRuleClick: (RulePage) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val filteredCreatures = remember(creatures, query, powerFilter) { filterCreatures(creatures, query, powerFilter) }
-    val filteredRules = remember(rules, query) { filterRules(rules, query) }
+    val filteredCreatures =
+        remember(creatures, query, powerFilter, searchHits) { searchCreatures(creatures, query, powerFilter, searchHits) }
+    val filteredRules = remember(rules, query, searchHits) { searchRules(rules, query, searchHits) }
 
     Column(
         modifier =

@@ -7,6 +7,7 @@ import com.google.gson.JsonParser
 import de.ruff.dimension.data.AssetLoader
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.local.RuffDatabase.Companion.configure
 import de.ruff.dimension.data.repository.RoomCreatureRepository
 import de.ruff.dimension.data.repository.RoomRuleRepository
 import kotlinx.coroutines.flow.first
@@ -51,6 +52,7 @@ class SeedImporterTest {
         db =
             Room
                 .inMemoryDatabaseBuilder(context, RuffDatabase::class.java)
+                .configure()
                 .allowMainThreadQueries()
                 .build()
         importer = SeedImporter(db, fileSource, clock = { now })

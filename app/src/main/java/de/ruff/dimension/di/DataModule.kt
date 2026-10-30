@@ -15,8 +15,11 @@ import de.ruff.dimension.data.local.SeedSource
 import de.ruff.dimension.data.repository.CreatureRepository
 import de.ruff.dimension.data.repository.RoomCreatureRepository
 import de.ruff.dimension.data.repository.RoomRuleRepository
+import de.ruff.dimension.data.repository.RoomSearchRepository
 import de.ruff.dimension.data.repository.RuleRepository
+import de.ruff.dimension.data.repository.SearchRepository
 import de.ruff.dimension.domain.LibrarySource
+import de.ruff.dimension.domain.SearchLibrary
 import de.ruff.dimension.domain.SeededLibrarySource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -80,6 +83,13 @@ internal object DataModule {
             rules = rules,
             fallback = fallback,
         )
+
+    @Provides
+    @Singleton
+    fun provideSearchRepository(database: RuffDatabase): SearchRepository = RoomSearchRepository(database)
+
+    @Provides
+    fun provideSearchLibrary(repository: SearchRepository): SearchLibrary = SearchLibrary(repository)
 
     @Provides
     @IoDispatcher
