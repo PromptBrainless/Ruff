@@ -52,8 +52,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import de.ruff.dimension.data.AssetLoader
+import de.ruff.dimension.data.Creature
+import de.ruff.dimension.data.RulePage
 
 private val Soot = Color(0xFF16171A)
 private val Iron = Color(0xFF25282D)
@@ -72,30 +73,6 @@ private val RuffColors =
         onSurface = Parchment,
     )
 
-private data class Creature(
-    val name: String = "",
-    val powerLevel: Int = 0,
-    val powerLabel: String = "",
-    val description: String = "",
-    val archetype: String = "",
-    val fields: Map<String, String> = emptyMap(),
-    val portrait: String = "",
-    val icon: String = "",
-    val cover: String = "",
-)
-
-private data class RulePage(
-    val title: String = "",
-    val source: String = "",
-    val fields: Map<String, String> = emptyMap(),
-    val blocks: List<RuleBlock> = emptyList(),
-)
-
-private data class RuleBlock(
-    val type: String = "",
-    val text: String = "",
-)
-
 private enum class LibraryTab(
     val label: String,
 ) {
@@ -106,16 +83,13 @@ private enum class LibraryTab(
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val gson = Gson()
-        val creaturesType = object : TypeToken<List<Creature>>() {}.type
-        val rulesType = object : TypeToken<List<RulePage>>() {}.type
         val creatures =
-            assets.open("creatures.json").bufferedReader().use {
-                gson.fromJson<List<Creature>>(it, creaturesType)
+            assets.open(AssetLoader.CREATURES_FILE).bufferedReader().use {
+                AssetLoader.parseCreatures(it)
             }
         val rules =
-            assets.open("rules.json").bufferedReader().use {
-                gson.fromJson<List<RulePage>>(it, rulesType)
+            assets.open(AssetLoader.RULES_FILE).bufferedReader().use {
+                AssetLoader.parseRules(it)
             }
 
         window.statusBarColor = android.graphics.Color.rgb(22, 23, 26)
