@@ -39,6 +39,10 @@ android {
     testOptions {
         // Robolectric nutzt Manifest und Ressourcen der App (Start-Smoke-Test).
         unitTests.isIncludeAndroidResources = true
+        // Jede Testklasse in eigener JVM: Compose-UI-Tests (NavigationUiTest) werden sonst
+        // nach MainActivitySmokeTest + LibraryViewModelTest im selben Prozess nie „idle“
+        // (AppNotIdleException); einzeln laufen sie grün.
+        unitTests.all { it.forkEvery = 1 }
     }
 }
 
@@ -73,6 +77,11 @@ dependencies {
     ksp("com.google.dagger:hilt-compiler:2.55")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
+    // Navigation mit String-Routen (kein Serialization-Plugin nötig) und Liste/Detail für Handy und Tablet.
+    implementation("androidx.navigation:navigation-compose:2.8.5")
+    implementation("androidx.compose.material3.adaptive:adaptive:1.0.0")
+    implementation("androidx.compose.material3.adaptive:adaptive-layout:1.0.0")
+    implementation("androidx.compose.material3.adaptive:adaptive-navigation:1.0.0")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 
@@ -80,4 +89,7 @@ dependencies {
     testImplementation("org.robolectric:robolectric:4.14.1")
     testImplementation("androidx.test:core:1.6.1")
     testImplementation("androidx.sqlite:sqlite-bundled-jvm:2.5.2")
+    // Nur Tests: Compose-UI-Tests unter Robolectric (Version über die Compose-BOM).
+    testImplementation(platform("androidx.compose:compose-bom:2024.12.01"))
+    testImplementation("androidx.compose.ui:ui-test-junit4")
 }
