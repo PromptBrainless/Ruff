@@ -22,6 +22,8 @@ import androidx.sqlite.execSQL
  *   exportierten Room-Schema, sondern in [SearchIndex].
  * - Version 3: Nutzertabelle `favorites` ([FavoriteEntity]) per [MIGRATION_2_3],
  *   rein additiv. Der Seed fasst sie nie an.
+ * - Version 4: Kreaturen-Akten `creature_profiles` ([CreatureProfileEntity]) per
+ *   [MIGRATION_3_4], rein additiv, samt Such-Triggern ([ProfileSearch]).
  *
  * Als SQLite wird das mit der App gebündelte SQLite (`sqlite-bundled`)
  * verwendet, weil das Android-System-SQLite FTS5 nicht garantiert.
@@ -33,8 +35,9 @@ import androidx.sqlite.execSQL
         RuleBlockEntity::class,
         SeedMetaEntity::class,
         FavoriteEntity::class,
+        CreatureProfileEntity::class,
     ],
-    version = 3,
+    version = 4,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -47,6 +50,8 @@ internal abstract class RuffDatabase : RoomDatabase() {
 
     abstract fun favoriteDao(): FavoriteDao
 
+    abstract fun creatureProfileDao(): CreatureProfileDao
+
     companion object {
         const val NAME = "ruff.db"
 
@@ -55,6 +60,7 @@ internal abstract class RuffDatabase : RoomDatabase() {
             object : RoomDatabase.Callback() {
                 override fun onCreate(connection: SQLiteConnection) {
                     SearchIndex.create(connection)
+                    ProfileSearch.create(connection)
                     connection.execSQL(RoomContentEditStore.CREATE_TABLE)
                 }
 
@@ -72,7 +78,7 @@ internal abstract class RuffDatabase : RoomDatabase() {
         /** Gemeinsame Konfiguration für App und Tests: gebündeltes SQLite, Migrationen, Callback. */
         fun RoomDatabase.Builder<RuffDatabase>.configure(): RoomDatabase.Builder<RuffDatabase> =
             setDriver(BundledSQLiteDriver())
-                .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                 .addCallback(CALLBACK)
     }
 }
