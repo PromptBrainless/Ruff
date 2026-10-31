@@ -5,8 +5,12 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.AnimatedPane
@@ -20,11 +24,14 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import de.ruff.dimension.ui.LibraryTab
@@ -32,7 +39,9 @@ import de.ruff.dimension.ui.LibraryUiState
 import de.ruff.dimension.ui.LibraryViewModel
 import de.ruff.dimension.ui.LoadState
 import de.ruff.dimension.ui.about.LicensesScreen
+import de.ruff.dimension.ui.admin.AdminScreen
 import de.ruff.dimension.ui.common.LoadGate
+import de.ruff.dimension.ui.common.LocalMediaImage
 import de.ruff.dimension.ui.common.LocalRuffMotion
 import de.ruff.dimension.ui.common.LocalSharedTransitionScope
 import de.ruff.dimension.ui.common.LocalSharedVisibilityScope
@@ -56,6 +65,7 @@ internal object Routes {
     const val RULE = "regeln/{source}"
     const val SEARCH = "suche"
     const val LICENSES = "lizenzen"
+    const val ADMIN = "admin"
 
     fun creature(id: String) = "wesen/${Uri.encode(id)}"
 
@@ -78,9 +88,37 @@ internal fun RuffNavHost(
     val context = LocalContext.current
     val motion = remember(context) { RuffMotion(readAnimatorDurationScale(context)) }
     CompositionLocalProvider(LocalRuffMotion provides motion) {
-        SharedTransitionLayout(Modifier.fillMaxSize()) {
-            CompositionLocalProvider(LocalSharedTransitionScope provides this) {
-                RuffNavGraph(state, viewModel, navController, motion)
+        Box(Modifier.fillMaxSize()) {
+            if (state.appearance.backgroundPath.isNotBlank()) {
+                LocalMediaImage(state.appearance.backgroundPath, Modifier.fillMaxSize())
+                Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background.copy(alpha = 0.72f)))
+            }
+            val borderColor =
+                runCatching { Color(android.graphics.Color.parseColor(state.appearance.frameColor)) }
+                    .getOrDefault(MaterialTheme.colorScheme.outline)
+            val borderWidth =
+                state.appearance.frameWidthDp
+                    .coerceIn(0f, 12f)
+                    .dp
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .padding(borderWidth / 2)
+                    .border(
+                        borderWidth,
+                        borderColor,
+                        RoundedCornerShape(
+                            state.appearance.cornerRadiusDp
+                                .coerceIn(0f, 48f)
+                                .dp,
+                        ),
+                    ),
+            ) {
+                SharedTransitionLayout(Modifier.fillMaxSize()) {
+                    CompositionLocalProvider(LocalSharedTransitionScope provides this) {
+                        RuffNavGraph(state, viewModel, navController, motion)
+                    }
+                }
             }
         }
     }
@@ -93,10 +131,20 @@ private fun RuffNavGraph(
     navController: NavHostController,
     motion: RuffMotion,
 ) {
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    BackHandler(state.adminUnlocked && backStackEntry?.destination?.route == Routes.ADMIN) {
+        viewModel.lockAdmin()
+        navController.popBackStack(Routes.MENU, false)
+    }
+    LaunchedEffect(state.adminUnlocked) {
+        if (state.adminUnlocked && navController.currentDestination?.route == Routes.MENU) {
+            navController.navigate(Routes.ADMIN) { launchSingleTop = true }
+        }
+    }
     NavHost(
         navController = navController,
         startDestination = Routes.MENU,
-        modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
+        modifier = Modifier.fillMaxSize(),
         enterTransition = { motion.screenEnter() },
         exitTransition = { motion.screenExit() },
         popEnterTransition = { motion.screenPopEnter() },
@@ -116,6 +164,12 @@ private fun RuffNavGraph(
                 onSearch = { navController.navigate(Routes.SEARCH) { launchSingleTop = true } },
                 onLicenses = { navController.navigate(Routes.LICENSES) { launchSingleTop = true } },
                 onRetry = viewModel::reload,
+                adminPinConfigured = state.adminPinConfigured,
+                adminUnlocked = state.adminUnlocked,
+                adminError = state.adminError,
+                onSubmitAdminPin = viewModel::submitAdminPin,
+                onAdmin = { navController.navigate(Routes.ADMIN) { launchSingleTop = true } },
+                backgroundPath = state.appearance.backgroundPath,
             )
         }
         composable(Routes.CREATURES) { CreatureSection(state, viewModel) }
@@ -139,6 +193,29 @@ private fun RuffNavGraph(
             )
         }
         composable(Routes.LICENSES) { LicensesScreen() }
+        composable(Routes.ADMIN) {
+            if (state.adminUnlocked) {
+                AdminScreen(
+                    appearance = state.appearance,
+                    archivedCreatures = state.archivedCreatures,
+                    archivedRules = state.archivedRules,
+                    error = state.editorError,
+                    onSaveAppearance = viewModel::saveAppearance,
+                    onBackgroundSelected = viewModel::setAppearanceBackground,
+                    onFontSelected = viewModel::setAppearanceFont,
+                    onClearBackground = { viewModel.saveAppearance(state.appearance.copy(backgroundPath = "")) },
+                    onClearFont = { viewModel.saveAppearance(state.appearance.copy(fontPath = "")) },
+                    onRestoreCreature = viewModel::unarchiveCreature,
+                    onRestoreRule = viewModel::unarchiveRule,
+                    onLock = {
+                        viewModel.lockAdmin()
+                        navController.popBackStack(Routes.MENU, false)
+                    },
+                )
+            } else {
+                androidx.compose.material3.Text("Admin-Zugang erforderlich.")
+            }
+        }
     }
 }
 
@@ -200,6 +277,8 @@ private fun CreatureSection(
                                 onSave = viewModel::saveCreature,
                                 onRestore = viewModel::restoreCreature,
                                 onToggleFavorite = viewModel::toggleFavorite,
+                                onArchive = viewModel::archiveCreature,
+                                onImportMedia = viewModel::addCreatureMedia,
                             )
                         }
                     }
@@ -249,6 +328,8 @@ private fun RuleSection(
                             onCancelEdit = { viewModel.setEditing(false) },
                             onSave = viewModel::saveRule,
                             onRestore = viewModel::restoreRule,
+                            onArchive = viewModel::archiveRule,
+                            onImportMedia = viewModel::addRuleMedia,
                         )
                     }
                 },
@@ -280,6 +361,8 @@ private fun CreatureStandalone(
                 onSave = viewModel::saveCreature,
                 onRestore = viewModel::restoreCreature,
                 onToggleFavorite = viewModel::toggleFavorite,
+                onArchive = viewModel::archiveCreature,
+                onImportMedia = viewModel::addCreatureMedia,
             )
         }
     }
@@ -307,6 +390,8 @@ private fun RuleStandalone(
                 onCancelEdit = { viewModel.setEditing(false) },
                 onSave = viewModel::saveRule,
                 onRestore = viewModel::restoreRule,
+                onArchive = viewModel::archiveRule,
+                onImportMedia = viewModel::addRuleMedia,
             )
         }
     }

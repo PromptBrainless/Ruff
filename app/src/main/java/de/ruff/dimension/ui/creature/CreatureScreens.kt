@@ -1,5 +1,6 @@
 package de.ruff.dimension.ui.creature
 
+import android.net.Uri
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
@@ -28,6 +29,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -38,6 +40,7 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -60,6 +63,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.ruff.dimension.data.Creature
+import de.ruff.dimension.data.repository.MediaKind
 import de.ruff.dimension.domain.powerLevelOptions
 import de.ruff.dimension.domain.searchCreatures
 import de.ruff.dimension.ui.LibraryUiState
@@ -69,10 +73,12 @@ import de.ruff.dimension.ui.akte.CreatureProfileEditor
 import de.ruff.dimension.ui.akte.LocalCreatureProfiles
 import de.ruff.dimension.ui.common.AvatarFrame
 import de.ruff.dimension.ui.common.ChainDivider
+import de.ruff.dimension.ui.common.ContentPresentationFrame
 import de.ruff.dimension.ui.common.EmptyState
 import de.ruff.dimension.ui.common.FavoriteHeart
 import de.ruff.dimension.ui.common.GlutPartikel
 import de.ruff.dimension.ui.common.HeartGlyph
+import de.ruff.dimension.ui.common.MediaGallery
 import de.ruff.dimension.ui.common.PortraitFrame
 import de.ruff.dimension.ui.common.RuffDurations
 import de.ruff.dimension.ui.common.RuffHaptik
@@ -358,6 +364,8 @@ internal fun CreatureDetailPane(
     onSave: (Creature) -> Unit,
     onRestore: (String) -> Unit,
     onToggleFavorite: (String) -> Unit,
+    onArchive: (Creature) -> Unit = {},
+    onImportMedia: (Creature, List<Uri>, MediaKind) -> Unit = { _, _, _ -> },
     modifier: Modifier = Modifier,
 ) {
     val akte = LocalCreatureProfiles.current
@@ -384,6 +392,7 @@ internal fun CreatureDetailPane(
                     onCancel = onCancelEdit,
                     onSave = onSave,
                     onRestore = { onRestore(creature.id) },
+                    onImportMedia = { uris, kind -> onImportMedia(creature, uris, kind) },
                 )
             else ->
                 CreatureDetails(
@@ -394,6 +403,7 @@ internal fun CreatureDetailPane(
                     onToggleFavorite = { onToggleFavorite(creature.id) },
                     onEdit = onEdit,
                     akte = akte,
+                    onArchive = { onArchive(creature) },
                 )
         }
     }
@@ -408,6 +418,7 @@ private fun CreatureDetails(
     onToggleFavorite: () -> Unit,
     onEdit: () -> Unit,
     akte: AkteBinding? = null,
+    onArchive: () -> Unit = {},
 ) {
     val colors = MaterialTheme.colorScheme
     val motion = currentMotion
@@ -415,121 +426,140 @@ private fun CreatureDetails(
     var headerHeightPx by remember { mutableIntStateOf(0) }
     // Wechselt nur einmal an der Schwelle → keine Recomposition pro Scrollpixel.
     val headerHidden by remember { derivedStateOf { headerHeightPx > 0 && scroll.value > headerHeightPx } }
-    Column(
-        modifier =
-            Modifier
-                .fillMaxSize()
-                .verticalScroll(scroll)
-                .padding(horizontal = 16.dp)
-                .padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding())
-                .testTag("creature_detail"),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        val coverId = drawableId(creature.cover)
-        if (coverId != 0) {
+    var showArchiveConfirmation by rememberSaveable(creature.id) { mutableStateOf(false) }
+    ContentPresentationFrame(creature.presentation, Modifier.fillMaxSize()) {
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scroll)
+                    .padding(horizontal = 16.dp)
+                    .padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding())
+                    .testTag("creature_detail"),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            val coverId = drawableId(creature.cover)
+            if (coverId != 0) {
+                Box(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(180.dp)
+                            .clip(RoundedCornerShape(14.dp)),
+                ) {
+                    Image(
+                        painter = painterResource(coverId),
+                        contentDescription = "Szene: ${creature.name}",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.matchParentSize(),
+                    )
+                    Box(
+                        Modifier
+                            .matchParentSize()
+                            .background(Brush.verticalGradient(listOf(Color.Transparent, colors.background))),
+                    )
+                }
+            }
+            val portraitId = creaturePortraitId(creature)
+            // Detailkopf: Porträt mit Glutfunken; läuft beim Scrollen per Parallax nach.
             Box(
                 modifier =
                     Modifier
-                        .fillMaxWidth()
-                        .height(180.dp)
-                        .clip(RoundedCornerShape(14.dp)),
+                        .onSizeChanged { headerHeightPx = it.height }
+                        .ruffParallax(scroll, motion.reduced) { headerHeightPx * PARALLAX_MAX_ANTEIL },
+                contentAlignment = Alignment.Center,
             ) {
-                Image(
-                    painter = painterResource(coverId),
-                    contentDescription = "Szene: ${creature.name}",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.matchParentSize(),
-                )
-                Box(
-                    Modifier
-                        .matchParentSize()
-                        .background(Brush.verticalGradient(listOf(Color.Transparent, colors.background))),
+                GlutPartikel(Modifier.matchParentSize(), count = 10, paused = headerHidden)
+                PortraitFrame(
+                    imageRes = portraitId,
+                    contentDescription = if (portraitId != null) "Bild: ${creature.name}" else "Platzhalter: noch kein Bild",
+                    maxWidth = 260.dp,
+                    modifier = Modifier.ruffSharedBounds(creatureImageKey(creature.id)),
                 )
             }
-        }
-        val portraitId = creaturePortraitId(creature)
-        // Detailkopf: Porträt mit Glutfunken; läuft beim Scrollen per Parallax nach.
-        Box(
-            modifier =
-                Modifier
-                    .onSizeChanged { headerHeightPx = it.height }
-                    .ruffParallax(scroll, motion.reduced) { headerHeightPx * PARALLAX_MAX_ANTEIL },
-            contentAlignment = Alignment.Center,
-        ) {
-            GlutPartikel(Modifier.matchParentSize(), count = 10, paused = headerHidden)
-            PortraitFrame(
-                imageRes = portraitId,
-                contentDescription = if (portraitId != null) "Bild: ${creature.name}" else "Platzhalter: noch kein Bild",
-                maxWidth = 260.dp,
-                modifier = Modifier.ruffSharedBounds(creatureImageKey(creature.id)),
-            )
-        }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            // Gleich breiter Platzhalter links hält den Namen optisch mittig.
-            if (favorite != null) Spacer(Modifier.width(48.dp))
-            Text(
-                creature.name,
-                style = MaterialTheme.typography.headlineSmall,
-                color = Pergament,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.weight(1f, fill = false),
-            )
-            if (favorite != null) {
-                FavoriteHeart(
-                    favorite = favorite,
-                    label = "${creature.name} als Favorit",
-                    onToggle = onToggleFavorite,
-                    testTag = favoriteHeartTag(creature.id, "detail"),
-                    heartSize = 28.dp,
-                )
-            }
-        }
-        Text(
-            creature.powerLabel.ifBlank { "Machtstufe nicht angegeben" },
-            color = colors.secondary,
-            style = MaterialTheme.typography.labelLarge,
-            textAlign = TextAlign.Center,
-        )
-        if (creature.archetype.isNotBlank()) {
-            Text("Archetyp · ${creature.archetype}", color = colors.onSurfaceVariant, textAlign = TextAlign.Center)
-        }
-        ChainDivider(Modifier.padding(vertical = 4.dp), maxWidth = 280.dp)
-        SectionHeader("Beschreibung")
-        Text(
-            creature.description,
-            style = MaterialTheme.typography.bodyLarge,
-            color = colors.onSurface,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 4.dp),
-        )
-        // Kreaturen-Akte direkt unter der Beschreibung; ohne Akten-Bindung (Tests) ausgeblendet.
-        akte?.let {
-            CreatureAkteSections(
-                creatureId = creature.id,
-                creatureName = creature.name,
-                canEdit = canEdit,
-                binding = it,
-            )
-            ChainDivider(Modifier.padding(vertical = 4.dp), maxWidth = 280.dp)
-        }
-        creature.fields.forEach { (label, value) ->
-            if (value.isNotBlank() && label != "Machtstufe" && label != "Archetyp") {
-                SectionHeader(label, Modifier.padding(top = 6.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                // Gleich breiter Platzhalter links hält den Namen optisch mittig.
+                if (favorite != null) Spacer(Modifier.width(48.dp))
                 Text(
-                    value,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = colors.onSurface,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 4.dp),
+                    creature.name,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = Pergament,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(1f, fill = false),
                 )
+                if (favorite != null) {
+                    FavoriteHeart(
+                        favorite = favorite,
+                        label = "${creature.name} als Favorit",
+                        onToggle = onToggleFavorite,
+                        testTag = favoriteHeartTag(creature.id, "detail"),
+                        heartSize = 28.dp,
+                    )
+                }
             }
-        }
-        error?.let { Text(it, color = colors.error, modifier = Modifier.padding(vertical = 8.dp)) }
-        if (canEdit) {
-            ChainDivider(Modifier.padding(vertical = 4.dp), maxWidth = 220.dp)
-            Button(onClick = onEdit, colors = emberButtonColors(), modifier = Modifier.fillMaxWidth()) {
-                Text("Inhalt bearbeiten")
+            Text(
+                creature.powerLabel.ifBlank { "Machtstufe nicht angegeben" },
+                color = colors.secondary,
+                style = MaterialTheme.typography.labelLarge,
+                textAlign = TextAlign.Center,
+            )
+            if (creature.archetype.isNotBlank()) {
+                Text("Archetyp · ${creature.archetype}", color = colors.onSurfaceVariant, textAlign = TextAlign.Center)
             }
+            ChainDivider(Modifier.padding(vertical = 4.dp), maxWidth = 280.dp)
+            SectionHeader("Beschreibung")
+            Text(
+                creature.description,
+                style = MaterialTheme.typography.bodyLarge,
+                color = colors.onSurface,
+                modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 4.dp),
+            )
+            // Kreaturen-Akte direkt unter der Beschreibung; ohne Akten-Bindung (Tests) ausgeblendet.
+            akte?.let {
+                CreatureAkteSections(
+                    creatureId = creature.id,
+                    creatureName = creature.name,
+                    canEdit = canEdit,
+                    binding = it,
+                )
+                ChainDivider(Modifier.padding(vertical = 4.dp), maxWidth = 280.dp)
+            }
+            creature.fields.forEach { (label, value) ->
+                if (value.isNotBlank() && label != "Machtstufe" && label != "Archetyp") {
+                    SectionHeader(label, Modifier.padding(top = 6.dp))
+                    Text(
+                        value,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = colors.onSurface,
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 4.dp),
+                    )
+                }
+            }
+            MediaGallery(creature.presentation.media, Modifier.padding(vertical = 10.dp))
+            error?.let { Text(it, color = colors.error, modifier = Modifier.padding(vertical = 8.dp)) }
+            if (canEdit) {
+                ChainDivider(Modifier.padding(vertical = 4.dp), maxWidth = 220.dp)
+                Button(onClick = onEdit, colors = emberButtonColors(), modifier = Modifier.fillMaxWidth()) {
+                    Text("Inhalt bearbeiten")
+                }
+                TextButton(onClick = { showArchiveConfirmation = true }) { Text("Wesen archivieren") }
+            }
+            Spacer(Modifier.height(24.dp))
         }
-        Spacer(Modifier.height(24.dp))
+    }
+    if (showArchiveConfirmation) {
+        AlertDialog(
+            onDismissRequest = { showArchiveConfirmation = false },
+            title = { Text("Wesen archivieren?") },
+            text = { Text("Das Wesen wird aus den aktiven Listen ausgeblendet und kann im Admin-Archiv wiederhergestellt werden.") },
+            confirmButton = {
+                TextButton(onClick = {
+                    showArchiveConfirmation = false
+                    onArchive()
+                }) { Text("Archivieren") }
+            },
+            dismissButton = { TextButton(onClick = { showArchiveConfirmation = false }) { Text("Abbrechen") } },
+        )
     }
 }
 

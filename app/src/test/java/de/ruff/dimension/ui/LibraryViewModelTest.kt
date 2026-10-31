@@ -1,12 +1,16 @@
 package de.ruff.dimension.ui
 
+import android.net.Uri
 import android.os.Looper
 import androidx.lifecycle.SavedStateHandle
+import de.ruff.dimension.data.AdminAppearance
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RuleBlock
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.repository.AdminAccessRepository
 import de.ruff.dimension.data.repository.ContentEditorRepository
 import de.ruff.dimension.data.repository.FavoritesRepository
+import de.ruff.dimension.data.repository.MediaKind
 import de.ruff.dimension.data.repository.SearchRepository
 import de.ruff.dimension.domain.DataOrigin
 import de.ruff.dimension.domain.LibraryData
@@ -43,10 +47,50 @@ class LibraryViewModelTest {
 
             override suspend fun saveRule(rule: RulePage) = Unit
 
+            override suspend fun archiveCreature(creature: Creature) = Unit
+
+            override suspend fun archiveRule(rule: RulePage) = Unit
+
+            override suspend fun unarchiveCreature(creature: Creature) = Unit
+
+            override suspend fun unarchiveRule(rule: RulePage) = Unit
+
+            override suspend fun saveAppearance(appearance: AdminAppearance) = Unit
+
+            override suspend fun setAppearanceBackground(uri: Uri) = Unit
+
+            override suspend fun setAppearanceFont(uri: Uri) = Unit
+
+            override suspend fun addCreatureMedia(
+                creature: Creature,
+                uris: List<Uri>,
+                kind: MediaKind,
+            ) = Unit
+
+            override suspend fun addRuleMedia(
+                rule: RulePage,
+                uris: List<Uri>,
+                kind: MediaKind,
+            ) = Unit
+
             override suspend fun restoreCreature(id: String) = Unit
 
             override suspend fun restoreRule(source: String) = Unit
         }
+
+    private class FakeAdminAccess : AdminAccessRepository {
+        var pin: String? = null
+
+        override fun isConfigured() = pin != null
+
+        override fun setPin(pin: String) {
+            this.pin = pin
+        }
+
+        override fun verifyPin(pin: String) = this.pin == pin
+    }
+
+    private val adminAccess = FakeAdminAccess()
 
     /** Favoriten im Speicher; [failWrites] simuliert einen Schreibfehler der Datenbank. */
     private class FakeFavorites : FavoritesRepository {
@@ -81,6 +125,7 @@ class LibraryViewModelTest {
         handle,
         source,
         editor,
+        adminAccess,
         SearchLibrary(SearchRepository { null }),
         ObserveFavorites(favoritesRepository),
         ToggleFavorite(favoritesRepository),
@@ -97,7 +142,27 @@ class LibraryViewModelTest {
         assertEquals(listOf(rule), state.rules)
         assertEquals(LibraryTab.CREATURES, state.tab)
         assertNull(state.selectedCreature)
-        assertTrue(state.canEdit)
+        assertTrue(state.databaseAvailable)
+        assertFalse(state.canEdit)
+    }
+
+    @Test
+    fun adminPinMustBeSetBeforeEditorUnlocks() {
+        val vm = viewModel()
+
+        vm.submitAdminPin("123")
+        idle()
+        assertFalse(vm.uiState.value.adminUnlocked)
+
+        vm.submitAdminPin("123456")
+        idle()
+        assertTrue(vm.uiState.value.adminPinConfigured)
+        assertTrue(vm.uiState.value.adminUnlocked)
+        assertTrue(vm.uiState.value.canEdit)
+
+        vm.lockAdmin()
+        idle()
+        assertFalse(vm.uiState.value.canEdit)
     }
 
     @Test

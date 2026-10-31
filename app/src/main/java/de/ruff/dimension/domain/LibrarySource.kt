@@ -1,6 +1,7 @@
 package de.ruff.dimension.domain
 
 import android.util.Log
+import de.ruff.dimension.data.AdminAppearance
 import de.ruff.dimension.data.AssetLoader
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
@@ -21,6 +22,9 @@ internal data class LibraryData(
     val rules: List<RulePage>,
     val origin: DataOrigin,
     val hasLocalEdits: Boolean = false,
+    val archivedCreatures: List<Creature> = emptyList(),
+    val archivedRules: List<RulePage> = emptyList(),
+    val appearance: AdminAppearance = AdminAppearance(),
 )
 
 /** Liefert die Bibliotheksdaten; blockierend, daher nur außerhalb des Main-Threads aufrufen. */

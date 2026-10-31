@@ -1,12 +1,16 @@
 package de.ruff.dimension.ui
 
+import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import de.ruff.dimension.data.AdminAppearance
 import de.ruff.dimension.data.Creature
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.repository.AdminAccessRepository
 import de.ruff.dimension.data.repository.ContentEditorRepository
+import de.ruff.dimension.data.repository.MediaKind
 import de.ruff.dimension.data.repository.SearchHits
 import de.ruff.dimension.di.IoDispatcher
 import de.ruff.dimension.domain.DataOrigin
@@ -66,13 +70,20 @@ internal data class LibraryUiState(
     /** Filter „Nur Favoriten“; liegt wie die Machtstufe im SavedStateHandle. */
     val favoritesOnly: Boolean = false,
     val favoriteError: String? = null,
+    val adminPinConfigured: Boolean = false,
+    val adminUnlocked: Boolean = false,
+    val adminError: String? = null,
 ) {
     val creatures: List<Creature> get() = (load as? LoadState.Ready)?.data?.creatures.orEmpty()
     val rules: List<RulePage> get() = (load as? LoadState.Ready)?.data?.rules.orEmpty()
-    val canEdit: Boolean get() = (load as? LoadState.Ready)?.data?.origin == DataOrigin.DATABASE
+    val databaseAvailable: Boolean get() = (load as? LoadState.Ready)?.data?.origin == DataOrigin.DATABASE
+    val canEdit: Boolean get() = databaseAvailable && adminUnlocked
+    val archivedCreatures get() = (load as? LoadState.Ready)?.data?.archivedCreatures.orEmpty()
+    val archivedRules get() = (load as? LoadState.Ready)?.data?.archivedRules.orEmpty()
+    val appearance get() = (load as? LoadState.Ready)?.data?.appearance ?: AdminAppearance()
 
     /** Favoriten brauchen die Datenbank; im Asset-Notbetrieb sind sie ausgeblendet. */
-    val favoritesAvailable: Boolean get() = canEdit
+    val favoritesAvailable: Boolean get() = databaseAvailable
 
     fun isFavorite(creatureId: String): Boolean = creatureId in favoriteIds
 
@@ -87,6 +98,7 @@ internal class LibraryViewModel
         private val savedState: SavedStateHandle,
         private val source: LibrarySource,
         private val editor: ContentEditorRepository,
+        private val adminAccess: AdminAccessRepository,
         private val search: SearchLibrary,
         private val observeFavorites: ObserveFavorites,
         private val toggleFavoriteUseCase: ToggleFavorite,
@@ -98,6 +110,9 @@ internal class LibraryViewModel
         private val editorError = MutableStateFlow<String?>(null)
         private val favoriteIds = MutableStateFlow<Set<String>>(emptySet())
         private val favoriteError = MutableStateFlow<String?>(null)
+        private val adminPinConfigured = MutableStateFlow(false)
+        private val adminUnlocked = MutableStateFlow(false)
+        private val adminError = MutableStateFlow<String?>(null)
 
         private data class EditState(
             val editing: Boolean,
@@ -110,10 +125,17 @@ internal class LibraryViewModel
             val error: String?,
         )
 
+        private data class AdminState(
+            val configured: Boolean,
+            val unlocked: Boolean,
+            val error: String?,
+        )
+
         private val editState = combine(editing, editorError, ::EditState)
 
         private val favoriteState =
             combine(favoriteIds, savedState.getStateFlow(KEY_FAVORITES_ONLY, false), favoriteError, ::FavoriteState)
+        private val adminState = combine(adminPinConfigured, adminUnlocked, adminError, ::AdminState)
 
         private data class Selection(
             val tab: LibraryTab,
@@ -135,7 +157,14 @@ internal class LibraryViewModel
             }
 
         val uiState: StateFlow<LibraryUiState> =
-            combine(load.asStateFlow(), selection, searchHits, editState, favoriteState) { loadState, sel, hits, edit, fav ->
+            combine(
+                load.asStateFlow(),
+                selection,
+                searchHits,
+                editState,
+                favoriteState,
+                adminState,
+            ) { loadState, sel, hits, edit, fav, admin ->
                 val data = (loadState as? LoadState.Ready)?.data
                 LibraryUiState(
                     load = loadState,
@@ -150,11 +179,17 @@ internal class LibraryViewModel
                     favoriteIds = fav.ids,
                     favoritesOnly = fav.only,
                     favoriteError = fav.error,
+                    adminPinConfigured = admin.configured,
+                    adminUnlocked = admin.unlocked,
+                    adminError = admin.error,
                 )
             }.stateIn(viewModelScope, SharingStarted.Eagerly, LibraryUiState())
 
         init {
             reload()
+            viewModelScope.launch {
+                adminPinConfigured.value = withContext(ioDispatcher) { adminAccess.isConfigured() }
+            }
             viewModelScope.launch {
                 observeFavorites()
                     .catch { e ->
@@ -276,32 +311,130 @@ internal class LibraryViewModel
         }
 
         fun setEditing(value: Boolean) {
+            if (value && !adminUnlocked.value) return
             editing.value = value
             editorError.value = null
         }
 
+        fun submitAdminPin(pin: String) {
+            adminError.value = null
+            viewModelScope.launch {
+                try {
+                    if (pin.length < 6) {
+                        adminError.value = "Die Admin-PIN muss mindestens sechs Zeichen lang sein."
+                        return@launch
+                    }
+                    val authenticated =
+                        withContext(ioDispatcher) {
+                            if (adminAccess.isConfigured()) {
+                                adminAccess.verifyPin(pin)
+                            } else {
+                                adminAccess.setPin(pin)
+                                true
+                            }
+                        }
+                    if (authenticated) {
+                        adminPinConfigured.value = true
+                        adminUnlocked.value = true
+                    } else {
+                        adminError.value = "Die Admin-PIN stimmt nicht."
+                    }
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    adminError.value = "Admin-Zugang fehlgeschlagen (${e.javaClass.simpleName})."
+                }
+            }
+        }
+
+        fun lockAdmin() {
+            adminUnlocked.value = false
+            editing.value = false
+            adminError.value = null
+        }
+
+        fun saveAppearance(appearance: AdminAppearance) {
+            if (!adminUnlocked.value) return
+            saveContent { editor.saveAppearance(appearance) }
+        }
+
+        fun setAppearanceBackground(uri: Uri) {
+            if (!adminUnlocked.value) return
+            saveContent { editor.setAppearanceBackground(uri) }
+        }
+
+        fun setAppearanceFont(uri: Uri) {
+            if (!adminUnlocked.value) return
+            saveContent { editor.setAppearanceFont(uri) }
+        }
+
+        fun archiveCreature(creature: Creature) {
+            if (!adminUnlocked.value) return
+            saveContent { editor.archiveCreature(creature) }
+        }
+
+        fun archiveRule(rule: RulePage) {
+            if (!adminUnlocked.value) return
+            saveContent { editor.archiveRule(rule) }
+        }
+
+        fun unarchiveCreature(creature: Creature) {
+            if (!adminUnlocked.value) return
+            saveContent { editor.unarchiveCreature(creature) }
+        }
+
+        fun unarchiveRule(rule: RulePage) {
+            if (!adminUnlocked.value) return
+            saveContent { editor.unarchiveRule(rule) }
+        }
+
+        fun addCreatureMedia(
+            creature: Creature,
+            uris: List<Uri>,
+            kind: MediaKind,
+        ) {
+            if (!adminUnlocked.value) return
+            saveContent(closeEditor = false) { editor.addCreatureMedia(creature, uris, kind) }
+        }
+
+        fun addRuleMedia(
+            rule: RulePage,
+            uris: List<Uri>,
+            kind: MediaKind,
+        ) {
+            if (!adminUnlocked.value) return
+            saveContent(closeEditor = false) { editor.addRuleMedia(rule, uris, kind) }
+        }
+
         fun saveCreature(creature: Creature) {
+            if (!adminUnlocked.value) return
             saveContent { editor.saveCreature(creature) }
         }
 
         fun saveRule(rule: RulePage) {
+            if (!adminUnlocked.value) return
             saveContent { editor.saveRule(rule) }
         }
 
         fun restoreCreature(id: String) {
+            if (!adminUnlocked.value) return
             saveContent { editor.restoreCreature(id) }
         }
 
         fun restoreRule(source: String) {
+            if (!adminUnlocked.value) return
             saveContent { editor.restoreRule(source) }
         }
 
-        private fun saveContent(operation: suspend () -> Unit) {
+        private fun saveContent(
+            closeEditor: Boolean = true,
+            operation: suspend () -> Unit,
+        ) {
             editorError.value = null
             viewModelScope.launch {
                 try {
                     withContext(ioDispatcher) { operation() }
-                    editing.value = false
+                    if (closeEditor) editing.value = false
                     reload()
                 } catch (e: CancellationException) {
                     throw e

@@ -17,10 +17,13 @@ import de.ruff.dimension.data.local.RuffDatabase
 import de.ruff.dimension.data.local.RuleDao
 import de.ruff.dimension.data.local.SeedImporter
 import de.ruff.dimension.data.local.SeedSource
+import de.ruff.dimension.data.repository.AdminAccessRepository
 import de.ruff.dimension.data.repository.ContentEditorRepository
 import de.ruff.dimension.data.repository.CreatureProfileRepository
 import de.ruff.dimension.data.repository.CreatureRepository
 import de.ruff.dimension.data.repository.FavoritesRepository
+import de.ruff.dimension.data.repository.MediaImporter
+import de.ruff.dimension.data.repository.PrivateMediaImporter
 import de.ruff.dimension.data.repository.RoomContentEditorRepository
 import de.ruff.dimension.data.repository.RoomCreatureProfileRepository
 import de.ruff.dimension.data.repository.RoomCreatureRepository
@@ -29,6 +32,7 @@ import de.ruff.dimension.data.repository.RoomRuleRepository
 import de.ruff.dimension.data.repository.RoomSearchRepository
 import de.ruff.dimension.data.repository.RuleRepository
 import de.ruff.dimension.data.repository.SearchRepository
+import de.ruff.dimension.data.repository.SharedPreferencesAdminAccess
 import de.ruff.dimension.domain.LibrarySource
 import de.ruff.dimension.domain.ObserveFavorites
 import de.ruff.dimension.domain.SearchLibrary
@@ -89,7 +93,22 @@ internal object DataModule {
 
     @Provides
     @Singleton
-    fun provideContentEditorRepository(store: ContentEditStore): ContentEditorRepository = RoomContentEditorRepository(store)
+    fun provideAdminAccessRepository(
+        @ApplicationContext context: Context,
+    ): AdminAccessRepository = SharedPreferencesAdminAccess(context)
+
+    @Provides
+    @Singleton
+    fun provideMediaImporter(
+        @ApplicationContext context: Context,
+    ): MediaImporter = PrivateMediaImporter(context)
+
+    @Provides
+    @Singleton
+    fun provideContentEditorRepository(
+        store: ContentEditStore,
+        mediaImporter: MediaImporter,
+    ): ContentEditorRepository = RoomContentEditorRepository(store, mediaImporter)
 
     @Provides
     @Singleton

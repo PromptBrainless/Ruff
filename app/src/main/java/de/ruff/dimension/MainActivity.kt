@@ -37,8 +37,8 @@ class MainActivity : ComponentActivity() {
         )
         super.onCreate(savedInstanceState)
         setContent {
-            RuffTheme {
-                val state by viewModel.uiState.collectAsStateWithLifecycle()
+            val state by viewModel.uiState.collectAsStateWithLifecycle()
+            RuffTheme(state.appearance) {
                 val akteState by akteViewModel.uiState.collectAsStateWithLifecycle()
                 val akte =
                     remember(akteState) {

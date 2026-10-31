@@ -1,5 +1,6 @@
 package de.ruff.dimension.ui.rule
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -16,13 +17,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
@@ -32,10 +39,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.ruff.dimension.data.RuleBlock
 import de.ruff.dimension.data.RulePage
+import de.ruff.dimension.data.repository.MediaKind
 import de.ruff.dimension.domain.searchRules
 import de.ruff.dimension.ui.LibraryUiState
 import de.ruff.dimension.ui.common.ChainDivider
+import de.ruff.dimension.ui.common.ContentPresentationFrame
 import de.ruff.dimension.ui.common.EmptyState
+import de.ruff.dimension.ui.common.MediaGallery
 import de.ruff.dimension.ui.common.RuffTopBar
 import de.ruff.dimension.ui.common.SearchField
 import de.ruff.dimension.ui.common.SectionHeader
@@ -130,6 +140,8 @@ internal fun RuleDetailPane(
     onCancelEdit: () -> Unit,
     onSave: (RulePage) -> Unit,
     onRestore: (String) -> Unit,
+    onArchive: (RulePage) -> Unit = {},
+    onImportMedia: (RulePage, List<Uri>, MediaKind) -> Unit = { _, _, _ -> },
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.fillMaxSize()) {
@@ -143,8 +155,9 @@ internal fun RuleDetailPane(
                     onCancel = onCancelEdit,
                     onSave = onSave,
                     onRestore = { onRestore(rule.source) },
+                    onImportMedia = { uris, kind -> onImportMedia(rule, uris, kind) },
                 )
-            else -> RuleBlocks(rule, state.canEdit, state.editorError, onEdit)
+            else -> RuleBlocks(rule, state.canEdit, state.editorError, onEdit, { onArchive(rule) })
         }
     }
 }
@@ -155,38 +168,58 @@ private fun RuleBlocks(
     canEdit: Boolean,
     error: String?,
     onEdit: () -> Unit,
+    onArchive: () -> Unit = {},
 ) {
     val colors = MaterialTheme.colorScheme
-    LazyColumn(
-        modifier = Modifier.fillMaxSize().testTag("rule_detail"),
-        contentPadding =
-            PaddingValues(
-                start = 16.dp,
-                end = 16.dp,
-                bottom = 24.dp + WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding(),
-            ),
-    ) {
-        item {
-            Text(rule.source, color = colors.onSurfaceVariant, style = MaterialTheme.typography.labelSmall)
-            Text(
-                "Regelwerk in Arbeit · vorläufige Darstellung",
-                color = colors.tertiary,
-                style = MaterialTheme.typography.labelSmall,
-                modifier = Modifier.padding(bottom = 8.dp),
-            )
-        }
-        itemsIndexed(rule.blocks) { index, block ->
-            RuleBlockView(block, zebra = index % 2 == 0)
-        }
-        item {
-            error?.let { Text(it, color = colors.error, modifier = Modifier.padding(vertical = 8.dp)) }
-            if (canEdit) {
-                ChainDivider(Modifier.padding(vertical = 8.dp), maxWidth = 220.dp)
-                Button(onClick = onEdit, colors = emberButtonColors(), modifier = Modifier.fillMaxWidth()) {
-                    Text("Inhalt bearbeiten")
+    var showArchiveConfirmation by rememberSaveable(rule.source) { mutableStateOf(false) }
+    ContentPresentationFrame(rule.presentation, Modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize().testTag("rule_detail"),
+            contentPadding =
+                PaddingValues(
+                    start = 16.dp,
+                    end = 16.dp,
+                    bottom = 24.dp + WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding(),
+                ),
+        ) {
+            item {
+                Text(rule.source, color = colors.onSurfaceVariant, style = MaterialTheme.typography.labelSmall)
+                Text(
+                    "Regelwerk in Arbeit · vorläufige Darstellung",
+                    color = colors.tertiary,
+                    style = MaterialTheme.typography.labelSmall,
+                    modifier = Modifier.padding(bottom = 8.dp),
+                )
+            }
+            itemsIndexed(rule.blocks) { index, block ->
+                RuleBlockView(block, zebra = index % 2 == 0)
+            }
+            item { MediaGallery(rule.presentation.media, Modifier.padding(vertical = 10.dp)) }
+            item {
+                error?.let { Text(it, color = colors.error, modifier = Modifier.padding(vertical = 8.dp)) }
+                if (canEdit) {
+                    ChainDivider(Modifier.padding(vertical = 8.dp), maxWidth = 220.dp)
+                    Button(onClick = onEdit, colors = emberButtonColors(), modifier = Modifier.fillMaxWidth()) {
+                        Text("Inhalt bearbeiten")
+                    }
+                    TextButton(onClick = { showArchiveConfirmation = true }) { Text("Regelseite archivieren") }
                 }
             }
         }
+    }
+    if (showArchiveConfirmation) {
+        AlertDialog(
+            onDismissRequest = { showArchiveConfirmation = false },
+            title = { Text("Regelseite archivieren?") },
+            text = { Text("Die Regelseite wird ausgeblendet und kann im Admin-Archiv wiederhergestellt werden.") },
+            confirmButton = {
+                TextButton(onClick = {
+                    showArchiveConfirmation = false
+                    onArchive()
+                }) { Text("Archivieren") }
+            },
+            dismissButton = { TextButton(onClick = { showArchiveConfirmation = false }) { Text("Abbrechen") } },
+        )
     }
 }
 

@@ -21,6 +21,7 @@ internal data class Creature(
     val source: String = "",
     val status: String = "",
     val spielbar: Boolean? = null,
+    val presentation: ContentPresentation = ContentPresentation(),
 )
 
 /** Eine Regel-Wiki-Seite aus `assets/rules.json`. */
@@ -29,10 +30,37 @@ internal data class RulePage(
     val source: String = "",
     val fields: Map<String, String> = emptyMap(),
     val blocks: List<RuleBlock> = emptyList(),
+    val presentation: ContentPresentation = ContentPresentation(),
 )
 
 /** Ein Inhaltsblock einer Regelseite, etwa `p`, `li`, `h2` oder `row`. */
 internal data class RuleBlock(
     val type: String = "",
     val text: String = "",
+)
+
+/** Medien und Gestaltung eines Inhalts; bleibt von den unveränderten Seed-Assets getrennt. */
+internal data class ContentPresentation(
+    val media: List<MediaAttachment> = emptyList(),
+    val backgroundPath: String = "",
+    val frameColor: String = "#B3201B",
+    val frameWidthDp: Float = 1f,
+    val cornerRadiusDp: Float = 14f,
+    val fontPath: String = "",
+)
+
+internal data class MediaAttachment(
+    val path: String,
+    val mimeType: String,
+    val displayName: String,
+)
+
+/** Globale Darstellung der App, lokal und unabhängig von Seed-Inhalten gespeichert. */
+internal data class AdminAppearance(
+    val backgroundPath: String = "",
+    val accentColor: String = "#B3201B",
+    val frameColor: String = "#8B5A3C",
+    val frameWidthDp: Float = 1f,
+    val cornerRadiusDp: Float = 14f,
+    val fontPath: String = "",
 )
