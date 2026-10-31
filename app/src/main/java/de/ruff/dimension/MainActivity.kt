@@ -7,10 +7,15 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import de.ruff.dimension.ui.LibraryViewModel
+import de.ruff.dimension.ui.akte.AkteBinding
+import de.ruff.dimension.ui.akte.CreatureProfileViewModel
+import de.ruff.dimension.ui.akte.LocalCreatureProfiles
 import de.ruff.dimension.ui.navigation.RuffNavHost
 import de.ruff.dimension.ui.theme.RuffTheme
 
@@ -22,6 +27,7 @@ import de.ruff.dimension.ui.theme.RuffTheme
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel: LibraryViewModel by viewModels()
+    private val akteViewModel: CreatureProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Dunkle Identität: helle Symbole in Status- und Navigationsleiste.
@@ -33,7 +39,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             RuffTheme {
                 val state by viewModel.uiState.collectAsStateWithLifecycle()
-                RuffNavHost(state = state, viewModel = viewModel)
+                val akteState by akteViewModel.uiState.collectAsStateWithLifecycle()
+                val akte =
+                    remember(akteState) {
+                        AkteBinding(
+                            state = akteState,
+                            onEdit = akteViewModel::startEdit,
+                            onCancel = akteViewModel::cancelEdit,
+                            onSave = akteViewModel::save,
+                            onConfirm = akteViewModel::confirmDerived,
+                            onDismissHinweis = akteViewModel::dismissHinweis,
+                        )
+                    }
+                CompositionLocalProvider(LocalCreatureProfiles provides akte) {
+                    RuffNavHost(state = state, viewModel = viewModel)
+                }
             }
         }
     }
