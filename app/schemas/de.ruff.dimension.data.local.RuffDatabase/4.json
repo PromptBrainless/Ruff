@@ -1,0 +1,578 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "148c60d92facdfc38452e0ef562818ed",
+    "entities": [
+      {
+        "tableName": "creatures",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `position` INTEGER NOT NULL, `name` TEXT NOT NULL, `source` TEXT NOT NULL, `status` TEXT NOT NULL, `powerLevel` INTEGER NOT NULL, `powerLabel` TEXT NOT NULL, `spielbar` INTEGER, `description` TEXT NOT NULL, `archetype` TEXT NOT NULL, `portrait` TEXT NOT NULL, `icon` TEXT NOT NULL, `cover` TEXT NOT NULL, `fields` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerLevel",
+            "columnName": "powerLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerLabel",
+            "columnName": "powerLabel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielbar",
+            "columnName": "spielbar",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "archetype",
+            "columnName": "archetype",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "portrait",
+            "columnName": "portrait",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "icon",
+            "columnName": "icon",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cover",
+            "columnName": "cover",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fields",
+            "columnName": "fields",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "rule_pages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `position` INTEGER NOT NULL, `title` TEXT NOT NULL, `source` TEXT NOT NULL, `fields` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fields",
+            "columnName": "fields",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "rule_blocks",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pageId` TEXT NOT NULL, `position` INTEGER NOT NULL, `type` TEXT NOT NULL, `text` TEXT NOT NULL, PRIMARY KEY(`pageId`, `position`), FOREIGN KEY(`pageId`) REFERENCES `rule_pages`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "pageId",
+            "columnName": "pageId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "pageId",
+            "position"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "rule_pages",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "pageId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "seed_meta",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`key` TEXT NOT NULL, `version` INTEGER NOT NULL, `seededAtMillis` INTEGER NOT NULL, PRIMARY KEY(`key`))",
+        "fields": [
+          {
+            "fieldPath": "key",
+            "columnName": "key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "version",
+            "columnName": "version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "seededAtMillis",
+            "columnName": "seededAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "key"
+          ]
+        }
+      },
+      {
+        "tableName": "favorites",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `creatureId` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, `revision` INTEGER NOT NULL, `deletedAt` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creatureId",
+            "columnName": "creatureId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "revision",
+            "columnName": "revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deletedAt",
+            "columnName": "deletedAt",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_favorites_creatureId",
+            "unique": true,
+            "columnNames": [
+              "creatureId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_favorites_creatureId` ON `${TABLE_NAME}` (`creatureId`)"
+          }
+        ]
+      },
+      {
+        "tableName": "creature_profiles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `creatureId` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, `revision` INTEGER NOT NULL, `deletedAt` INTEGER, `seedVersion` INTEGER NOT NULL, `quellen` TEXT NOT NULL, `erscheinung` TEXT, `erscheinungBegruendung` TEXT, `erscheinungHerkunft` TEXT, `lebensraum` TEXT, `lebensraumBegruendung` TEXT, `lebensraumHerkunft` TEXT, `verhalten` TEXT, `verhaltenBegruendung` TEXT, `verhaltenHerkunft` TEXT, `groesseMinM` REAL, `groesseMaxM` REAL, `groesseBegruendung` TEXT, `groesseHerkunft` TEXT, `gewichtMinKg` REAL, `gewichtMaxKg` REAL, `gewichtBegruendung` TEXT, `gewichtHerkunft` TEXT, `pulsMinBpm` INTEGER, `pulsMaxBpm` INTEGER, `pulsBegruendung` TEXT, `pulsHerkunft` TEXT, `blutdruckSystolisch` INTEGER, `blutdruckDiastolisch` INTEGER, `blutdruckHinweis` TEXT, `blutdruckBegruendung` TEXT, `blutdruckHerkunft` TEXT, `allergien` TEXT, `allergienBegruendung` TEXT, `allergienHerkunft` TEXT, `verfassungStufe` TEXT, `verfassungText` TEXT, `verfassungBegruendung` TEXT, `verfassungHerkunft` TEXT, `iqMin` INTEGER, `iqMax` INTEGER, `iqBegruendung` TEXT, `iqHerkunft` TEXT, `eqMin` INTEGER, `eqMax` INTEGER, `eqBegruendung` TEXT, `eqHerkunft` TEXT, `wahnhaft` INTEGER, `wahnhaftBegruendung` TEXT, `wahnhaftHerkunft` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creatureId",
+            "columnName": "creatureId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "revision",
+            "columnName": "revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deletedAt",
+            "columnName": "deletedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "seedVersion",
+            "columnName": "seedVersion",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quellen",
+            "columnName": "quellen",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "erscheinung",
+            "columnName": "erscheinung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "erscheinungBegruendung",
+            "columnName": "erscheinungBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "erscheinungHerkunft",
+            "columnName": "erscheinungHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lebensraum",
+            "columnName": "lebensraum",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lebensraumBegruendung",
+            "columnName": "lebensraumBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lebensraumHerkunft",
+            "columnName": "lebensraumHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "verhalten",
+            "columnName": "verhalten",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "verhaltenBegruendung",
+            "columnName": "verhaltenBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "verhaltenHerkunft",
+            "columnName": "verhaltenHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "groesseMinM",
+            "columnName": "groesseMinM",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "groesseMaxM",
+            "columnName": "groesseMaxM",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "groesseBegruendung",
+            "columnName": "groesseBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "groesseHerkunft",
+            "columnName": "groesseHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "gewichtMinKg",
+            "columnName": "gewichtMinKg",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "gewichtMaxKg",
+            "columnName": "gewichtMaxKg",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "gewichtBegruendung",
+            "columnName": "gewichtBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "gewichtHerkunft",
+            "columnName": "gewichtHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "pulsMinBpm",
+            "columnName": "pulsMinBpm",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "pulsMaxBpm",
+            "columnName": "pulsMaxBpm",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "pulsBegruendung",
+            "columnName": "pulsBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "pulsHerkunft",
+            "columnName": "pulsHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "blutdruckSystolisch",
+            "columnName": "blutdruckSystolisch",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "blutdruckDiastolisch",
+            "columnName": "blutdruckDiastolisch",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "blutdruckHinweis",
+            "columnName": "blutdruckHinweis",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "blutdruckBegruendung",
+            "columnName": "blutdruckBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "blutdruckHerkunft",
+            "columnName": "blutdruckHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "allergien",
+            "columnName": "allergien",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "allergienBegruendung",
+            "columnName": "allergienBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "allergienHerkunft",
+            "columnName": "allergienHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "verfassungStufe",
+            "columnName": "verfassungStufe",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "verfassungText",
+            "columnName": "verfassungText",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "verfassungBegruendung",
+            "columnName": "verfassungBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "verfassungHerkunft",
+            "columnName": "verfassungHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "iqMin",
+            "columnName": "iqMin",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "iqMax",
+            "columnName": "iqMax",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "iqBegruendung",
+            "columnName": "iqBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "iqHerkunft",
+            "columnName": "iqHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "eqMin",
+            "columnName": "eqMin",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "eqMax",
+            "columnName": "eqMax",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "eqBegruendung",
+            "columnName": "eqBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "eqHerkunft",
+            "columnName": "eqHerkunft",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "wahnhaft",
+            "columnName": "wahnhaft",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "wahnhaftBegruendung",
+            "columnName": "wahnhaftBegruendung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "wahnhaftHerkunft",
+            "columnName": "wahnhaftHerkunft",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_creature_profiles_creatureId",
+            "unique": true,
+            "columnNames": [
+              "creatureId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_creature_profiles_creatureId` ON `${TABLE_NAME}` (`creatureId`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '148c60d92facdfc38452e0ef562818ed')"
+    ]
+  }
+}

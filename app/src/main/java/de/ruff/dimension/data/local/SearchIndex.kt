@@ -16,6 +16,9 @@ import androidx.sqlite.execSQL
  * - Wesen: Name, Archetyp, alle Feldwerte (dieselben Felder wie die bisherige Suche).
  * - Regelseiten: Titel, leer, alle Blocktexte.
  *
+ * Akten (`creature_profiles`) schreiben eigene Zeilen vom Typ
+ * [ProfileSearch.TYPE] mit eigenen Triggern; [REBUILD] lässt diese stehen.
+ *
  * Trigger halten den Index bei Insert, Update und Delete synchron (auch bei
  * dem Abgleich im Seed). Nach dem Seed und in der Migration wird er zusätzlich
  * vollständig neu aufgebaut ([REBUILD]).
@@ -74,7 +77,8 @@ internal object SearchIndex {
     /** Baut den Index vollständig aus den Inhaltstabellen neu auf. */
     val REBUILD: List<String> =
         listOf(
-            "DELETE FROM $TABLE",
+            // Nur eigene Typen löschen: Akten-Zeilen (ProfileSearch) bleiben beim Seed erhalten.
+            "DELETE FROM $TABLE WHERE type IN ('$TYPE_CREATURE', '$TYPE_RULE')",
             "INSERT INTO $TABLE(type, ref_id, title, subtitle, body) " +
                 "SELECT '$TYPE_CREATURE', c.id, c.name, c.archetype, ${CREATURE_BODY.format("c")} FROM creatures c",
             "INSERT INTO $TABLE(type, ref_id, title, subtitle, body) " +

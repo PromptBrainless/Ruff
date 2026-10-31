@@ -63,6 +63,10 @@ import de.ruff.dimension.data.Creature
 import de.ruff.dimension.domain.powerLevelOptions
 import de.ruff.dimension.domain.searchCreatures
 import de.ruff.dimension.ui.LibraryUiState
+import de.ruff.dimension.ui.akte.AkteBinding
+import de.ruff.dimension.ui.akte.CreatureAkteSections
+import de.ruff.dimension.ui.akte.CreatureProfileEditor
+import de.ruff.dimension.ui.akte.LocalCreatureProfiles
 import de.ruff.dimension.ui.common.AvatarFrame
 import de.ruff.dimension.ui.common.ChainDivider
 import de.ruff.dimension.ui.common.EmptyState
@@ -356,11 +360,23 @@ internal fun CreatureDetailPane(
     onToggleFavorite: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val akte = LocalCreatureProfiles.current
     Column(modifier = modifier.fillMaxSize()) {
         RuffTopBar(title = creature?.name ?: "Wesen", showBack = showBack)
         when {
             creature == null ->
                 EmptyState("Wähle links ein Wesen aus.", Modifier.padding(16.dp))
+            akte != null && state.canEdit && !state.editing && akte.state.isEditing(creature.id) ->
+                CreatureProfileEditor(
+                    creatureId = creature.id,
+                    creatureName = creature.name,
+                    profile = akte.state.profile(creature.id),
+                    feldFehler = akte.state.feldFehler,
+                    error = akte.state.error,
+                    busy = akte.state.busy,
+                    onCancel = akte.onCancel,
+                    onSave = { entwurf -> akte.onSave(creature.id, entwurf) },
+                )
             state.editing ->
                 CreatureEditor(
                     creature = creature,
@@ -377,6 +393,7 @@ internal fun CreatureDetailPane(
                     favorite = if (state.favoritesAvailable) state.isFavorite(creature.id) else null,
                     onToggleFavorite = { onToggleFavorite(creature.id) },
                     onEdit = onEdit,
+                    akte = akte,
                 )
         }
     }
@@ -390,6 +407,7 @@ private fun CreatureDetails(
     favorite: Boolean?,
     onToggleFavorite: () -> Unit,
     onEdit: () -> Unit,
+    akte: AkteBinding? = null,
 ) {
     val colors = MaterialTheme.colorScheme
     val motion = currentMotion
@@ -483,6 +501,16 @@ private fun CreatureDetails(
             color = colors.onSurface,
             modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 4.dp),
         )
+        // Kreaturen-Akte direkt unter der Beschreibung; ohne Akten-Bindung (Tests) ausgeblendet.
+        akte?.let {
+            CreatureAkteSections(
+                creatureId = creature.id,
+                creatureName = creature.name,
+                canEdit = canEdit,
+                binding = it,
+            )
+            ChainDivider(Modifier.padding(vertical = 4.dp), maxWidth = 280.dp)
+        }
         creature.fields.forEach { (label, value) ->
             if (value.isNotBlank() && label != "Machtstufe" && label != "Archetyp") {
                 SectionHeader(label, Modifier.padding(top = 6.dp))

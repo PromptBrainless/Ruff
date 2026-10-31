@@ -3,6 +3,7 @@ package de.ruff.dimension.data.repository
 import android.util.Log
 import androidx.room.useReaderConnection
 import de.ruff.dimension.data.local.FtsQuery
+import de.ruff.dimension.data.local.ProfileSearch
 import de.ruff.dimension.data.local.RuffDatabase
 import de.ruff.dimension.data.local.SearchIndex
 import kotlinx.coroutines.CancellationException
@@ -29,16 +30,17 @@ internal class RoomSearchRepository(
             database.useReaderConnection { connection ->
                 connection.usePrepared(SearchIndex.SEARCH_SQL) { statement ->
                     statement.bindText(1, match)
-                    val creatures = mutableListOf<String>()
+                    // LinkedHashSet: Ein Wesen kann über Inhalt und Akte zweimal treffen; der bessere Rang zählt.
+                    val creatures = LinkedHashSet<String>()
                     val rules = mutableListOf<String>()
                     while (statement.step()) {
                         val refId = statement.getText(1)
                         when (statement.getText(0)) {
-                            SearchIndex.TYPE_CREATURE -> creatures += refId
+                            SearchIndex.TYPE_CREATURE, ProfileSearch.TYPE -> creatures += refId
                             SearchIndex.TYPE_RULE -> rules += refId
                         }
                     }
-                    SearchHits(query, creatures, rules)
+                    SearchHits(query, creatures.toList(), rules)
                 }
             }
         } catch (e: CancellationException) {
