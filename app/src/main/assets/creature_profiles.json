@@ -1,0 +1,440 @@
+{
+  "format": "ruff.kreaturen-akte",
+  "formatVersion": 1,
+  "seedVersion": 1,
+  "hinweis": "Muster-Akten (Paket 4). Alle Werte sind aus Porträt und Katalogtext ABGELEITET – Einschätzungen, keine Fakten. Ohne Regelwerksbezug. Physiologische Werte nutzen den Menschen als Vergleich (Ruhepuls 60–100 bpm, Blutdruck ca. 120/80 mmHg, IQ-Mittel 100).",
+  "profile": [
+    {
+      "creatureId": "V2-090",
+      "name": "Troll",
+      "quellen": [
+        "Porträt ruff_wesen_v2_090_troll_portrait (KI-generiert, Ruff Asset Pipeline)",
+        "Katalog v2: Gestalt, Größe, Gewicht, Lebensraum, Verhalten, Fähigkeiten, Schwächen"
+      ],
+      "erscheinung": {
+        "wert": "Gebeugte, massige Gestalt mit überlangen Armen und schweren Klauenhänden. Graue, rissige Haut wie verwitterter Fels, überwachsen von Moos und Flechten. Lange Hakennase, spitze Ohren, Hauer im Unterkiefer, zottiges Fell an Schultern und Rücken; zerfetzter Lendenschurz aus Fell und Rinde.",
+        "begruendung": "Beschreibung des Porträts; „hässlich“ laut Katalogfeld Gestalt."
+      },
+      "lebensraum": {
+        "wert": "Isolierte Berge, Felsen und Höhlen; meidet Siedlungen mit Kirchen.",
+        "begruendung": "Katalogfeld Lebensraum; Meiden von Kirchen abgeleitet aus „fürchten Kirchenglocken“."
+      },
+      "verhalten": {
+        "wert": "Lebt in kleinen Familien, territorial und misstrauisch. Stiehlt Vieh, entführt Menschen und hütet Schätze; selten hilfsbereit.",
+        "begruendung": "Zusammenfassung der Katalogfelder Verhalten und Gruppe."
+      },
+      "groesseM": {
+        "min": 1.6,
+        "max": 2.0,
+        "begruendung": "Katalog: „klein bis menschengroß“, Spielwert ca. 1,8 m. Das Porträt zeigt starke Beugung, aufgerichtet eher am oberen Rand."
+      },
+      "gewichtKg": {
+        "min": 110,
+        "max": 160,
+        "begruendung": "Katalog-Spielwert ca. 120 kg; die steinartige, sehr dichte Statur im Bild spricht für mehr Masse als ein gleich großer Mensch."
+      },
+      "pulsBpm": {
+        "min": 45,
+        "max": 60,
+        "begruendung": "Annahme: schwerer, ruhender Körper mit langsamem Stoffwechsel (Vergleich: Mensch 60–100 bpm in Ruhe)."
+      },
+      "blutdruck": {
+        "systolisch": 150,
+        "diastolisch": 95,
+        "hinweis": "in Ruhe; bei Wut deutlich höher",
+        "begruendung": "Annahme: große Muskelmasse und plötzliche Kraftausbrüche (Fähigkeit „Kraft“) – erhöht gegenüber 120/80."
+      },
+      "allergien": {
+        "liste": [
+          {
+            "ausloeser": "Sonnenlicht (UV)",
+            "art": "UNVERTRAEGLICHKEIT",
+            "schwere": "LEBENSBEDROHLICH",
+            "reaktion": "Haut verhärtet sich, bei längerer Einwirkung Versteinerung"
+          },
+          {
+            "ausloeser": "Glockenläuten",
+            "art": "UNVERTRAEGLICHKEIT",
+            "schwere": "SCHWER",
+            "reaktion": "Schmerz, Orientierungsverlust, Flucht"
+          }
+        ],
+        "begruendung": "Katalogfeld Schwächen: „Sonnenlicht (Versteinerung), Glockenläuten“. Körperliche Reaktion ist abgeleitet, nicht belegt."
+      },
+      "verfassung": {
+        "stufe": "ROBUST",
+        "text": "Sehr kräftig und zäh, steinartige Haut als natürlicher Schutz; langsam, aber ausdauernd. Moosbewuchs deutet auf hohes Alter und lange Reglosigkeit hin.",
+        "begruendung": "Porträt (Statur, Haut, Bewuchs) und Katalogfeld Fähigkeiten „Kraft“."
+      },
+      "iq": {
+        "min": 60,
+        "max": 85,
+        "begruendung": "Lore schwankt zwischen „dumm“ und „menschengleich“, Schwächen nennt „Dummheit“; Zauberei und Gestaltwandel sprechen gegen sehr niedrige Werte."
+      },
+      "eq": {
+        "min": 30,
+        "max": 55,
+        "begruendung": "Familienbindung vorhanden, gegenüber Fremden feindselig und gewalttätig (Entführungen, „fressen Christen“)."
+      },
+      "wahnhaft": {
+        "wert": false,
+        "begruendung": "Handelt zielgerichtet (Revier, Schatz); keine Hinweise auf Realitätsverlust."
+      }
+    },
+    {
+      "creatureId": "V2-006",
+      "name": "Kobold",
+      "quellen": [
+        "Porträt ruff_wesen_v2_006_kobold_portrait (KI-generiert, Ruff Asset Pipeline)",
+        "Katalog v2: Gestalt, Größe, Gewicht, Lebensraum, Verhalten, Fähigkeiten, Schwächen"
+      ],
+      "erscheinung": {
+        "wert": "Kleines, gedrungenes Männchen mit dunkler, schuppig-ledriger Haut und rot glühenden Augen. Trägt eine rote Zipfelmütze, einen Fellkragen und zerschlissene Arbeitskleidung mit Gürtel und Anhänger; Krallen an Händen und Füßen. Eine Hand glimmt wie Glut, in der anderen ein Reisigbesen.",
+        "begruendung": "Beschreibung des Porträts; glühende Hand passt zu „teils Feuergestalt“ und „winzige schwarze Zwerge“ im Katalog."
+      },
+      "lebensraum": {
+        "wert": "Haus, Küche und Stall; als Bergkobold auch Bergwerke. Je Haus ein Kobold.",
+        "begruendung": "Katalogfelder Lebensraum und Gruppe."
+      },
+      "verhalten": {
+        "wert": "Hilft unsichtbar im Haushalt, wenn er mit Milch oder Brei versorgt wird; kündigt sich mit Rasseln an. Sehr empfindlich gegenüber Kränkung und Neugier, rächt sich mit Streichen bis zu grausamer Vergeltung.",
+        "begruendung": "Zusammenfassung des Katalogfelds Verhalten."
+      },
+      "groesseM": {
+        "min": 0.6,
+        "max": 0.9,
+        "begruendung": "Katalog: 2–3 Fuß (belegt, Bericht en. Wikipedia)."
+      },
+      "gewichtKg": {
+        "min": 10,
+        "max": 20,
+        "begruendung": "Katalog-Spielwert; das Porträt zeigt einen kompakten, nicht abgemagerten Körper."
+      },
+      "pulsBpm": {
+        "min": 110,
+        "max": 150,
+        "begruendung": "Annahme: kleine Körper haben einen schnelleren Herzschlag (Vergleich: Kleinkind ca. 100–140 bpm)."
+      },
+      "blutdruck": {
+        "systolisch": 100,
+        "diastolisch": 65,
+        "begruendung": "Annahme: geringe Körpergröße, niedrig-normaler Druck wie bei Kindern."
+      },
+      "allergien": {
+        "liste": [
+          {
+            "ausloeser": "Gestreute Asche",
+            "art": "UNVERTRAEGLICHKEIT",
+            "schwere": "SCHWER",
+            "reaktion": "Tödliche Wut gegen den Verursacher"
+          },
+          {
+            "ausloeser": "Geschenkte Kleidung",
+            "art": "UNVERTRAEGLICHKEIT",
+            "schwere": "DEUTLICH",
+            "reaktion": "Verlässt das Haus für immer"
+          }
+        ],
+        "begruendung": "Katalogfeld Schwächen. Es sind Lore-Unverträglichkeiten (Tabus), keine körperliche Allergie ist belegt."
+      },
+      "verfassung": {
+        "stufe": "DURCHSCHNITTLICH",
+        "text": "Klein, aber zäh und flink; Krallen. Körperlich einem Menschen unterlegen, gleicht das durch Unsichtbarkeit und Glutkräfte aus.",
+        "begruendung": "Porträt (Statur, Krallen, Glut) und Katalogfeld Fähigkeiten."
+      },
+      "iq": {
+        "min": 95,
+        "max": 115,
+        "begruendung": "Spricht, plant Streiche und gezielte Rache, erledigt Hausarbeit selbständig."
+      },
+      "eq": {
+        "min": 50,
+        "max": 75,
+        "begruendung": "Spürt die Stimmung im Haus genau, reagiert aber überempfindlich auf Kränkung und kaum verhältnismäßig."
+      },
+      "wahnhaft": {
+        "wert": false,
+        "begruendung": "Reaktionen folgen festen Regeln (Pflege → Hilfe, Kränkung → Rache); kein Realitätsverlust erkennbar."
+      }
+    },
+    {
+      "creatureId": "V2-115",
+      "name": "Jötnar",
+      "quellen": [
+        "Porträt ruff_wesen_v2_115_joetnar_portrait (KI-generiert, Ruff Asset Pipeline)",
+        "Katalog v2: Gestalt, Größe, Gewicht, Lebensraum, Verhalten, Fähigkeiten, Schwächen, Hinweis"
+      ],
+      "erscheinung": {
+        "wert": "Hünenhafte, aufrechte Gestalt eines alten Mannes mit langem weißgrauem Haar und Vollbart, grauer Haut und ernstem Blick. Trägt Felle und vielfach geflickte, zerfetzte Gewänder mit Bandagen an Armen und Beinen, barfuß, und stützt sich auf einen knorrigen, mannshohen Stab.",
+        "begruendung": "Beschreibung des Porträts."
+      },
+      "lebensraum": {
+        "wert": "Jötunheim; als Frost-, Berg- oder Feuerriese in der jeweils passenden Wildnis.",
+        "begruendung": "Katalogfelder Lebensraum und Hinweis (sammelt Frost-, Berg- und Feuerriesen)."
+      },
+      "verhalten": {
+        "wert": "Lebt in Sippen, ist zugleich verwandt und verfeindet mit den Göttern; heiratet in Götterfamilien ein und zieht bei Ragnarök gegen sie. Hütet uraltes Wissen und lässt sich auf Wissenswettstreite ein.",
+        "begruendung": "Zusammenfassung der Katalogfelder Verhalten, Gruppe und Spielfakten."
+      },
+      "groesseM": {
+        "min": 2.5,
+        "max": 3.5,
+        "begruendung": "Katalog-Spielwert ca. 3 m; laut Forschung „nicht notwendig groß“, daher eine breite Spanne."
+      },
+      "gewichtKg": {
+        "min": 300,
+        "max": 600,
+        "begruendung": "Katalog-Spielwert ca. 400 kg; ein auf 3 m hochskalierter Mensch (85 kg bei 1,8 m) wiegt etwa 390 kg."
+      },
+      "pulsBpm": {
+        "min": 35,
+        "max": 50,
+        "begruendung": "Annahme: Je größer der Körper, desto langsamer schlägt das Herz."
+      },
+      "blutdruck": {
+        "systolisch": 160,
+        "diastolisch": 100,
+        "begruendung": "Annahme: Bei 3 m Größe braucht es mehr Druck, um Blut bis in den Kopf zu pumpen."
+      },
+      "allergien": {
+        "liste": [],
+        "begruendung": "Keine körperliche Unverträglichkeit belegt. Versteinerung im Sonnenlicht ist laut Katalog eher bei Zwergen und späteren Trollen belegt; Mjölnir ist eine Waffe, keine Unverträglichkeit."
+      },
+      "verfassung": {
+        "stufe": "AUSSERGEWOEHNLICH",
+        "text": "Gewaltige Kraft und hohe Ausdauer; trotz sichtbaren Alters ungebrochen.",
+        "begruendung": "Katalogfeld Fähigkeiten „Kraft“; das Porträt zeigt Alter (weißes Haar) bei aufrechter, kräftiger Haltung."
+      },
+      "iq": {
+        "min": 120,
+        "max": 150,
+        "begruendung": "Uraltes Wissen und Wissenswettstreite (Vafþrúðnir), Zauber und Gestaltwandel."
+      },
+      "eq": {
+        "min": 70,
+        "max": 95,
+        "begruendung": "Bündnisse und Ehen mit Göttern zeigen soziales Geschick; der Dauerkonflikt bis Ragnarök zeigt Groll."
+      },
+      "wahnhaft": {
+        "wert": false,
+        "begruendung": "Handelt planvoll und berechenbar (Verwandtschaft, Feindschaft, Wissen)."
+      }
+    },
+    {
+      "creatureId": "V2-108",
+      "name": "Sphinx",
+      "quellen": [
+        "Porträt ruff_wesen_v2_108_sphinx_portrait (KI-generiert, Ruff Asset Pipeline)",
+        "Katalog v2: Gestalt, Größe, Gewicht, Lebensraum, Verhalten, Fähigkeiten, Schwächen"
+      ],
+      "erscheinung": {
+        "wert": "Sitzender Löwenkörper mit dunklem, dichtem Fell, durchzogen von glutroten Rissen, und mächtigen schwarzen Schwingen. Frauenkopf mit strengem Blick, ägyptischem Kopfschmuck, Perlen- und Halsgeschmeide; Löwenschwanz mit Quaste, schwere Pranken.",
+        "begruendung": "Beschreibung des Porträts; Katalogfeld Gestalt: „Löwenkörper mit Frauenkopf und Flügeln“."
+      },
+      "lebensraum": {
+        "wert": "Felsen vor Theben; bewacht Torwege und Zugänge.",
+        "begruendung": "Katalogfeld Lebensraum und Spielfakten (Motivation: Torweg bewachen)."
+      },
+      "verhalten": {
+        "wert": "Lebt allein, wartet an ihrem Platz und stellt Vorbeiziehenden ein Rätsel. Wer falsch antwortet, wird gefressen; wird das Rätsel gelöst, stürzt sie sich in den Tod.",
+        "begruendung": "Zusammenfassung der Katalogfelder Verhalten und Spielfakten."
+      },
+      "groesseM": {
+        "min": 1.4,
+        "max": 1.6,
+        "begruendung": "Schulterhöhe; Katalog-Spielwert ca. 1,5 m. Im Sitzen überragt der Kopf diese Höhe."
+      },
+      "gewichtKg": {
+        "min": 250,
+        "max": 350,
+        "begruendung": "Katalog-Spielwert ca. 300 kg; mehr als ein großer Löwe (bis ca. 250 kg) wegen der Größe und der Flügelmuskulatur."
+      },
+      "pulsBpm": {
+        "min": 40,
+        "max": 60,
+        "begruendung": "Annahme: Großkatzen-Niveau in Ruhe; wartet lange reglos."
+      },
+      "blutdruck": {
+        "systolisch": 135,
+        "diastolisch": 85,
+        "begruendung": "Annahme: Großkatzen-Niveau, leicht über dem Menschen."
+      },
+      "allergien": {
+        "liste": [
+          {
+            "ausloeser": "Gelöstes Rätsel",
+            "art": "UNVERTRAEGLICHKEIT",
+            "schwere": "LEBENSBEDROHLICH",
+            "reaktion": "Stürzt sich in den Tod"
+          }
+        ],
+        "begruendung": "Katalogfeld Schwächen: „stirbt, wenn jemand ihr Rätsel löst“. Eine übernatürliche, keine körperliche Unverträglichkeit."
+      },
+      "verfassung": {
+        "stufe": "AUSSERGEWOEHNLICH",
+        "text": "Raubtierkörper mit großer Kraft und Flugmuskulatur; kann lange ausharren.",
+        "begruendung": "Porträt (Pranken, Schwingen) und Katalogfeld Fähigkeiten „Wächterkraft, Stärke“."
+      },
+      "iq": {
+        "min": 140,
+        "max": 170,
+        "begruendung": "Rätselkunst ist ihr Kernmerkmal; nur ein Held wie Ödipus löst ihr Rätsel."
+      },
+      "eq": {
+        "min": 45,
+        "max": 70,
+        "begruendung": "Kalt und ohne Mitgefühl gegenüber Verlierern; der Freitod bei der Niederlage zeigt eine starre, an das Rätsel gebundene Identität."
+      },
+      "wahnhaft": {
+        "wert": false,
+        "begruendung": "Zwanghaft an Rätsel und Ort gebunden, aber ohne Realitätsverlust – eher eine Fixierung als ein Wahn."
+      }
+    },
+    {
+      "creatureId": "V2-078",
+      "name": "Draugr",
+      "quellen": [
+        "Porträt ruff_wesen_v2_078_draugr_portrait (KI-generiert, Ruff Asset Pipeline)",
+        "Katalog v2: Gestalt, Größe, Gewicht, Lebensraum, Verhalten, Fähigkeiten, Schwächen"
+      ],
+      "erscheinung": {
+        "wert": "Riesiger, aufgedunsener Leichnam mit blauschwarzer, schuppig-rissiger Haut, aus deren Spalten rote Glut schimmert. Wirrer schwarzer Bart und Haar, leerer, starrer Blick. Trägt verrottete Felle, einen Gürtel mit Ringschnalle und zerfetzte Wickel um Unterarme und Beine.",
+        "begruendung": "Beschreibung des Porträts; Katalog: „schwarz wie Hel und aufgedunsen zur Größe eines Stiers“."
+      },
+      "lebensraum": {
+        "wert": "Grabhügel und Königsgräber; verlässt sie nachts, um Höfe heimzusuchen.",
+        "begruendung": "Katalogfeld Lebensraum; nächtliche Heimsuchung abgeleitet aus „reitet auf Dächern, tötet Vieh“."
+      },
+      "verhalten": {
+        "wert": "Bewacht den Grabschatz, tötet Vieh und Menschen, reitet auf Dächern und treibt Lebende in Wahnsinn oder Tod. Wer durch ihn stirbt, kann selbst aufstehen.",
+        "begruendung": "Zusammenfassung der Katalogfelder Verhalten, Gruppe und Spielfakten."
+      },
+      "groesseM": {
+        "min": 2.0,
+        "max": 2.5,
+        "begruendung": "Katalog-Spielwert ca. 2,2 m; „Größenwandel“ erlaubt kurzzeitig mehr."
+      },
+      "gewichtKg": {
+        "min": 450,
+        "max": 650,
+        "begruendung": "Katalog: „so schwer wie ein Ochse“, Spielwert ca. 600 kg; das Porträt zeigt stark aufgedunsene Masse."
+      },
+      "pulsBpm": {
+        "min": 0,
+        "max": 0,
+        "begruendung": "Untoter Leichnam: kein Herzschlag."
+      },
+      "blutdruck": {
+        "hinweis": "kein Kreislauf – Blut steht und gerinnt",
+        "begruendung": "Untoter Leichnam: Ohne Herzschlag gibt es keinen Blutdruck. Die Aufdunsung passt zu Verwesungsgasen."
+      },
+      "allergien": {
+        "liste": [
+          {
+            "ausloeser": "Eisen",
+            "art": "UNVERTRAEGLICHKEIT",
+            "schwere": "SCHWER",
+            "reaktion": "Wird am Grab gebannt und kann es nicht verlassen"
+          },
+          {
+            "ausloeser": "Feuer",
+            "art": "UNVERTRAEGLICHKEIT",
+            "schwere": "LEBENSBEDROHLICH",
+            "reaktion": "Verbrennen und Asche ins Meer streuen vernichtet ihn endgültig"
+          }
+        ],
+        "begruendung": "Katalogfeld Schwächen (Eisenwerkzeug am Grab, Verbrennen). Enthauptung ist eine Tötungsart, keine Unverträglichkeit."
+      },
+      "verfassung": {
+        "stufe": "UEBERNATUERLICH",
+        "text": "Verwesender, aufgedunsener Körper mit übermenschlicher Kraft; spürt weder Schmerz noch Erschöpfung wie ein Lebender.",
+        "begruendung": "Katalogfeld Fähigkeiten „übermenschliche Kraft, Größenwandel“; Untoter laut Gestalt."
+      },
+      "iq": {
+        "min": 70,
+        "max": 95,
+        "begruendung": "Wetterzauber und gezielte Flüche (Grettir) zeigen Restverstand; sonst überwiegt rohe Gewalt."
+      },
+      "eq": {
+        "min": 5,
+        "max": 25,
+        "begruendung": "Kein Mitgefühl, keine Bindungen; tötet wahllos Vieh und Menschen."
+      },
+      "wahnhaft": {
+        "wert": true,
+        "begruendung": "Einschätzung: zwanghafte Bindung an Grab und Schatz, sinnlose Gewalt (reitet auf Dächern); verbreitet Wahnsinn bei anderen."
+      }
+    },
+    {
+      "creatureId": "V2-112",
+      "name": "Wendigo",
+      "quellen": [
+        "Porträt ruff_wesen_v2_112_wendigo_portrait (KI-generiert, Ruff Asset Pipeline)",
+        "Katalog v2: Gestalt, Größe, Gewicht, Lebensraum, Verhalten, Fähigkeiten, Schwächen"
+      ],
+      "erscheinung": {
+        "wert": "Riesige, bis auf Haut und Knochen abgemagerte Menschengestalt mit Hirschschädel-Gesicht und weit ausladendem, vereistem Geweih. Fahlgraue, zerrissene Haut mit Eiszapfen und frostigem Fell an Schultern; unter den Rippen glimmen rote Adern. Überlange Arme mit sichelartigen Klauen.",
+        "begruendung": "Beschreibung des Porträts; Katalog: „riesiger Menschengestaltiger mit Herz aus Eis“, „abgemagert“."
+      },
+      "lebensraum": {
+        "wert": "Wälder des Nordens; erscheint vor allem im Winter.",
+        "begruendung": "Katalogfelder Lebensraum und Verhalten („jagt im Winter“)."
+      },
+      "verhalten": {
+        "wert": "Jagt im Winter Menschen und wird nie satt. Gestank und plötzliche Kälte kündigen ihn an; er kann Menschen besetzen und in ihnen den Drang wecken, Menschen zu essen.",
+        "begruendung": "Zusammenfassung der Katalogfelder Verhalten und Spielfakten."
+      },
+      "groesseM": {
+        "min": 4.0,
+        "max": 5.0,
+        "begruendung": "Katalog-Spielwert ca. 4,5 m („um ein Vielfaches größer als Menschen“); im Porträt kommt das Geweih noch dazu."
+      },
+      "gewichtKg": {
+        "min": 250,
+        "max": 350,
+        "begruendung": "Katalog-Spielwert ca. 300 kg, „abgemagert“ – für 4,5 m Größe extrem leicht."
+      },
+      "pulsBpm": {
+        "min": 8,
+        "max": 20,
+        "begruendung": "Annahme: Ein „Herz aus Eis“ schlägt kaum; Vergleich mit Tieren im Winterschlaf."
+      },
+      "blutdruck": {
+        "systolisch": 70,
+        "diastolisch": 40,
+        "hinweis": "unterkühlter Kreislauf",
+        "begruendung": "Annahme: Herz aus Eis und Auszehrung – sehr niedriger Druck, Blut zähflüssig vor Kälte."
+      },
+      "allergien": {
+        "liste": [
+          {
+            "ausloeser": "Feuer und Hitze",
+            "art": "UNVERTRAEGLICHKEIT",
+            "schwere": "LEBENSBEDROHLICH",
+            "reaktion": "Das Eisherz schmilzt – das vernichtet ihn"
+          }
+        ],
+        "begruendung": "Katalogfeld Schwächen: „Feuer, Schmelzen seines Eisherzens“."
+      },
+      "verfassung": {
+        "stufe": "UEBERNATUERLICH",
+        "text": "Bis aufs Skelett ausgezehrt und trotzdem riesig, schnell und unermüdlich; leidet unter dauerndem, unstillbarem Hunger.",
+        "begruendung": "Porträt (Auszehrung, Klauen) und Katalogfeld Fähigkeiten „Riesenwuchs, unstillbarer Hunger, Kälte“."
+      },
+      "iq": {
+        "min": 80,
+        "max": 110,
+        "begruendung": "Jagt gezielt und kann Menschen besetzen; die Gier überlagert planvolles Denken."
+      },
+      "eq": {
+        "min": 0,
+        "max": 15,
+        "begruendung": "Steht laut Lore für Gier und Hunger; kein Mitgefühl, Menschen sind nur Beute."
+      },
+      "wahnhaft": {
+        "wert": true,
+        "begruendung": "Unstillbarer Hunger und Zwang zum Kannibalismus; der Katalog verweist auf die psychiatrisch diskutierte „Windigo-Psychose“."
+      }
+    }
+  ]
+}
