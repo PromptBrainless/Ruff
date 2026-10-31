@@ -40,6 +40,7 @@ internal fun SearchScreen(
     onQueryChange: (String) -> Unit,
     onRetry: () -> Unit,
     onCreatureClick: (Creature) -> Unit,
+    onToggleFavorite: (String) -> Unit,
     onRuleClick: (RulePage) -> Unit,
 ) {
     Column(Modifier.fillMaxSize().safeHorizontalPadding()) {
@@ -71,7 +72,13 @@ internal fun SearchScreen(
                     if (creatures.isNotEmpty()) {
                         item(key = "h_wesen") { SectionHeader("Wesen · ${creatures.size}") }
                         items(creatures, key = { "c_" + it.id.ifBlank { it.name } }) { creature ->
-                            CreatureCard(creature = creature, onClick = { onCreatureClick(creature) })
+                            CreatureCard(
+                                creature = creature,
+                                onClick = { onCreatureClick(creature) },
+                                favorite = if (state.favoritesAvailable) state.isFavorite(creature.id) else null,
+                                onToggleFavorite = { onToggleFavorite(creature.id) },
+                                favoritePlace = "suche",
+                            )
                         }
                     }
                     if (rules.isNotEmpty()) {
