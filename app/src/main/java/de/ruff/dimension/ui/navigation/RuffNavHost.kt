@@ -22,7 +22,6 @@ import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaf
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -132,7 +131,7 @@ private fun RuffNavGraph(
     navController: NavHostController,
     motion: RuffMotion,
 ) {
-    val backStackEntry by navController.currentBackStackEntryAsState()
+    val backStackEntry = navController.currentBackStackEntryAsState().value
     BackHandler(state.adminUnlocked && backStackEntry?.destination?.route == Routes.ADMIN) {
         viewModel.lockAdmin()
         navController.popBackStack(Routes.MENU, false)
