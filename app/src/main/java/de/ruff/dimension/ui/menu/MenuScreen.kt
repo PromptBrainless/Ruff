@@ -169,7 +169,7 @@ internal fun MenuScreen(
                         if (adminPinConfigured) {
                             "PIN eingeben, um Inhalte und Gestaltung auf diesem Gerät zu verwalten."
                         } else {
-                            "Lege eine mindestens sechsstellige PIN fest. Sie wird nur als gesalzener Hash auf diesem Gerät gespeichert."
+                            "Lege eine mindestens vierstellige PIN fest. Sie wird nur als gesalzener Hash auf diesem Gerät gespeichert."
                         },
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -199,8 +199,8 @@ internal fun MenuScreen(
             confirmButton = {
                 TextButton(
                     onClick = {
-                        if (pin.length < 6) {
-                            localError = "Die PIN muss mindestens sechs Ziffern enthalten."
+                        if (pin.length < 4) {
+                            localError = "Die PIN muss mindestens vier Ziffern enthalten."
                         } else if (!adminPinConfigured && pin != confirmation) {
                             localError = "Die beiden PIN-Eingaben stimmen nicht überein."
                         } else {

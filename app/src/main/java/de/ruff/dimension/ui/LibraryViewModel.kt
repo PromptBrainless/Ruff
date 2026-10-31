@@ -320,8 +320,8 @@ internal class LibraryViewModel
             adminError.value = null
             viewModelScope.launch {
                 try {
-                    if (pin.length < 6) {
-                        adminError.value = "Die Admin-PIN muss mindestens sechs Zeichen lang sein."
+                    if (pin.length < MIN_ADMIN_PIN_LENGTH || !pin.all(Char::isDigit)) {
+                        adminError.value = "Die Admin-PIN muss mindestens vier Ziffern enthalten."
                         return@launch
                     }
                     val authenticated =
@@ -351,6 +351,33 @@ internal class LibraryViewModel
             adminUnlocked.value = false
             editing.value = false
             adminError.value = null
+        }
+
+        fun changeAdminPin(
+            currentPin: String,
+            newPin: String,
+            confirmation: String,
+        ) {
+            if (!adminUnlocked.value) return
+            adminError.value = null
+            if (newPin != confirmation) {
+                adminError.value = "Die neuen PIN-Eingaben stimmen nicht überein."
+                return
+            }
+            if (newPin.length < MIN_ADMIN_PIN_LENGTH || !newPin.all(Char::isDigit)) {
+                adminError.value = "Die neue Admin-PIN muss mindestens vier Ziffern enthalten."
+                return
+            }
+            viewModelScope.launch {
+                try {
+                    val changed = withContext(ioDispatcher) { adminAccess.changePin(currentPin, newPin) }
+                    adminError.value = if (changed) "Admin-PIN wurde geändert." else "Der bisherige Admin-PIN stimmt nicht."
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    adminError.value = "Admin-PIN konnte nicht geändert werden (${e.javaClass.simpleName})."
+                }
+            }
         }
 
         fun saveAppearance(appearance: AdminAppearance) {
@@ -445,6 +472,7 @@ internal class LibraryViewModel
         }
 
         internal companion object {
+            const val MIN_ADMIN_PIN_LENGTH = 4
             const val KEY_TAB = "tab"
             const val KEY_QUERY = "query"
             const val KEY_POWER = "powerFilter"

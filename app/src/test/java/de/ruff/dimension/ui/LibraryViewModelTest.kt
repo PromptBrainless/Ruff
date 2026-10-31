@@ -88,6 +88,15 @@ class LibraryViewModelTest {
         }
 
         override fun verifyPin(pin: String) = this.pin == pin
+
+        override fun changePin(
+            currentPin: String,
+            newPin: String,
+        ): Boolean {
+            if (!verifyPin(currentPin)) return false
+            setPin(newPin)
+            return true
+        }
     }
 
     private val adminAccess = FakeAdminAccess()
@@ -163,6 +172,23 @@ class LibraryViewModelTest {
         vm.lockAdmin()
         idle()
         assertFalse(vm.uiState.value.canEdit)
+    }
+
+    @Test
+    fun unlockedAdminCanChangePinToFourDigitsAfterConfirmingCurrentPin() {
+        val vm = viewModel()
+        vm.submitAdminPin("123456")
+        idle()
+
+        vm.changeAdminPin("123456", "1337", "1337")
+        idle()
+
+        assertEquals("1337", adminAccess.pin)
+        assertEquals("Admin-PIN wurde geändert.", vm.uiState.value.adminError)
+        vm.lockAdmin()
+        vm.submitAdminPin("1337")
+        idle()
+        assertTrue(vm.uiState.value.adminUnlocked)
     }
 
     @Test

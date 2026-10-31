@@ -200,6 +200,7 @@ private fun RuffNavGraph(
                     archivedCreatures = state.archivedCreatures,
                     archivedRules = state.archivedRules,
                     error = state.editorError,
+                    adminError = state.adminError,
                     onSaveAppearance = viewModel::saveAppearance,
                     onBackgroundSelected = viewModel::setAppearanceBackground,
                     onFontSelected = viewModel::setAppearanceFont,
@@ -207,6 +208,7 @@ private fun RuffNavGraph(
                     onClearFont = { viewModel.saveAppearance(state.appearance.copy(fontPath = "")) },
                     onRestoreCreature = viewModel::unarchiveCreature,
                     onRestoreRule = viewModel::unarchiveRule,
+                    onChangePin = viewModel::changeAdminPin,
                     onLock = {
                         viewModel.lockAdmin()
                         navController.popBackStack(Routes.MENU, false)

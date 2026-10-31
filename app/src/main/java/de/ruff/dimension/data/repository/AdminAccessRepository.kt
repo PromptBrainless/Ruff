@@ -13,6 +13,11 @@ internal interface AdminAccessRepository {
     fun setPin(pin: String)
 
     fun verifyPin(pin: String): Boolean
+
+    fun changePin(
+        currentPin: String,
+        newPin: String,
+    ): Boolean
 }
 
 /**
@@ -27,7 +32,9 @@ internal class SharedPreferencesAdminAccess(
     override fun isConfigured(): Boolean = preferences.contains(HASH_KEY) && preferences.contains(SALT_KEY)
 
     override fun setPin(pin: String) {
-        require(pin.length >= MIN_PIN_LENGTH) { "Die Admin-PIN muss mindestens sechs Zeichen lang sein." }
+        require(pin.length >= MIN_PIN_LENGTH && pin.all(Char::isDigit)) {
+            "Die Admin-PIN muss mindestens vier Ziffern enthalten."
+        }
         val salt = ByteArray(SALT_BYTES).also(SecureRandom()::nextBytes)
         val hash = derive(pin, salt)
         check(
@@ -43,6 +50,18 @@ internal class SharedPreferencesAdminAccess(
         val salt = preferences.getString(SALT_KEY, null)?.let { Base64.decode(it, Base64.NO_WRAP) } ?: return false
         val expected = preferences.getString(HASH_KEY, null)?.let { Base64.decode(it, Base64.NO_WRAP) } ?: return false
         return MessageDigest.isEqual(expected, derive(pin, salt))
+    }
+
+    override fun changePin(
+        currentPin: String,
+        newPin: String,
+    ): Boolean {
+        require(newPin.length >= MIN_PIN_LENGTH && newPin.all(Char::isDigit)) {
+            "Die neue Admin-PIN muss mindestens vier Ziffern enthalten."
+        }
+        if (!verifyPin(currentPin)) return false
+        setPin(newPin)
+        return true
     }
 
     private fun derive(
@@ -61,7 +80,7 @@ internal class SharedPreferencesAdminAccess(
         const val PREFERENCES = "ruff_admin_access"
         const val SALT_KEY = "pin_salt"
         const val HASH_KEY = "pin_hash"
-        const val MIN_PIN_LENGTH = 6
+        const val MIN_PIN_LENGTH = 4
         const val SALT_BYTES = 16
         const val HASH_BITS = 256
         const val ITERATIONS = 150_000
