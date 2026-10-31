@@ -131,6 +131,14 @@ internal class LibraryViewModel
             val error: String?,
         )
 
+        private data class UiInputs(
+            val loadState: LoadState,
+            val selection: Selection,
+            val hits: SearchHits?,
+            val edit: EditState,
+            val favorites: FavoriteState,
+        )
+
         private val editState = combine(editing, editorError, ::EditState)
 
         private val favoriteState =
@@ -158,27 +166,35 @@ internal class LibraryViewModel
 
         val uiState: StateFlow<LibraryUiState> =
             combine(
-                load.asStateFlow(),
-                selection,
-                searchHits,
-                editState,
-                favoriteState,
+                combine(
+                    load.asStateFlow(),
+                    selection,
+                    searchHits,
+                    editState,
+                    favoriteState,
+                ) { loadState, sel, hits, edit, fav ->
+                    UiInputs(loadState, sel, hits, edit, fav)
+                },
                 adminState,
-            ) { loadState, sel, hits, edit, fav, admin ->
-                val data = (loadState as? LoadState.Ready)?.data
+            ) { inputs, admin ->
+                val data = (inputs.loadState as? LoadState.Ready)?.data
                 LibraryUiState(
-                    load = loadState,
-                    tab = sel.tab,
-                    query = sel.query,
-                    powerFilter = sel.powerFilter,
-                    selectedCreature = sel.creatureId?.let { id -> data?.creatures?.firstOrNull { it.id == id } },
-                    selectedRule = sel.ruleId?.let { id -> data?.rules?.firstOrNull { it.source == id } },
-                    searchHits = hits,
-                    editing = edit.editing,
-                    editorError = edit.error,
-                    favoriteIds = fav.ids,
-                    favoritesOnly = fav.only,
-                    favoriteError = fav.error,
+                    load = inputs.loadState,
+                    tab = inputs.selection.tab,
+                    query = inputs.selection.query,
+                    powerFilter = inputs.selection.powerFilter,
+                    selectedCreature = inputs.selection.creatureId?.let { id ->
+                        data?.creatures?.firstOrNull { it.id == id }
+                    },
+                    selectedRule = inputs.selection.ruleId?.let { id ->
+                        data?.rules?.firstOrNull { it.source == id }
+                    },
+                    searchHits = inputs.hits,
+                    editing = inputs.edit.editing,
+                    editorError = inputs.edit.error,
+                    favoriteIds = inputs.favorites.ids,
+                    favoritesOnly = inputs.favorites.only,
+                    favoriteError = inputs.favorites.error,
                     adminPinConfigured = admin.configured,
                     adminUnlocked = admin.unlocked,
                     adminError = admin.error,
