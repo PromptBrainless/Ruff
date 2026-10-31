@@ -1,7 +1,7 @@
 package de.ruff.dimension.ui.common
 
 import android.graphics.BitmapFactory
-import android.media.MediaController
+import android.widget.MediaController
 import android.widget.VideoView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
